@@ -1,6 +1,10 @@
+from cmath import phase
 from pathlib import Path
 import environ
 import os
+from django.contrib.messages import constants as messages
+
+
 env = environ.Env()
 #read.env file
 environ.Env.read_env()
@@ -11,7 +15,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Application definition
 
@@ -24,6 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'environ',
     'guardian',
+    'account',
+    'pharmacy',
 ]
 
 MIDDLEWARE = [
@@ -41,7 +47,7 @@ ROOT_URLCONF = 'fyp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -57,10 +63,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'fyp.wsgi.application'
 
 
+# telling that we are using custom user model and not the default one 'app_name.Model_name'
+AUTH_USER_MODEL = 'account.Account'
+
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
+
+# for postgresql ** only uncomment when the backend is completed.
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME':'fyp',
@@ -70,6 +81,15 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+'''
+# for sqlite3 **this database is development phase
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
 
 
 # Password validation
@@ -109,9 +129,35 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = BASE_DIR /'static'
+STATICFILES_DIRS = [
+    'fyp/static',
+]
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR
+
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.INFO: 'info',
+
+}
+
+# smtp configuration
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'guardian.suport011@gmail.com'
+EMAIL_HOST_PASSWORD = 'support_guard123'
+# EMAIL_HOST_USER = 'guardian.cpc@gmail.com'
+# EMAIL_HOST_PASSWORD = 'Guardian_cpc1'
+EMAIL_USE_TLS = True
+
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -127,7 +173,6 @@ if DEBUG is False:
     SECURE_REDIRECT_EXEMPT = []
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 
     ALLOWED_HOSTS =['']
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

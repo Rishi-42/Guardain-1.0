@@ -1,0 +1,37 @@
+{% load static %}
+
+	<header class="topbar">
+		<div class="container flex justify-between items-center">
+			<div class="icons">
+				<p>Email: test@example.com | Phone: +18-000 000 00</p>
+
+			</div>
+			<div class="auth flex items-center">
+                <div>
+                    <img src="{% static 'icons/user-icon.svg' %}" alt="">
+                    <a href="#"><button> Log In</button></a>
+                </div>
+                <span class="divider">|</span>
+                <div>
+                    <img src="{% static 'icons/edit.svg' %}" alt="">
+                    <a href="#"  ><button>Register</button></a>
+                </div>
+
+			</div>
+		</div>
+	</header>
+<nav style="margin-top: 0px!important;">
+	<div class="navbar magic-shadow" style="padding: 0rem!important;">
+		<div class="container flex justify-content-center">
+			<a href="home.html" >Home</a>
+			<!-- <a href="product.html">Products</a> -->
+			<a href="pharmacy.html" class="active">Pharmacy</a>
+			<a href="councellor.html">Councellor</a>
+			<a href="medicine.html">Medicine</a>
+			<a href="blog.html">Blog</a>
+		</div>
+	</div>
+</nav> <br>
+
+
+</header>

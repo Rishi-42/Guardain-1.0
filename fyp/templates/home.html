@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% load static %}}
+{%block start%}
+                <header class="hero flex items-center">
+                    <div class="container">
+                        <div class="welcome flex items-center">
+                            <span>Welcome to Guardian</span>
+
+                        </div>
+                        <h1>Share us your <span>Problems</span> </h1>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy.</p>
+                        <div>
+                            <button class="btn btn-primary">Read More</button>
+                            <button class="btn btn-secondary">Shop Now</button>
+                        </div>
+                        <div class="hero-image">
+                            <img src="{% static 'images/doc.png' %}" alt="">
+                        </div>
+                    </div>
+                </header>
+                <section class="our-services">
+                    <div class="container">
+                        <h1 class="section-heading">Our services</h1>
+                        <div class="card-wrapper flex">
+                            <div class="service-card magic-shadow-sm">
+                                <!-- <img class="icon" src="../icons/transport.svg" alt=""> -->
+                                <h2 class="text-primary">Place your medicine Orders</h2>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                <button class="btn btn-secondary">Read More</button>
+                            </div>
+                            <div class="service-card magic-shadow-sm">
+                                <!-- <img class="icon" src="../icons/bag.svg" alt=""> -->
+                                <h2 class="text-primary">Get Readable Presciption</h2>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                <button class="btn btn-secondary">Read More</button>
+                            </div>
+                            <div class="service-card magic-shadow-sm">
+                                <!-- <img class="icon" src="../icons/usd.svg" alt=""> -->
+                                <h2 class="text-primary">Contact Near by Pharmacy</h2>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                <button class="btn btn-secondary">Read More</button>
+                            </div>
+                            <div class="service-card magic-shadow-sm">
+                                <!-- <img class="icon" src="../icons/usd.svg" alt=""> -->
+                                <h2 class="text-primary">Reserve therapy sessions</h2>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                <button class="btn btn-secondary">Read More</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="about-G" id="about">
+                    <div class="container">
+                        <h1 class="section-heading">About Guardian</h1>
+                        <div class="about-G-wrap flex">
+                            <div class="flex-1">
+                                <img src="{% static 'images/personal_health.png' %}" alt="">
+                            </div>
+                            <div class="flex-1">
+                                <h2></h2>
+                                <p><strong>The Guardian </strong> is an online hub for pharmacies, counsellors, and its customers where pharmacies and counsellors can broaden their business by providing medicines and health related advise to their customers. Likewise
+                                    for customers, the app works as an online medical store where they can order their medicines prescribed by the doctors by uploading the perception sheet or by manually ordering the medicine and can take online therapy.
+                                    Moreover, it connects customers with pharmacies and counsellors that offer medicines and therapy in their area and lets them choose, order, and pay online/offline</p>
+                                <!-- <button class="btn btn-secondary">Read More</button> -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+<!-- daily quotes -->
+                <section class="daily_quote">
+                    <div class="container">
+                        <h1 class="section-heading text-pure">Quote of the Day</h1>
+                        <div class="quotes">
+                            <p>“Time and health are two precious assets that we don’t recognize and appreciate until they have been depleted.” </p>
+                        </div>
+                    </div>
+                </section>
+`
+
+<!-- blog section  -->
+                <!-- <section class="latest-news">
+                    <div class="container">
+                        <h1 class="section-heading">Lastest News from Blog</h1>
+                        <div class="article-wrapper">
+                            <article class="card magic-shadow-sm">
+                                <div>
+                                    <img src="../images/Therapy.jpg" alt="">
+                                </div>
+                                <div class="card-content">
+                                    <div class="post-meta flex items-center justify-between">
+                                        <span>July 03, 2017</span>
+                                        <div>
+                                            <span>Posted by <strong>FreshMeal</strong></span>
+
+                                        </div>
+                                    </div>
+
+                                    <h2>Lorem Ipsum is simply dummy text of the printing</h2>
+                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more letters.
+                                    </p>
+                                </div>
+                            </article>
+                            <article class="card magic-shadow-sm">
+                                <div>
+                                    <img src="../images/Medicine.jpg" alt="">
+                                </div>
+                                <div class="card-content">
+                                    <div class="post-meta flex items-center justify-between">
+                                        <span>July 03, 2017</span>
+                                        <div>
+                                            <span>Posted by <strong>FreshMeal</strong></span>
+
+                                        </div>
+                                    </div>
+
+                                    <h2>Lorem Ipsum is simply dummy text of the printing</h2>
+                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more letters.
+                                    </p>
+                                </div>
+                            </article>
+                            <article class="card magic-shadow-sm">
+                                <div>
+                                    <img src="../images/Therapy.jpg" alt="">
+                                </div>
+                                <div class="card-content">
+                                    <div class="post-meta flex items-center justify-between">
+                                        <span>July 03, 2017</span>
+                                    </div>
+                                    <h2>Lorem Ipsum is simply dummy text of the printing</h2>
+                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more letters.
+                                    </p>
+                                </div>
+                            </article>
+
+                        </div>
+                        <div class="text-center btn-wrapper">
+                            <button class="btn btn-secondary">View All</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="subscribe">
+                    <div class="container flex items-center">
+                        <div>
+                            <img src="{% static 'images/newsletter.png' %}" alt="">
+                        </div>
+                        <div>
+                            <h1>Subscribe to your newsletter</h1>
+                            <p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+                            <div class="input-wrap">
+                                <input type="email" placeholder="email@freshmeal.com">
+                                <button>Subscribe</button>
+                            </div>
+                        </div>
+                    </div>
+                </section> -->
+
+<!-- brand images -->
+                <section class="section-brand">
+                    <div class="brands-center container">
+                        <div class="brand">
+                            <img src="{% static 'images/client-img-1.png' %}" alt="" />
+                        </div>
+                        <div class="brand">
+                            <img src="{% static 'images/client-img-2.png' %}" alt="" />
+                        </div>
+                        <div class="brand">
+                            <img src="{% static 'images/client-img-3.png' %}" alt="" />
+                        </div>
+                        <div class="brand">
+                            <img src="{% static 'images/client-img-4.png' %}" alt="" />
+                        </div>
+                        <div class="brand">
+                            <img src="{% static 'images/client-img-5.png' %}" alt="" />
+                        </div>
+                        <div class="brand">
+                            <img src="{% static 'images/client-img-6.png' %}" alt="" />
+                        </div>
+                        <div class="brand">
+                            <img src="{% static 'images/client-img-7.png' %}" alt="" />
+                        </div>
+                        <div class="brand">
+                            <img src="{% static 'images/client-img-8.png' %}" alt="" />
+                        </div>
+                    </div>
+                </section>
+
+
+
+{%endblock%}

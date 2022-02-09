@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Guardian</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="../css/base.css">
+</head>
+
+<body>
+    <div class="main-wrapper">
+        <div class="nav-background">
+            <div class="mobile-logo">
+                <h1>Guardian</h1>
+            </div>
+            <div class="mobile-nav">
+                <div class="nav-top">
+                    <ul>
+                        <li>
+                            <a href="home.html">Home</a>
+                        </li>
+                        <!-- <li>
+                            <a href="product.html">Products</a>
+                        </li> -->
+                        <li>
+                            <a href="pharmacy.html">Pharmacy</a>
+                        </li>
+                        <li>
+                            <a href="councellor.html">Councellor</a>
+                        </li>
+                        <li>
+                            <a href="medicine.html">Medicines</a>
+                        </li>
+                        <li>
+                            <a href="blog.html">Blog</a>
+                        </li>
+                        <li>
+                            <a>Log in</a>
+                        </li>
+                        <li>
+                            <a href="register.html">Register</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contact flex items-center">
+                    <img src="../icons/phone.svg" alt="">
+                    <div>
+                        <h5>Phone: +18-000 000 00</h5>
+                        <h6>E-mail : test@example.com</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="site-content-wrapper">
+            <div class="nav-trigger">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart">
+                    <line x1="12" y1="20" x2="12" y2="10" />
+                    <line x1="18" y1="20" x2="18" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="16" /></svg>
+            </div>
+            <div class="site-content">
+                <header class="topbar">
+                    <div class="container flex justify-between items-center">
+                        <div class="icons">
+                            <p>Email: test@example.com | Phone: +18-000 000 00</p>
+
+                        </div>
+                        <div class="auth flex items-center">
+                            <div>
+                                <img src="../icons/user-icon.svg" alt="">
+                                <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" >Log In</button>
+                                <div id="id01" class="modal">
+                                    <form class="modal-content animate"  method="post">
+                                      <div class="headcontainer">
+                                        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                                        <h2>log In</h2>
+                                      </div>
+                                  
+                                      <div class="container">
+                                        <label for="uname"><b>Username</b></label>
+                                        <input type="text" placeholder="Enter Username" name="uname" required>
+                                  
+                                        <label for="psw"><b>Password</b></label>
+                                        <input type="password" placeholder="Enter Password" name="psw" required>
+                                          
+                                        <button type="submit">Login</button>
+                                        <label>
+                                            <p> <input type="checkbox" checked="checked" name="remember">   Remember me</p>
+                                        </label>
+                                        <p style="color:red;">Did have an account? <a href="#" style="text-decoration: none; align-items: right;"> Create an account!</a></p>
+                                      </div>
+                                  
+                                      <div class="unsucc">
+                                        <div class="box">
+                                            <div class="cancel">
+                                                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                                            </div>
+                                        </div>
+                                        <div class="box">
+                                            <div class="forget">
+                                                <p><a href="#">Forget Password</a></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </form>
+                                  </div>
+                            </div>
+                            <span class="divider">|</span>
+                            <div>
+                                <img src="../icons/edit.svg" alt="">
+                                <button onclick="document.getElementById('id0')" >Register Now</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </header>
+
+                <nav>
+                    <div class="navbar magic-shadow">
+                        <div class="container flex justify-center">
+                            <a href="home.html">Home</a>
+                            <!-- <a href="product.html">Products</a> -->
+                            <a href="pharmacy.html">Pharmacy</a>
+                            <a href="councellor.html">Councellor</a>
+                            <a href="medicine.html" class="active">Medicine</a>
+                            <a href="blog.html">Blog</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <section class="subscribe">
+                    <div class="container flex items-center">
+                        <div>
+                            <h1>Search</h1>
+                            <p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
+                            <div class="input-wrap">
+                                <input type="text" placeholder="Medicine name">
+                                <button>Search</button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <footer>
+                    <div class="container">
+                        <div class="box">
+                            <h3>About us</h3>
+                            <p>It was popularised in the 1960 with the release of Latest sheets containing Lorem Ipsum passage.
+                            </p>
+                            <a href="#about"><button class="btn btn-secondary">Read More</button></a>
+                        </div>
+                        <div class="box">
+                            <h3>Quik Links</h3>
+                            <ul>
+                                <li>
+                                    <a href="#">Home</a>
+                                </li>
+                                <li>
+                                    <a href="#">About us</a>
+                                </li>
+                                <li>
+                                    <a href="#">Products</a>
+                                </li>
+                                <li>
+                                    <a href="#">Blog</a>
+                                </li>
+                                <li>
+                                    <a href="#">Services</a>
+                                </li>
+                                <li>
+                                    <a href="#">Gallery</a>
+                                </li>
+                                <li>
+                                    <a href="#">Contact us</a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="box">
+                            <h3>Information</h3>
+                            <ul>
+                                <li>
+                                    <a href="#">Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a href="#">Terms and Conditions</a>
+                                </li>
+                                <li>
+                                    <a href="#">Products</a>
+                                </li>
+                                <li>
+                                    <a href="#">Brands</a>
+                                </li>
+                                <li>
+                                    <a href="#">Conditions of Use</a>
+                                </li>
+                                <li>
+                                    <a href="#">Internet based Ads</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="box">
+                            <h3>CONTACT US</h3>
+                            <p>
+                                Aamar Path, Dharan 56700 Dharan-13, Sunsari
+                                <br> company@gmail.com
+                                <br> +977-9876543210
+                                <br> Kathamandu, Nepal
+                            </p>
+                        </div>
+                    </div>
+                </footer>
+                <footer class="copyright">
+                    <div>
+                        Copyright © 2020 .All rights reserved by  <a href="#">Gardian</a>.
+                    </div>
+                </footer>
+
+                <script>
+                    // Get the modal
+                    var modal = document.getElementById('id01');
+                    
+                    // When the user clicks anywhere outside of the modal, close it
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                    </script>
+
+                <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+                <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+                <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+                <script src="../js/app.js"></script>
+</body>
+
+</html>

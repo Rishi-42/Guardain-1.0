@@ -1,0 +1,60 @@
+{% load static %}
+
+    <div class="main-wrapper">
+        
+        <div class="site-content-wrapper">
+            <div class="nav-trigger">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart">
+                    <line x1="12" y1="20" x2="12" y2="10" />
+                    <line x1="18" y1="20" x2="18" y2="4" />
+                    <line x1="6" y1="20" x2="6" y2="16" /></svg>
+            </div>
+            <div class="site-content">
+                <header class="topbar">
+                    <div class="container flex justify-between items-center">
+                        <div class="icons">
+                            <p>Email: test@example.com | Phone: +18-000 000 00</p>
+
+                        </div>
+                        {% if user.id is not None %}
+                        <div class="auth flex items-center">
+                            <div>
+                                <img src="{% static 'icons/user-icon.svg' %}" alt="">
+                                <a style="text-decoration:none !important; color:white" href="#">{{user.first_name}} {{user.last_name}}</a>
+                            </div>
+                            <span class="divider">|</span>
+                            <div>
+                                <img src="{% static 'icons/edit.svg' %}" alt="">
+                                <a style="text-decoration:none !important; color:white" href="{% url 'logout' %}">Logout</a>
+                            </div>
+
+                        </div>
+                        {% else %}
+                        <div class="auth flex items-center">
+                            <div>
+                                <img src="{% static 'icons/user-icon.svg' %}" alt="">
+                                <a style="text-decoration:none !important; color:white" href="{% url 'login' %}">Log in</a>
+                            </div>
+                            <span class="divider">|</span>
+                            <div>
+                                <img src="{% static 'icons/edit.svg' %}" alt="">
+                                <a style="text-decoration:none !important; color:white" href="{% url 'register' %}">Register Now</a>
+                            </div>
+
+                        </div>
+                        {% endif %}
+                    </div>
+                </header>
+
+                <nav>
+                    <div class="navbar magic-shadow">
+                        <div class="container flex justify-center">
+                            <a href="home.html">Home</a>
+                            <!-- <a href="product.html" >Products</a> -->
+                            <a href="pharmacy.html">Pharmacy</a>
+                            <a href="councellor.html" class="active">Councellor</a>
+                            <a href="medicine.html">Medicine</a>
+                            <a href="blog.html">Blog</a>
+                        </div>
+                    </div>
+                </nav>

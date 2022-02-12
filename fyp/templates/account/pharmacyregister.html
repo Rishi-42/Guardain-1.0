@@ -24,164 +24,98 @@
 <!-- ========================= SECTION CONTENT ========================= -->
 <section class="section-content padding-y bg">
 	<div class="container">
+		<br>
+		<br>
 	<div class="row align-items-center">
 	<article class="card mb-4">
 	<div class="card-body">
 		{% include 'includes/alerts.html' %}
-		<h4 class="card-title mb-4">Personal Information</h4>
-		<form action="{% url 'register' %}" method="POST">
-				
+		<h4 class="card-title mb-4">Pharmacy Details</h4>
+		<form action="{% url 'pharmacyregister' %}" method="POST">
 			{% csrf_token %}
 			<div class="row">
-				<div class="form-group col-sm-4">
-					<label>{{user.id}}</label>
-					<input type="text" placeholder="Type here" class="form-control">
-				</div>
-				<div class="form-group col-sm-4">
-					<label>Middle name</label>
-					<input type="text" placeholder="Type here" class="form-control">
-				</div>
-				<div class="form-group col-sm-4">
-					<label>Last name</label>
-					<input type="text" placeholder="Type here" class="form-control">
-				</div>
-				<div class="form-group col-sm-4">
-					<label>Phone</label>
-					<input type="text" value="+977" class="form-control">
-				</div>
-				<div class="form-group col-sm-4">
-					<label>Email</label>
-					<input type="email" placeholder="example@gmail.com" class="form-control">
-				</div>
-				<div class="form-group col-sm-4">
-					<label>OGRM Number</label>
-					<input type="text" placeholder="Type here" class="form-control">
-				</div>
-				<div class="form-group col-sm-4">
-					<label>INN Number</label>
-					<input type="text" placeholder="Type here" class="form-control">
-				</div>
-				<div class="form-group col-sm-4" >
-					<label>Licence</label>
-					<input type="file" class="form-control" id="customFile">
-				</div>
-			</div> <!-- row.// -->	
-		</form>
-		<h4 class="card-title mb-4">Pharmacy Information</h4>
-		<form action="">
-			<div class="row">
-				<div class="form-group col-sm-4">
+				<div class="form-group col-sm-6">
 					<label>Pharmacy Name</label>
-					<input type="text" placeholder="Type here" class="form-control">
+					{{form.pharmacy_name}}
 				</div>
-				
-				<div class="form-group col-sm-4">
-					<label>Telephone number</label>
-					<input type="text"  class="form-control">
-				</div>
-				<div class="form-group col-sm-4">
-					<label>Email</label>
-					<input type="email" placeholder="example@gmail.com" class="form-control">
+				<div class="form-group col-sm-6" >
+					<label>Pharmacy image</label>
+					{{form.profile_image}}
 				</div>
 				<div class="form-group col-sm-4">
-					<label>Established Date</label>
-					<input type="date"  class="form-control">
+					<label>Pharmacy Email</label>
+					{{form.pharmacy_email}}
 				</div>
-	
+				<div class="form-group col-sm-4">
+					<label>Telephone Number</label>
+					{{form.phone_no}}
+				</div>
+				<div class="form-group col-sm-4">
+					<label>Registration Number</label>
+					{{form.registration_no}}
+				</div>
 				<div class="form-group col-sm-4" >
 					<label>Pharmacy registration Document</label>
-					<input type="file" class="form-control" id="customFile">
+					{{form.registered_doc}}
 				</div>
-				<div class="form-group col-sm-4">
-					<label>Province*</label>
-					<select name="" class="form-control">
-						<option value="">Province - 1</option>
-						<option value="">Province - 2</option>
-						<option value="">Province - 3</option>
-						<option value="">Province - 4</option>
-						<option value="">Province - 5</option>
-						<option value="">Province - 6</option>
-						<option value="">Province - 7</option>
+				<div class="form-group col-sm-4" >
+					<label>Province</label>
+					<select name="province_no" class="form-control">
+						{% for type in form.province_no %}
+							{{ type }}
+						{% endfor %}
 					</select>
 				</div>
 				<div class="form-group col-sm-4">
-					<label>District*</label>
-					<input type="text" placeholder="Type here" class="form-control">
+					<label>District</label>
+					{{form.district}}			
 				</div>
 				<div class="form-group col-sm-4">
-					<label>City*</label>
-					<input type="text" placeholder="Type here" class="form-control">
+					<label>City</label>
+					{{form.city}}
 				</div>
 				<div class="form-group col-sm-4">
-					<label>Street</label>
-					<input type="text" placeholder="" class="form-control">
-				</div>
-	
-				<div class="form-group col-sm-4">
-					<label>Postal code</label>
-					<input type="text" placeholder="" class="form-control">
+					<label>Ward</label>
+					{{form.ward}}
 				</div>
 				<div class="form-group col-sm-4">
-					<label>Zip</label>
-					<input type="text" placeholder="" class="form-control">
-				</div>
-				<div class="form-group col-sm-4" >
-					<label>Upload Pharmacy Profile Image</label>
-					<input type="file" class="form-control" id="customFile">
+					<label>Tole</label>
+					{{form.tole}}
 				</div>
 				<div class="form-group col-sm-6">
 					<div class="item-option-select">
-						<h6>Working Days</h6>
-						<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-						<label class="btn btn-light active">
-							<input type="checkbox" name="radio_color"> Sunday
-						</label>
-						<label class="btn btn-light">
-							<input type="checkbox" name="radio_color" > Monday
-						</label>
-						<label class="btn btn-light">
-							<input type="checkbox" name="radio_color"> Tuesday
-						</label>
-						<label class="btn btn-light">
-							<input type="checkbox" name="radio_color" > Wenesday
-						</label>
-						<label class="btn btn-light">
-							<input type="checkbox" name="radio_color"> Thusday
-						</label>
-						<label class="btn btn-light">
-							<input type="checkbox" name="radio_color" > Friday
-						</label>
-						<label class="btn btn-light">
-							<input type="checkbox" name="radio_color" > Saturday
-						</label>
+						<label>Working Days</label>
+						<div name="working_days" class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+							{% for type in form.working_days %}
+								<div class="btn btn-light">{{ type }}</div>
+							{% endfor %}
 						</div> 
 					</div>
 				</div>
 				<div class="form-group col-sm-3">
 					<label>Working time-Start</label>
-					<input type="time"  class="form-control">
+					{{form.working_hours_start}}
 				</div>
 				<div class="form-group col-sm-3">
 					<label>Working time-End</label>
-					<input type="time"  class="form-control">
+					{{form.working_hour_end}}
 				</div>
 				<div class="form-group col-sm-8">
 					<label>Description</label>
-					<textarea name="textarea" placeholder="Write something here" rows="10" cols="50"></textarea>
+					{{form.description}}
 				</div>
 				<div class="form-group col-sm-4">
-					<!-- <textarea name="textarea" placeholder="Write something here" rows="10" cols="50"></textarea> -->
+
 				</div>
 				<div class="form-group col-sm-2">
-					<a href="#" class="btn btn-block btn-primary">Submit </a>
-				</div>
-					
-			</div> <!-- row.// -->	
+					<button type="submit" class="btn btn-primary btn-block"> Submit  </button>
+				</div>	
+			</div>
 		</form>
-	</div> <!-- card-body.// -->
-	</article> <!-- card.// -->
+	</div> 
+	</article>
 	</div>
-	</div> <!-- container .//  -->
+	</div>
 	</section>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 {% endblock %}

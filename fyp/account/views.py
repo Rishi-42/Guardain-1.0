@@ -44,17 +44,17 @@ def register(request):
                 send_email.send()
                 messages.success(request, 'Account created successfully. Please verify your email and login to continue.')
                 return render(request, 'account/login.html')
+            
             elif user_type == 'counsellor':
                 usert = Type_user(user=user,is_counsellor=True)
-                usert.save()
-                context = {
-                    'email': email,
-                }                   
+                usert.save()                  
                 return render(request, 'account/counsellor_register.html')
+            
             elif user_type == 'pharmacist':
                 usert = Type_user(user=user,is_pharmacist=True)
-                usert.save()
-                return render(request, 'account/pharmacyregister.html')
+                usert.save()                  
+                request.session['uid'] = uid
+                return redirect('pharmacyregister')
     else:
         form = RegistrationForm()
     context = {
@@ -80,37 +80,60 @@ def login(request):
     return render(request, 'account/login.html')
 
 def pharmacyregister(request):
-    # form = RegistrationFormPharmacy()
-    # if request.method == 'POST':
-    #     # get data from account model
-    #     form = RegistrationFormPharmacy(request.POST)
-    #     if form.is_valid():
-            
-    #         pharmacy = PharmacistDetail()
-    #         pharmacy.save()
-            
-    #         # USER activation
-    #         # current_site = get_current_site(request)
-    #         # mail_subject = "Please activate your Guardian account"
-    #         # message = render_to_string('account/account_verification_email.html',{
-    #         #     'user' : pharmacy,
-    #         #     'domain' : current_site,
-    #         #     'uid' : urlsafe_base64_encode(force_bytes(pharmacy.pk)),
-    #         #     'token' : default_token_generator.make_token(pharmacy),
-    #         # })
-    #         # to_email = email
-    #         # send_email = EmailMessage(mail_subject, message, to=[to_email])
-    #         # send_email.send()
-    #         # messages.success(request, 'Account created successfully. Please verify your email and login to continue.')
-    #         # return render(request, 'account/login.html')
-            
-    # else:
-    #     form = RegistrationFormPharmacy()
+    form = RegistrationFormPharmacy()
+    print(request.method)
+    print(form.is_valid)
+    if request.method == 'POST':
+        uid = request.session['uid']
+        # get data from account model
+        form = RegistrationFormPharmacy(request.POST)
+        print(form.is_valid())
+        if form.is_valid():
+            pharmacy_name = form.cleaned_data['pharmacy_name']
+            profile_image = form.cleaned_data['profile_image']
+            pharmacy_email = form.cleaned_data['pharmacy_email']
+            phone_no = form.cleaned_data['phone_no']
+            registration_no = form.cleaned_data['registration_no']
+            registered_doc = form.cleaned_data['registered_doc']
+            province_no = form.cleaned_data['province_no']
+            district = form.cleaned_data['district']
+            city = form.cleaned_data['city']
+            ward = form.cleaned_data['ward']
+            tole = form.cleaned_data['tole']
+            working_days = form.cleaned_data['working_days']
+            working_hours_start = form.cleaned_data['working_hours_start']
+            working_hour_end = form.cleaned_data['working_hour_end']
+            description = form.cleaned_data['description']
 
-    # context = {
-    #     'form': form,
-    # }
-    return render(request, 'account/pharmacyregister.html')
+            pharmacy = PharmacistDetail(pharmacy_name=pharmacy_name, pharmacy_email=pharmacy_email, profile_image=profile_image, phone_no=phone_no, 
+                registration_no=registration_no, registered_doc=registered_doc, province_no=province_no, district=district, 
+                city=city, ward=ward, tole=tole, working_days=working_days, working_hours_start=working_hours_start, working_hour_end=working_hour_end, description=description)
+            pharmacy.save()
+            
+            # USER activation
+            current_site = get_current_site(request)
+            mail_subject = "Please activate your Guardian account"
+            message = render_to_string('account/account_verification_email.html',{
+                'user' : pharmacy,
+                'domain' : current_site,
+                'uid' : urlsafe_base64_encode(force_bytes(pharmacy.pk)),
+                'token' : default_token_generator.make_token(pharmacy),
+            })
+
+            to_email = email
+            send_email = EmailMessage(mail_subject, message, to=[to_email])
+            send_email.send()
+            messages.success(request, 'Account created successfully. Please verify your email and login to continue.')
+            return render(request, 'account/login.html')    
+    else:
+        form = RegistrationFormPharmacy()
+
+    context = {
+        'form': form,
+        data: data
+    }
+    # return redirect('pharmacyregister', data)
+    return render(request, 'account/pharmacyregister.html', context)
 
 
 
@@ -120,12 +143,6 @@ def logout(request):
     auth.logout(request)
     messages.success(request, "Successfully logged out!")
     return render(request, 'account/login.html')
-
-
-
-
-
-
 
 
 
@@ -144,3 +161,59 @@ def activate(request, uidb64, token):
     else:
         messages.error(request, 'Invalid activation link')
         return redirect('register')
+
+def forgotpassword(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        if Account.objects.filter(email=email).exists():
+            user = Account.objects.get(email__exact=email)
+            # reset password
+            current_site = get_current_site(request)
+            mail_subject = "Reset Password"
+            message = render_to_string('account/reset_password_email.html',{
+                'user' : user,
+                'domain' : current_site,
+                'uid' : urlsafe_base64_encode(force_bytes(user.pk)),
+                'token' : default_token_generator.make_token(user),
+            })
+            to_email = email
+            send_email = EmailMessage(mail_subject, message, to=[to_email])
+            send_email.send()
+            messages.success(request, 'Password reset email has been send to your email address.')
+            return redirect('login')
+        else:
+            messages.error(request, 'Invalid email')
+            return render(request, 'account/forgotpassword.html')
+    
+    return render(request, 'account/forgotpassword.html')
+
+
+def resetpassword_validate(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = Account._default_manager.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, Account.DoesNotExist):
+        user = None
+    if user is not None and default_token_generator.check_token(user, token):
+        request.session['uid'] = uid
+        messages.success(request, 'Please reset your password')
+        return redirect	('resetpassword')
+    else:
+        messages.error(request, 'Invalid reset password link')
+        return redirect('forgotpassword')
+    
+def resetpassword(request):
+    if request.method == 'POST':
+        password = request.POST['password']
+        confirm_password = request.POST.get('confirm_password', False);
+        if password == confirm_password:
+            uid = request.session['uid']
+            user = Account.objects.get(pk=uid)
+            user.set_password(password)
+            user.save()
+            messages.success(request, 'Password reset successfully')
+            return redirect('login')
+        else:
+            messages.error(request, 'Password not matched')
+            return redirect('resetpassword')
+    return render(request, 'account/resetpassword.html')

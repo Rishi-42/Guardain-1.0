@@ -74,15 +74,19 @@ class MyAccountManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, first_name, last_name, email, username, password):
+    def create_superuser(self, first_name, last_name, email, username, password, user_type):
         user = self.create_user(
             email = self.normalize_email(email),
             username = username,
             password = password,
             first_name = first_name,
             last_name = last_name,
+            user_type=user_type,
         )
-
+        usert = None
+        usert = Type_user(user=user,is_admin=True)
+        usert.save()
+        # user.is_customer=True
         user.is_superuser= True
         user.is_active=True
         user.is_staff=True
@@ -97,7 +101,7 @@ class Account(AbstractBaseUser):
     username = models.CharField(max_length=30, unique=True)
     email = models.EmailField(max_length=100, unique=True)
     licence_no = models.CharField(max_length=30, unique=True, null=True, blank=True)
-    user_type = models.CharField(max_length=30, null=True)
+    user_type = models.CharField(max_length=30, null=True, blank=True)
     registration_no = models.CharField(max_length=30, unique=True, null=True, blank=True)
 
     # required 
@@ -109,7 +113,7 @@ class Account(AbstractBaseUser):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+    REQUIRED_FIELDS = ['username', 'first_name', 'last_name', 'user_type']
 
     objects = MyAccountManager()
 
@@ -126,6 +130,7 @@ class Account(AbstractBaseUser):
         return True
 
 class Type_user(models.Model):
+    is_admin = models.BooleanField(default=False)
     is_customer = models.BooleanField(default=False)
     is_pharmacist = models.BooleanField(default=False)
     is_counsellor = models.BooleanField(default=False)
@@ -135,11 +140,12 @@ class Type_user(models.Model):
     def __str__(self):
         if self.is_customer == True:
             return Account.get_username(self.user) + " - is_customer"
-        if self.is_counsellor == True:
+        elif self.is_counsellor == True:
             return Account.get_username(self.user) + " - is_counsellor"
         elif self.is_pharmacist == True:
             return Account.get_username(self.user) + " - is_pharmacist"
-
+        elif self.is_admin == True:
+            return Account.get_username(self.user) + " - is_admin"
 
 
 class PharmacistDetail(models.Model):
@@ -147,16 +153,15 @@ class PharmacistDetail(models.Model):
     user_acc = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     phone_no = models.IntegerField(unique=True)
-    ogrn_number = models.IntegerField(unique=True)
-    inn_number = models.IntegerField(unique=True)
-    licence = models.FileField(upload_to='pharmacy_licence/pharmacist_licence')
+    registration_no = models.IntegerField(unique=True)
     pharmacy_name = models.CharField(max_length=100, blank=False, unique=True)
-    telephone = models.IntegerField(unique=True)
     pharmacy_email = models.EmailField(max_length=100, unique=True)
-    estd_date = models.DateTimeField()
     registered_doc = models.FileField(upload_to='pharmacy_doc/pharmacist_registred_document')
-
-
+    province_no = models.CharField(max_length=100, blank=False)
+    city = models.CharField(max_length=100, blank=False)
+    ward = models.CharField(max_length=100, blank=False)
+    tole = models.CharField(max_length=100, blank=False)
+    district = models.CharField(max_length=100, blank=False)
     profile_image = models.ImageField(upload_to='photos/pharmacist_profile_image')
     working_days = models.CharField(max_length=200)
     working_hours_start = models.TimeField()

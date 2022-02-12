@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Account, Type_user
+from .models import Account, PharmacistDetail, Type_user
 # Register your models here
 
 
@@ -17,3 +17,4 @@ class AccountAdmin(UserAdmin):
 
 admin.site.register(Account, AccountAdmin)
 admin.site.register(Type_user)
+admin.site.register(PharmacistDetail)

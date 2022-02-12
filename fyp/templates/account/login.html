@@ -5,7 +5,7 @@
 <section class="section-conten padding-y" style="min-height:84vh">
 
 <!-- ============================ COMPONENT LOGIN   ================================= -->
-{% if reguest.GET.command == 'verification' %}
+{% if request.GET.command == 'verification' %}
 <div class="container mx-auto alert alert-info text-center" role="alert" style="max-width:400px;margin-top:10vh">
   Thank you for registring. Please check your email to verify your account.[{{request.GET.email}}]
   <br><br>

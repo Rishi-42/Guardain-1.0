@@ -40,21 +40,16 @@ def register(request):
             if user_type == 'customer':
                 usert = Type_user(user=user,is_customer=True)
                 usert.save()
-                send_email = EmailMessage(mail_subject, message, to=[to_email])
-                send_email.send()
-                messages.success(request, 'Account created successfully. Please verify your email and login to continue.')
-                return render(request, 'account/login.html')
-            
             elif user_type == 'counsellor':
                 usert = Type_user(user=user,is_counsellor=True)
-                usert.save()                  
-                return render(request, 'account/counsellor_register.html')
-            
+                usert.save()                    
             elif user_type == 'pharmacist':
                 usert = Type_user(user=user,is_pharmacist=True)
-                usert.save()                  
-                request.session['uid'] = uid
-                return redirect('pharmacyregister')
+                usert.save()                 
+            send_email = EmailMessage(mail_subject, message, to=[to_email])
+            send_email.send()
+            # messages.success(request, 'Account created successfully. Please verify your email and login to continue.')
+            return redirect('/account/login/?command=verification&email='+email)
     else:
         form = RegistrationForm()
     context = {
@@ -84,7 +79,6 @@ def pharmacyregister(request):
     print(request.method)
     print(form.is_valid)
     if request.method == 'POST':
-        uid = request.session['uid']
         # get data from account model
         form = RegistrationFormPharmacy(request.POST)
         print(form.is_valid())
@@ -109,31 +103,14 @@ def pharmacyregister(request):
                 registration_no=registration_no, registered_doc=registered_doc, province_no=province_no, district=district, 
                 city=city, ward=ward, tole=tole, working_days=working_days, working_hours_start=working_hours_start, working_hour_end=working_hour_end, description=description)
             pharmacy.save()
-            
-            # USER activation
-            current_site = get_current_site(request)
-            mail_subject = "Please activate your Guardian account"
-            message = render_to_string('account/account_verification_email.html',{
-                'user' : pharmacy,
-                'domain' : current_site,
-                'uid' : urlsafe_base64_encode(force_bytes(pharmacy.pk)),
-                'token' : default_token_generator.make_token(pharmacy),
-            })
-
-            to_email = email
-            send_email = EmailMessage(mail_subject, message, to=[to_email])
-            send_email.send()
-            messages.success(request, 'Account created successfully. Please verify your email and login to continue.')
-            return render(request, 'account/login.html')    
+              
     else:
         form = RegistrationFormPharmacy()
 
     context = {
         'form': form,
-        data: data
     }
-    # return redirect('pharmacyregister', data)
-    return render(request, 'account/pharmacyregister.html', context)
+    return render(request, 'dashboardpharmacy.html', context)
 
 
 

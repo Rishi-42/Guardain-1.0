@@ -147,13 +147,13 @@ MESSAGE_TAGS = {
 }
 
 # smtp configuration
-
+EMAIL_PASSWORD = env('EMAIL_PASSWORD')
+EMAIL_HOST = env('EMAIL_HOST')
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'guardian.suport011@gmail.com'
-EMAIL_HOST_PASSWORD = 'support_guard123'
-# EMAIL_HOST_USER = 'guardian.cpc@gmail.com'
-# EMAIL_HOST_PASSWORD = 'Guardian_cpc1'
+EMAIL_HOST_USER = 'EMAIL_HOST'
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
+
 EMAIL_USE_TLS = True
 
 

@@ -6,6 +6,21 @@
 				<p>Email: test@example.com | Phone: +18-000 000 00</p>
 
 			</div>
+			{% if user.id is not None %}
+			<div class="auth flex items-center">
+                <div>
+                    <img src="{% static 'icons/user-icon.svg' %}" alt="">
+                    <a  href="#"><button > {{user.first_name}} {{user.last_name}}</button></a>
+                </div>
+                <span class="divider">|</span>
+                <div>
+                    <img src="{% static 'icons/edit.svg' %}" alt="">
+                    <a href="{% url 'logout' %}"  ><button>Logout</button></a>
+                </div>
+
+			</div
+
+			{% else %}
 			<div class="auth flex items-center">
                 <div>
                     <img src="{% static 'icons/user-icon.svg' %}" alt="">
@@ -14,10 +29,11 @@
                 <span class="divider">|</span>
                 <div>
                     <img src="{% static 'icons/edit.svg' %}" alt="">
-                    <a href="#"  ><button>Register</button></a>
+                    <a href="{% url 'register' %}"  ><button>Register</button></a>
                 </div>
 
 			</div>
+			{% endif %}
 		</div>
 	</header>
 <nav style="margin-top: 0px!important;">

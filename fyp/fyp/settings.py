@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'guardian',
     'account',
     'pharmacy',
+    'address',
 ]
 
 MIDDLEWARE = [

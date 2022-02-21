@@ -63,11 +63,18 @@ def login(request):
         email = request.POST['email']
         password = request.POST['password']
 
+
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
             auth.login(request, user)
-            return redirect('home')
+            type = user.user_type
+            if type == "customer":
+                return redirect('home')
+            elif type == "pharmacist":
+                return redirect('pharmacyregister')
+            elif type == "counsellor":
+                return redirect('forgotpassword')
         else:
             messages.error(request, 'Invalid email or password')
             return render(request, 'account/login.html')
@@ -99,10 +106,10 @@ def pharmacyregister(request):
             working_hour_end = form.cleaned_data['working_hour_end']
             description = form.cleaned_data['description']
 
-            pharmacy = PharmacistDetail(pharmacy_name=pharmacy_name, pharmacy_email=pharmacy_email, profile_image=profile_image, phone_no=phone_no, 
-                registration_no=registration_no, registered_doc=registered_doc, province_no=province_no, district=district, 
-                city=city, ward=ward, tole=tole, working_days=working_days, working_hours_start=working_hours_start, working_hour_end=working_hour_end, description=description)
-            pharmacy.save()
+            # pharmacy = PharmacistDetail(pharmacy_name=pharmacy_name, pharmacy_email=pharmacy_email, profile_image=profile_image, phone_no=phone_no, 
+            #     registration_no=registration_no, registered_doc=registered_doc, province_no=province_no, district=district, 
+            #     city=city, ward=ward, tole=tole, working_days=working_days, working_hours_start=working_hours_start, working_hour_end=working_hour_end, description=description)
+            # pharmacy.save()
               
     else:
         form = RegistrationFormPharmacy()
@@ -113,7 +120,8 @@ def pharmacyregister(request):
     return render(request, 'dashboardpharmacy.html', context)
 
 
-
+def counsellorregister():
+    pass
 
 @login_required(login_url= 'login')
 def logout(request):

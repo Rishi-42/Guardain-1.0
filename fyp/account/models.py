@@ -148,25 +148,20 @@ class Type_user(models.Model):
             return Account.get_username(self.user) + " - is_admin"
 
 
-class PharmacistDetail(models.Model):
-    # first name, middle name, last name , email
-    user_acc = models.ForeignKey(Account, on_delete=models.CASCADE)
 
-    phone_no = models.IntegerField(unique=True)
-    registration_no = models.IntegerField(unique=True)
+
+class PharmacistDetail(models.Model):
     pharmacy_name = models.CharField(max_length=100, blank=False, unique=True)
+    phone_no = models.CharField(max_length=10, unique=True)
+    registration_no = models.IntegerField(unique=True)
     pharmacy_email = models.EmailField(max_length=100, unique=True)
-    registered_doc = models.FileField(upload_to='pharmacy_doc/pharmacist_registred_document')
-    province_no = models.CharField(max_length=100, blank=False)
-    city = models.CharField(max_length=100, blank=False)
-    ward = models.CharField(max_length=100, blank=False)
-    tole = models.CharField(max_length=100, blank=False)
-    district = models.CharField(max_length=100, blank=False)
-    profile_image = models.ImageField(upload_to='photos/pharmacist_profile_image')
-    working_days = models.CharField(max_length=200)
-    working_hours_start = models.TimeField()
-    working_hour_end = models.TimeField()
+    registered_doc = models.FileField(upload_to='pharmacy/pharmacist_registred_document')
+    profile_image = models.ImageField(upload_to='pharmacy/pharmacist_profile_image')
+    work_start = models.CharField(max_length=2)
+    work_end = models.CharField(max_length=2)
     description = models.CharField(max_length=500)
+    user_id = models.ForeignKey(Account, on_delete=models.CASCADE)
+
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)
 

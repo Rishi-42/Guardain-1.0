@@ -5,7 +5,7 @@ from .models import Account, PharmacistDetail, Type_user
 
 
 class AccountAdmin(UserAdmin):
-    list_display = ('email', 'first_name', 'last_name', 'username', 'date_joined', 'last_login', 'is_active')
+    list_display = ('email', 'first_name', 'last_name', 'username', 'date_joined', 'last_login', 'user_type','is_active')
     list_display_links = ('email', 'username')
     readonly_feilds = ('date_joined', 'last_login')
     ordering = ('date_joined',)

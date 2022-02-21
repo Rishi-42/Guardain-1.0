@@ -52,38 +52,34 @@ class RegistrationForm(forms.ModelForm):
         self.fields['user_type'].widget.attrs.update({'class': 'form-control'})
         
 class RegistrationFormPharmacy(forms.ModelForm):
-    USER_TYPE_CHOICES = [
-        ('one', 'Province-1'),
-        ('two', 'Province-2'),
-        ('three', 'Province-3'),
-        ('four', 'Province-4'),
-        ('five', 'Province-5'),
-        ('six', 'Province-6'),
-        ('seven', 'Province-7'),
-    	]
-    province_no = forms.ChoiceField(
-        required=True,
-        choices=USER_TYPE_CHOICES,
-    )
+    Time_CHOICES = [
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+        ('11', '11'),
+        ('12', '12'),
 
-    USER_TYPE_CHOICES_WD = [
-        ('SU', 'Sunday'),
-        ('MO', 'Monday'),
-        ('TU', 'Tuesday'),
-        ('WE', 'Wenesday'),
-        ('TH', 'Thusday'),
-        ('FR', 'Friday'),
-        ('SA', 'Saturday'),
+
     	]
-    working_days = forms.MultipleChoiceField(
+    work_start = forms.ChoiceField(
         required=True,
-        choices=USER_TYPE_CHOICES_WD,
+        choices=Time_CHOICES,
+    )
+    work_end = forms.ChoiceField(
+        required=True,
+        choices=Time_CHOICES,
     )
 
     class Meta:
         model = PharmacistDetail
-        fields = ('phone_no', 'registration_no', 'pharmacy_name', 'pharmacy_email', 'registered_doc', 'profile_image', 
-        'working_days', 'working_hours_start', 'working_hour_end', 'description', 'province_no', 'district', 'city', 'ward', 'tole')
+        fields = ('phone_no', 'registration_no', 'pharmacy_name', 'pharmacy_email', 'registered_doc', 'profile_image', 'work_start', 'work_end', 'description')
 
     def __init__(self, *args, **kargs):
         super(RegistrationFormPharmacy, self).__init__(*args, **kargs)
@@ -93,12 +89,12 @@ class RegistrationFormPharmacy(forms.ModelForm):
         self.fields['pharmacy_email'].widget.attrs.update({'class': 'form-control', 'placeholder': 'example@domain.com'})
         self.fields['registered_doc'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Pharmacy Registered Document'})
         self.fields['profile_image'].widget.attrs.update({'class': 'form-control', 'placeholder': 'select profile image'})
-        self.fields['district'].widget.attrs.update({'class': 'form-control', 'placeholder': ' name'})
-        self.fields['city'].widget.attrs.update({'class': 'form-control', 'placeholder': ' name'})
-        self.fields['ward'].widget.attrs.update({'class': 'form-control', 'placeholder': ' name'})
-        self.fields['tole'].widget.attrs.update({'class': 'form-control', 'placeholder': ' name'})
-        self.fields['working_hours_start'].widget.attrs.update({'class': 'form-control',  'placeholder': ' 10:00'})
-        self.fields['working_hour_end'].widget.attrs.update({'class': 'form-control', 'placeholder': ' 07:00'})
+        # self.fields['district'].widget.attrs.update({'class': 'form-control', 'placeholder': ' name'})
+        # self.fields['city'].widget.attrs.update({'class': 'form-control', 'placeholder': ' name'})
+        # self.fields['ward'].widget.attrs.update({'class': 'form-control', 'placeholder': ' name'})
+        # self.fields['tole'].widget.attrs.update({'class': 'form-control', 'placeholder': ' name'})
+        self.fields['work_start'].widget.attrs.update({'class': 'form-control'})
+        self.fields['work_end'].widget.attrs.update({'class': 'form-control'})
         self.fields['description'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Write something about your pharmacy here'})
-        self.fields['province_no'].widget.attrs.update({'class': 'form-control'})
-        self.fields['working_days'].widget.attrs.update({'class': 'btn btn-light'})
+        # self.fields['province_no'].widget.attrs.update({'class': 'form-control'})
+        # self.fields['working_days'].widget.attrs.update({'class': 'btn btn-light'})

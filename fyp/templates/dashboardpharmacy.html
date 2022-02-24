@@ -98,7 +98,7 @@
 		  			<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><div class="card-body">
 						{% include 'includes/alerts.html' %}
 						<h4 class="card-title mb-4">Pharmacy Details</h4>
-						<form action="{% url 'pharmacyregister' %}" method="POST">
+						<form action="{% url 'pharmacyregister' %}" method="POST" id="regForm" data-districts-url="{% url 'ajax_load_districts' %}" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>
 							{% csrf_token %}
 							<div class="row">
 								<div class="form-group col-sm-6">
@@ -127,29 +127,25 @@
 								</div>
 								<div class="form-group col-sm-4" >
 									<label>Province</label>
-									<select name="province_no" class="form-control">
-										{% for type in form.province_no %}
-											{{ type }}
-										{% endfor %}
-									</select>
+									{{form_add.province}}
 								</div>
 								<div class="form-group col-sm-4">
 									<label>District</label>
-									{{form.district}}			
+									{{form_add.district}}			
 								</div>
 								<div class="form-group col-sm-4">
 									<label>City</label>
-									{{form.city}}
+									{{form_add.city}}
 								</div>
 								<div class="form-group col-sm-4">
 									<label>Ward</label>
-									{{form.ward}}
+									{{form_add.ward_no}}
 								</div>
 								<div class="form-group col-sm-4">
 									<label>Tole</label>
-									{{form.tole}}
+									{{form_add.tole}}
 								</div>
-								<div class="form-group col-sm-6">
+								{% comment %} <div class="form-group col-sm-6">
 									<div class="item-option-select">
 										<label>Working Days</label>
 										<div name="working_days" class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
@@ -158,22 +154,29 @@
 											{% endfor %}
 										</div> 
 									</div>
+								</div> {% endcomment %}
+								
+								<div class="form-group col-sm-2" >
+									<label> From (AM)</label>
+									<select name="work_start" class="form-control">
+										{% for type in form.work_start %}
+											{{ type }}
+										{% endfor %}
+									</select>
 								</div>
-								<div class="form-group col-sm-3">
-									<label>Working time-Start</label>
-									{{form.working_hours_start}}
-								</div>
-								<div class="form-group col-sm-3">
-									<label>Working time-End</label>
-									{{form.working_hour_end}}
+								<div class="form-group col-sm-2" >
+									<label>Till (PM)</label>
+									<select name="work_end" class="form-control">
+										{% for type in form.work_end %}
+											{{ type }}
+										{% endfor %}
+									</select>
 								</div>
 								<div class="form-group col-sm-8">
 									<label>Description</label>
 									{{form.description}}
 								</div>
-								<div class="form-group col-sm-4">
-				
-								</div>
+							
 								<div class="form-group col-sm-2">
 									<button type="submit" class="btn btn-primary btn-block"> Submit  </button>
 								</div>	
@@ -188,5 +191,38 @@
 </div> <!-- row.// -->
 </div>
 </section>
+<script>
+	$("#id_province").change(function () {
+	  var url = $("#regForm").attr("data-districts-url");
+	  var provinceId = $(this).val();
+
+	  $.ajax({
+		url: url,
+		data: {
+		  'province': provinceId
+		},
+		success: function (data) {
+		  $("#id_district").html(data);
+		}
+	  });
+	});
+
+	$("#id_district").change(function () {
+		var url = $("#regForm").attr("data-cities-url");
+		var districtId = $(this).val();
+  
+		$.ajax({
+		  url: url,
+		  data: {
+			'district': districtId
+		  },
+		  },
+		  success: function (data) {
+			$("#id_city").html(data);
+		  }
+		});
+  
+	  });
+  </script>
 <!-- ========================= SECTION CONTENT END// ========================= -->
 {% endblock %}

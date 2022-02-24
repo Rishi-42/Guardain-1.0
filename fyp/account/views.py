@@ -1,7 +1,8 @@
 
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm, RegistrationFormPharmacy
+from .forms import RegistrationForm, RegistrationFormPharmacy, Address_pharmacy
 from .models import Account, Type_user, PharmacistDetail
+from address.models import Adresses, District, City
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 
@@ -83,41 +84,67 @@ def login(request):
 
 def pharmacyregister(request):
     form = RegistrationFormPharmacy()
-    print(request.method)
-    print(form.is_valid)
+    form_add = Address_pharmacy()
     if request.method == 'POST':
+
         # get data from account model
         form = RegistrationFormPharmacy(request.POST)
         print(form.is_valid())
-        if form.is_valid():
+        if form.is_valid() and form_add.is_valid():
             pharmacy_name = form.cleaned_data['pharmacy_name']
             profile_image = form.cleaned_data['profile_image']
             pharmacy_email = form.cleaned_data['pharmacy_email']
             phone_no = form.cleaned_data['phone_no']
             registration_no = form.cleaned_data['registration_no']
             registered_doc = form.cleaned_data['registered_doc']
-            province_no = form.cleaned_data['province_no']
-            district = form.cleaned_data['district']
-            city = form.cleaned_data['city']
-            ward = form.cleaned_data['ward']
-            tole = form.cleaned_data['tole']
-            working_days = form.cleaned_data['working_days']
-            working_hours_start = form.cleaned_data['working_hours_start']
-            working_hour_end = form.cleaned_data['working_hour_end']
+            work_start = form.cleaned_data['work_start']
+            work_end = form.cleaned_data['work_end']
             description = form.cleaned_data['description']
 
-            # pharmacy = PharmacistDetail(pharmacy_name=pharmacy_name, pharmacy_email=pharmacy_email, profile_image=profile_image, phone_no=phone_no, 
-            #     registration_no=registration_no, registered_doc=registered_doc, province_no=province_no, district=district, 
-            #     city=city, ward=ward, tole=tole, working_days=working_days, working_hours_start=working_hours_start, working_hour_end=working_hour_end, description=description)
-            # pharmacy.save()
+
+            province = form.cleaned_data['province']
+            district = form.cleaned_data['district']
+            city = form.cleaned_data['city']
+            ward_no = form.cleaned_data['ward_no']
+            tole = form.cleaned_data['tole']
+
+            pharmacy = PharmacistDetail(pharmacy_name=pharmacy_name, profile_image=profile_image, pharmacy_email=pharmacy_email, phone_no=phone_no, registration_no=registration_no, registered_doc=registered_doc, work_start=work_start, work_end=work_end, description=description, user_id=user_email)
+            pharmacy.save()
+            address = Adresses(province=province, district=district, city=city, ward_no=ward_no, tole=tole, user=pharmacy)
+            address.save()
+
               
     else:
         form = RegistrationFormPharmacy()
+        form_add = Address_pharmacy()
 
     context = {
         'form': form,
+        'form_add': form_add,
     }
     return render(request, 'dashboardpharmacy.html', context)
+
+
+
+def load_districts(request):
+    province_id = request.GET.get('province')
+    districts = District.objects.filter(province_id=province_id).order_by('name')
+    return render(request, 'account/district_dropdown_list_options.html', {'districts': districts})
+
+def load_cities(request):
+    district_id = request.GET.get('district')
+    cities = City.objects.filter(district_id=district_id).order_by('name')
+    return render(request, 'account/city_dropdown_list_options.html', {'cities': cities})
+
+
+
+
+
+
+
+
+
+
 
 
 def counsellorregister():

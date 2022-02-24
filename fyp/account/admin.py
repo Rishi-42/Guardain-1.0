@@ -16,5 +16,16 @@ class AccountAdmin(UserAdmin):
     fieldsets = ()
 
 admin.site.register(Account, AccountAdmin)
-admin.site.register(Type_user)
+
+class Type_userAdmin(UserAdmin):
+    list_display = ('user', 'is_administrator', 'is_customer', 'is_counsellor', 'is_pharmacist')
+    list_display_links = ('user',)
+    readonly_feilds = ('is_administrator', 'is_customer', 'is_counsellor', 'is_pharmacist')
+    ordering = ('user',)
+    search_fields = ('user',)
+
+    filter_horizontal = ()
+    list_filter = ()
+    fieldsets = ()
+admin.site.register(Type_user, Type_userAdmin)
 admin.site.register(PharmacistDetail)

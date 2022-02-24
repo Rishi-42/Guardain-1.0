@@ -11,5 +11,6 @@ urlpatterns = [
     path('counsellorregister/', counsellorregister, name="counsellorregister"),
     path('forgotpassword/', forgotpassword, name="forgotpassword"),
     path('resetpassword/', resetpassword, name="resetpassword"),
-
+    path('ajax/load_districts/', load_districts, name='ajax_load_districts'),
+    path('ajax/load-cities/', load_cities, name='ajax_load_cities'),
 ]

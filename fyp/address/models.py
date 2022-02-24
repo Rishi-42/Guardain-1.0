@@ -31,7 +31,7 @@ class Adresses(models.Model):
     district = models.ForeignKey(District, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     ward_no = models.CharField(max_length=30)
-    Tole = models.CharField(max_length=30)
+    tole = models.CharField(max_length=30)
     pharmacy = models.ForeignKey(PharmacistDetail, on_delete=models.CASCADE)
 
 

@@ -191,7 +191,26 @@
 </div> <!-- row.// -->
 </div>
 </section>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
+	$("#id_district").change(function () {
+	  var url = $("#regForm").attr("data-cities-url");
+	  var districtId = $(this).val();
+
+	  $.ajax({
+		url: url,
+		data: {
+		  'district': districtId
+		},
+		success: function (data) {
+		  $("#id_city").html(data);
+		}
+	  });
+
+	});
+  </script>
+
+ <script> 
 	$("#id_province").change(function () {
 	  var url = $("#regForm").attr("data-districts-url");
 	  var provinceId = $(this).val();
@@ -206,23 +225,8 @@
 		}
 	  });
 	});
+</script>
 
-	$("#id_district").change(function () {
-		var url = $("#regForm").attr("data-cities-url");
-		var districtId = $(this).val();
-  
-		$.ajax({
-		  url: url,
-		  data: {
-			'district': districtId
-		  },
-		  },
-		  success: function (data) {
-			$("#id_city").html(data);
-		  }
-		});
-  
-	  });
-  </script>
+
 <!-- ========================= SECTION CONTENT END// ========================= -->
 {% endblock %}

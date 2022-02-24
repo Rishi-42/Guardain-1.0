@@ -1,4 +1,4 @@
-<option value="">---------</option>
-{% for districts in districts %}
-<option value="{{ city.pk }}">{{ city.name }}</option>
+<option value="">Select District</option>
+{% for district in districts %}
+<option value="{{ district.pk }}">{{ district.name }}</option>
 {% endfor %}

@@ -1,7 +1,7 @@
 
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm, RegistrationFormPharmacy, Address_pharmacy
-from .models import Account, Type_user, PharmacistDetail
+from .forms import RegistrationForm, RegistrationFormPharmacy, Address_form, RegistrationFormCounsellor
+from .models import Account, Type_user, PharmacistDetail, CounsellorDetail
 from address.models import Adresses, District, City
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
@@ -17,6 +17,7 @@ from django.core.mail import EmailMessage
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
+
         if form.is_valid():
             first_name = form.cleaned_data['first_name']
             last_name = form.cleaned_data['last_name']
@@ -63,8 +64,6 @@ def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-
-
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
@@ -73,9 +72,17 @@ def login(request):
             if type == "customer":
                 return redirect('home')
             elif type == "pharmacist":
-                return redirect('pharmacyregister')
+                current_user = request.user
+                if  PharmacistDetail.objects.filter(user_id=current_user).exists():
+                    return redirect('dashboardpharmacist')
+                else:
+                    return redirect('pharmacyregister')
             elif type == "counsellor":
-                return redirect('forgotpassword')
+                current_user = request.user
+                if  CounsellorDetail.objects.filter(user_id=current_user).exists():
+                    return redirect('dashboardcounsellor')
+                else:
+                    return redirect('counsellorregister')
         else:
             messages.error(request, 'Invalid email or password')
             return render(request, 'account/login.html')
@@ -83,15 +90,18 @@ def login(request):
     return render(request, 'account/login.html')
 
 def pharmacyregister(request):
+    current_user = request.user
+    user_email = current_user.email
+    user_name = current_user.id
     form = RegistrationFormPharmacy()
-    form_add = Address_pharmacy()
+    form_add = Address_form()
     if request.method == 'POST':
-
-        # get data from account model
-        form = RegistrationFormPharmacy(request.POST)
-        print(form.is_valid())
+        # get data from account mode
+        form = RegistrationFormPharmacy(request.POST, request.FILES)
+        form_add = Address_form(request.POST)
         if form.is_valid() and form_add.is_valid():
             pharmacy_name = form.cleaned_data['pharmacy_name']
+            # profile_image=request.FILES['profile_image']
             profile_image = form.cleaned_data['profile_image']
             pharmacy_email = form.cleaned_data['pharmacy_email']
             phone_no = form.cleaned_data['phone_no']
@@ -102,27 +112,27 @@ def pharmacyregister(request):
             description = form.cleaned_data['description']
 
 
-            province = form.cleaned_data['province']
-            district = form.cleaned_data['district']
-            city = form.cleaned_data['city']
-            ward_no = form.cleaned_data['ward_no']
-            tole = form.cleaned_data['tole']
+            province = form_add.cleaned_data['province']
+            district = form_add.cleaned_data['district']
+            city = form_add.cleaned_data['city']
+            ward_no = form_add.cleaned_data['ward_no']
+            tole = form_add.cleaned_data['tole']
 
-            pharmacy = PharmacistDetail(pharmacy_name=pharmacy_name, profile_image=profile_image, pharmacy_email=pharmacy_email, phone_no=phone_no, registration_no=registration_no, registered_doc=registered_doc, work_start=work_start, work_end=work_end, description=description, user_id=user_email)
+            pharmacy = PharmacistDetail(pharmacy_name=pharmacy_name, profile_image=profile_image, pharmacy_email=pharmacy_email, phone_no=phone_no, registration_no=registration_no, registered_doc=registered_doc, work_start=work_start, work_end=work_end, description=description, user_id=Account.objects.get(email = user_email))
+            address = Adresses(province=province, district=district, city=city, ward_no=ward_no, tole=tole, user_name=Account.objects.get(id = user_name))
             pharmacy.save()
-            address = Adresses(province=province, district=district, city=city, ward_no=ward_no, tole=tole, user=pharmacy)
             address.save()
-
+            return render(request, 'account/login.html')
               
     else:
         form = RegistrationFormPharmacy()
-        form_add = Address_pharmacy()
+        form_add = Address_form()
 
     context = {
         'form': form,
         'form_add': form_add,
     }
-    return render(request, 'dashboardpharmacy.html', context)
+    return render(request, 'account/pharmacyregister.html', context)
 
 
 
@@ -147,15 +157,60 @@ def load_cities(request):
 
 
 
-def counsellorregister():
-    pass
+def counsellorregister(request):
+    current_user = request.user
+    user_email = current_user.email
+    user_name = current_user.id
+    form = RegistrationFormCounsellor()
+    form_add = Address_form()
+    if request.method == 'POST':
+        # get data from account mode
+        form = RegistrationFormCounsellor(request.POST, request.FILES)
+        form_add = Address_form(request.POST)
+        print(form.is_valid())
+        print(form_add.is_valid())
+        if form.is_valid() and form_add.is_valid():
+            counsellor_name = form.cleaned_data['counsellor_name']
+            # profile_image=request.FILES['profile_image']
+            profile_image = form.cleaned_data['profile_image']
+            counsellor_email = form.cleaned_data['counsellor_email']
+            phone_no = form.cleaned_data['phone_no']
+            registration_no = form.cleaned_data['registration_no']
+            registered_doc = form.cleaned_data['registered_doc']
+            work_start = form.cleaned_data['work_start']
+            work_end = form.cleaned_data['work_end']
+            description = form.cleaned_data['description']
+
+
+            province = form_add.cleaned_data['province']
+            district = form_add.cleaned_data['district']
+            city = form_add.cleaned_data['city']
+            ward_no = form_add.cleaned_data['ward_no']
+            tole = form_add.cleaned_data['tole']
+
+            counsellor = CounsellorDetail(counsellor_name=counsellor_name, profile_image=profile_image, counsellor_email=counsellor_email, phone_no=phone_no, registration_no=registration_no, registered_doc=registered_doc, work_start=work_start, work_end=work_end, description=description, user_id=Account.objects.get(email = user_email))
+            address = Adresses(province=province, district=district, city=city, ward_no=ward_no, tole=tole, user_name=Account.objects.get(id = user_name))
+            counsellor.save()
+            address.save()
+            return render(request, 'account/login.html')
+              
+    else:
+        form = RegistrationFormCounsellor()
+        form_add = Address_form()
+
+    context = {
+        'form': form,
+        'form_add': form_add,
+    }
+    return render(request, 'account/counsellorregister.html', context)
+
+
 
 @login_required(login_url= 'login')
 def logout(request):
     auth.logout(request)
     messages.success(request, "Successfully logged out!")
     return render(request, 'account/login.html')
-
 
 
 def activate(request, uidb64, token):

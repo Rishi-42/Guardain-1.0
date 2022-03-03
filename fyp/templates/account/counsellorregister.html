@@ -1,0 +1,200 @@
+{% extends "unincluded_base.html" %}
+{% block start %}
+    <style>
+	textarea{
+	overflow: auto;
+    resize: vertical;
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.9rem + 5rem);
+    padding: 0.45rem 0.85rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.37rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+	}
+    </style>
+    <!-- ========================= SECTION CONTENT ========================= -->
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <br>
+            <br>
+            <div class="row align-items-center">
+                <article class="col-md-1">
+                </article>
+                <article class="col-md-10 card mb-4">
+                    <div class="card-body">
+                        {% include 'includes/alerts.html' %}
+                        
+                        <h4 class="card-title mb-4">Counsellor Details</h4>
+                        <form action="{% url 'counsellorregister' %}"
+                              method="POST"
+                              enctype="multipart/form-data"
+                              id="regForm"
+                              data-districts-url="{% url 'ajax_load_districts' %}"
+                              data-cities-url="{% url 'ajax_load_cities' %}"
+                              novalidate>
+                            {% csrf_token %}
+                            
+
+							<div class="row">
+                                <div class="form-group col-sm-6">
+                                    <label>Name</label>
+                                    {{ form.counsellor_name }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label>Profile image</label>
+                                    {{ form.profile_image }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label>Counsellor Email</label>
+                                    {{ form.counsellor_email }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label>Telephone Number</label>
+                                    {{ form.phone_no }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label>Registration Number</label>
+                                    {{ form.registration_no }}
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <label>Verification certificate</label>
+                                    {{ form.registered_doc }}
+                                </div>
+                                {% comment %} <div class="form-group col-sm-6">
+                                    <div class="item-option-select">
+                                        <label>Working Days</label>
+                                        <div name="working_days" class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+                                            {% for type in form.working_days %}                                             <div class="btn btn-light">{{ type }}</div>{% endfor %}
+                                        </div> 
+                                    </div>
+                                </div> {% endcomment %}
+                                <div class="form-group col-sm-4">
+                                    <label>Province</label>
+                                    {{ form_add.province }}
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label>District</label>
+                                    {{ form_add.district }}
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label>City</label>
+                                    {{ form_add.city }}
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label>Ward</label>
+                                    {{ form_add.ward_no }}
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label>Tole</label>
+                                    {{ form_add.tole }}
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    {% comment %} <label>Street</label> {% endcomment %}
+                                    {% comment %} {{form_add.street}} {% endcomment %}
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <label>From (AM)</label>
+                                    <select name="work_start" class="form-control">
+                                        {% for type in form.work_start %}{{ type }}{% endfor %}
+                                    </select> 
+                                    {% comment %} {{form.work_start}} {% endcomment %}
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <label>Till (PM)</label>
+                                    <select name="work_end" class="form-control">
+                                        {% for type in form.work_end %}{{ type }}{% endfor %}
+                                    </select>
+                                    {% comment %} {{form.work_end}} {% endcomment %}
+                                </div>
+                                <div class="form-group col-sm-8">
+                                    <label>Description</label>
+                                    {{ form.description }}
+                                </div>
+                                <div class="form-group col-sm-2">
+                                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                                </div>
+                            </div>
+
+                            
+                        </form>
+                        <hr>
+                        {% comment %} <h4 class="card-title mb-4">counsellor Address</h4>
+						<form action="{% url 'counsellorregister' %}" method="POST" id="regForm" data-districts-url="{% url 'ajax_load_districts' %}" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>
+							{% csrf_token %}
+							<div class="row">
+								<div class="form-group col-sm-4">
+									<label>Province</label>
+									{{form_add.province}}
+								</div>
+								<div class="form-group col-sm-4">
+									<label>District</label>
+									{{form_add.district}}			
+								</div>
+								<div class="form-group col-sm-4">
+									<label>City</label>
+									{{form_add.city}}
+								</div>
+								<div class="form-group col-sm-4">
+									<label>Ward</label>
+									{{form_add.ward_no}}
+								</div>
+								<div class="form-group col-sm-4">
+									<label>Tole</label>
+									{{form_add.tole}}
+								</div>
+							
+								<div class="form-group col-sm-2">
+									<button type="submit" class="btn btn-primary btn-block">Submit</button>
+								</div>	
+							</div>
+                        </form> {% endcomment %}
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+		$("#id_district").change(function () {
+		  var url = $("#regForm").attr("data-cities-url");
+		  var districtId = $(this).val();
+	
+		  $.ajax({
+			url: url,
+			data: {
+			  'district': districtId
+			},
+			success: function (data) {
+			  $("#id_city").html(data);
+			}
+		  });
+	
+		});
+	  
+    </script>
+    <script>
+		$("#id_province").change(function () {
+		  var url = $("#regForm").attr("data-districts-url");
+		  var provinceId = $(this).val();
+	
+		  $.ajax({
+			url: url,
+			data: {
+			  'province': provinceId
+			},
+			success: function (data) {
+			  $("#id_district").html(data);
+			}
+		  });
+		});
+	
+    </script>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+{% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Account, PharmacistDetail
+from .models import Account, PharmacistDetail, CounsellorDetail
 from address.models import Adresses, District, City, Province
 
 
@@ -79,12 +79,12 @@ class RegistrationFormPharmacy(forms.ModelForm):
 
     class Meta:
         model = PharmacistDetail
-        fields = ('phone_no', 'registration_no', 'pharmacy_name', 'pharmacy_email', 'registered_doc', 'profile_image', 'work_start', 'work_end', 'description')
+        fields = ('pharmacy_name', 'profile_image', 'pharmacy_email', 'phone_no', 'registration_no', 'registered_doc', 'work_start', 'work_end', 'description')
 
     def __init__(self, *args, **kargs):
         super(RegistrationFormPharmacy, self).__init__(*args, **kargs)
-        self.fields['phone_no'].widget.attrs.update({'class': 'form-control', 'placeholder': ' name'})
-        self.fields['registration_no'].widget.attrs.update({'class': 'form-control', 'placeholder': ' '})
+        self.fields['phone_no'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Phone number'})
+        self.fields['registration_no'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Registration number'})
         self.fields['pharmacy_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Pharmacy Name'})
         self.fields['pharmacy_email'].widget.attrs.update({'class': 'form-control', 'placeholder': 'example@domain.com'})
         self.fields['registered_doc'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Pharmacy Registered Document'})
@@ -93,14 +93,14 @@ class RegistrationFormPharmacy(forms.ModelForm):
         self.fields['work_end'].widget.attrs.update({'class': 'form-control'})
         self.fields['description'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Write something about your pharmacy here'})
 
-class Address_pharmacy(forms.ModelForm):
+class Address_form(forms.ModelForm):
 
     class Meta:
         model = Adresses
         fields = ('province', 'district', 'city', 'ward_no', 'tole')
 
     def __init__(self, *args, **kargs):
-        super(Address_pharmacy, self).__init__(*args, **kargs)
+        super(Address_form, self).__init__(*args, **kargs)
         self.fields['district'].widget.attrs.update({'class': 'form-control', 'placeholder': ' name'})
         self.fields['city'].widget.attrs.update({'class': 'form-control', 'placeholder': ' name'})
         self.fields['ward_no'].widget.attrs.update({'class': 'form-control', 'placeholder': ' name'})
@@ -128,3 +128,44 @@ class Address_pharmacy(forms.ModelForm):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
             self.fields['district'].queryset = self.instance.district.city_set.order_by('name')
+
+
+class RegistrationFormCounsellor(forms.ModelForm):
+    Time_CHOICES = [
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5'),
+        ('6', '6'),
+        ('7', '7'),
+        ('8', '8'),
+        ('9', '9'),
+        ('10', '10'),
+        ('11', '11'),
+        ('12', '12'),
+    	]
+    work_start = forms.ChoiceField(
+        required=True,
+        choices=Time_CHOICES,
+    )
+    work_end = forms.ChoiceField(
+        required=True,
+        choices=Time_CHOICES,
+    )
+
+    class Meta:
+        model = CounsellorDetail
+        fields = ('counsellor_name', 'profile_image', 'counsellor_email', 'phone_no', 'registration_no', 'registered_doc', 'work_start', 'work_end', 'description')
+
+    def __init__(self, *args, **kargs):
+        super(RegistrationFormCounsellor, self).__init__(*args, **kargs)
+        self.fields['phone_no'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Phone number'})
+        self.fields['registration_no'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Registration number'})
+        self.fields['counsellor_name'].widget.attrs.update({'class': 'form-control', 'placeholder': 'counsellor Name'})
+        self.fields['counsellor_email'].widget.attrs.update({'class': 'form-control', 'placeholder': 'example@domain.com'})
+        self.fields['registered_doc'].widget.attrs.update({'class': 'form-control', 'placeholder': 'counsellor Registered Document'})
+        self.fields['profile_image'].widget.attrs.update({'class': 'form-control', 'placeholder': 'select profile image'})
+        self.fields['work_start'].widget.attrs.update({'class': 'form-control'})
+        self.fields['work_end'].widget.attrs.update({'class': 'form-control'})
+        self.fields['description'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Write something about your counsellor here'})

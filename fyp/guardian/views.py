@@ -22,3 +22,12 @@ def cart(request):
 
 def productdetail(request):
     return render(request, 'product-detail.html')
+
+def test(request):
+    return render(request, 'test.html')
+
+def dashboardcounsellor(request):
+    return render(request, 'dashboardcounsellor.html')
+
+def dashboardpharmacist(request):
+    return render(request, 'dashboardpharmacy.html')

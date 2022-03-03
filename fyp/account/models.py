@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
+
 class MyAccountManager(BaseUserManager):
     def create_user(self, first_name, last_name, username, email, password, user_type):
         if not email:
@@ -31,7 +32,7 @@ class MyAccountManager(BaseUserManager):
             user_type=user_type,
         )
         usert = None
-        usert = Type_user(user=user,is_admin=True)
+        usert = Type_user(user=user,is_administrator=True)
         usert.save()
         # user.is_customer=True
         user.is_superuser= True
@@ -81,25 +82,17 @@ class Type_user(models.Model):
 
     def __str__(self):
         return self.user.username
-        # if self.is_customer == True:
-        #     return Account.get_username(self.user) + " - is_customer"
-        # elif self.is_counsellor == True:
-        #     return Account.get_username(self.user) + " - is_counsellor"
-        # elif self.is_pharmacist == True:
-        #     return Account.get_username(self.user) + " - is_pharmacist"
-        # elif self.is_administrator == True:
-        #     return Account.get_username(self.user) + " - is_administrator"
 
 
 
 
 class PharmacistDetail(models.Model):
     pharmacy_name = models.CharField(max_length=100, blank=False, unique=True)
-    phone_no = models.CharField(max_length=10, unique=True)
-    registration_no = models.IntegerField(unique=True)
+    profile_image = models.ImageField(upload_to='profile/pharmacist_profile_image')
     pharmacy_email = models.EmailField(max_length=100, unique=True)
-    registered_doc = models.FileField(upload_to='pharmacy/pharmacist_registred_document')
-    profile_image = models.ImageField(upload_to='pharmacy/pharmacist_profile_image')
+    phone_no = models.CharField(max_length=10, unique=True)
+    registration_no = models.CharField(max_length=15, unique=True)
+    registered_doc = models.FileField(upload_to='doc/pharmacist_registred_document')
     work_start = models.CharField(max_length=2)
     work_end = models.CharField(max_length=2)
     description = models.CharField(max_length=500)
@@ -110,3 +103,21 @@ class PharmacistDetail(models.Model):
 
     def __str__(self):
         return self.pharmacy_name
+
+class CounsellorDetail(models.Model):
+    counsellor_name = models.CharField(max_length=100, blank=False, unique=True)
+    profile_image = models.ImageField(upload_to='profile/counsellor_profile_image')
+    counsellor_email = models.EmailField(max_length=100, unique=True)
+    phone_no = models.CharField(max_length=10, unique=True)
+    registration_no = models.CharField(max_length=15, unique=True)
+    registered_doc = models.FileField(upload_to='doc/counsellor_registred_document')
+    work_start = models.CharField(max_length=2)
+    work_end = models.CharField(max_length=2)
+    description = models.CharField(max_length=500)
+    user_id = models.ForeignKey(Account, on_delete=models.CASCADE)
+
+    created_date = models.DateTimeField(auto_now_add=True)
+    modified_date = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.counsellor_name

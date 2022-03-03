@@ -1,0 +1,232 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+
+<style>
+    .list-group-item.active {
+        z-index: 2;
+        color: #fff;
+        background-color: #008037;
+        border-color:#008037;
+    }
+</style>
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-conten padding-y bg">
+
+<div class="container">
+	<div class="row">
+	<aside class="col-md-3">
+		<!--   SIDEBAR   -->
+		<div class="list-group" id="v-pills-tab" role="tablist">
+			<a class="list-group-item active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
+			<a class="list-group-item" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+			<a class="list-group-item" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+			<a class="list-group-item" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+		</div>
+		<br>
+		<a class="btn btn-light btn-block" href="#"> <i class="fa fa-power-off"></i> <span class="text">Log out</span> </a> 
+		<!--   SIDEBAR .//END   -->
+	</aside>
+	<div class="col-md-9">
+			<article class="card">
+				<div class="tab-content" id="v-pills-tabContent">
+		  			<div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><header class="card-header">
+						<strong class="d-inline-block mr-3">This is counsellor dashboard</strong>
+						<span>Order Date: 16 December 2018</span>
+					</header>
+					<div class="card-body">
+						<div class="row"> 
+							<div class="col-md-8">
+								<h6 class="text-muted">Delivery to</h6>
+								<p>Michael Jackson <br>  
+								Phone +1234567890 Email: myname@pixsellz.com <br>
+								Location: Home number, Building name, Street 123,  Tashkent, UZB <br> 
+								P.O. Box: 100123
+								 </p>
+							</div>
+							<div class="col-md-4">
+								<h6 class="text-muted">Payment</h6>
+								<span class="text-success">
+									<i class="fab fa-lg fa-cc-visa"></i>
+									Visa  **** 4216  
+								</span>
+								<p>Subtotal: $356 <br>
+								 Shipping fee:  $56 <br> 
+								 <span class="b">Total:  $456 </span>
+								</p>
+							</div>
+						</div> <!-- row.// -->
+					</div> <!-- card-body .// -->
+					<div class="table-responsive">
+					<table class="table table-hover">
+						<tr>
+							<td width="65">
+								<img src="../images/items/1.jpg" class="img-xs border">
+							</td>
+							<td> 
+								<p class="title mb-0">Product name goes here </p>
+								<var class="price text-muted">USD 145</var>
+							</td>
+							<td> Seller <br> Nike clothing </td>
+							<td width="250"> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
+						</tr>
+						<tr>
+							<td>
+								<img src="../images/items/2.jpg" class="img-xs border">
+							</td>
+							<td> 
+								<p class="title mb-0">Another name goes here </p>
+								<var class="price text-muted">USD 15</var>
+							</td>
+							<td> Seller <br> ABC shop </td>
+							<td> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
+						</tr>
+						<tr>
+							<td>
+								<img src="../images/items/3.jpg" class="img-xs border">
+							</td>
+							<td> 
+								<p class="title mb-0">The name of the product  goes here </p>
+								<var class="price text-muted">USD 145</var>
+							</td>
+							<td> Seller <br> Wallmart </td>
+							<td> <a href="#" class="btn btn-outline-primary">Track order</a> <a href="#" class="btn btn-light"> Details </a> </td>
+						</tr>
+					</table>
+					</div> 
+				</div>
+		  			<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><div class="card-body">
+						{% include 'includes/alerts.html' %}
+						<h4 class="card-title mb-4">Pharmacy Details</h4>
+						<form action="{% url 'pharmacyregister' %}" method="POST" id="regForm" data-districts-url="{% url 'ajax_load_districts' %}" data-cities-url="{% url 'ajax_load_cities' %}" novalidate>
+							{% csrf_token %}
+							<div class="row">
+								<div class="form-group col-sm-6">
+									<label>Pharmacy Name</label>
+									{{form.pharmacy_name}}
+								</div>
+								<div class="form-group col-sm-6" >
+									<label>Pharmacy image</label>
+									{{form.profile_image}}
+								</div>
+								<div class="form-group col-sm-4">
+									<label>Pharmacy Email</label>
+									{{form.pharmacy_email}}
+								</div>
+								<div class="form-group col-sm-4">
+									<label>Telephone Number</label>
+									{{form.phone_no}}
+								</div>
+								<div class="form-group col-sm-4">
+									<label>Registration Number</label>
+									{{form.registration_no}}
+								</div>
+								<div class="form-group col-sm-4" >
+									<label>Pharmacy registration Document</label>
+									{{form.registered_doc}}
+								</div>
+								<div class="form-group col-sm-4" >
+									<label>Province</label>
+									{{form_add.province}}
+								</div>
+								<div class="form-group col-sm-4">
+									<label>District</label>
+									{{form_add.district}}			
+								</div>
+								<div class="form-group col-sm-4">
+									<label>City</label>
+									{{form_add.city}}
+								</div>
+								<div class="form-group col-sm-4">
+									<label>Ward</label>
+									{{form_add.ward_no}}
+								</div>
+								<div class="form-group col-sm-4">
+									<label>Tole</label>
+									{{form_add.tole}}
+								</div>
+								{% comment %} <div class="form-group col-sm-6">
+									<div class="item-option-select">
+										<label>Working Days</label>
+										<div name="working_days" class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+											{% for type in form.working_days %}
+												<div class="btn btn-light">{{ type }}</div>
+											{% endfor %}
+										</div> 
+									</div>
+								</div> {% endcomment %}
+								
+								<div class="form-group col-sm-2" >
+									<label> From (AM)</label>
+									<select name="work_start" class="form-control">
+										{% for type in form.work_start %}
+											{{ type }}
+										{% endfor %}
+									</select>
+								</div>
+								<div class="form-group col-sm-2" >
+									<label>Till (PM)</label>
+									<select name="work_end" class="form-control">
+										{% for type in form.work_end %}
+											{{ type }}
+										{% endfor %}
+									</select>
+								</div>
+								<div class="form-group col-sm-8">
+									<label>Description</label>
+									{{form.description}}
+								</div>
+							
+								<div class="form-group col-sm-2">
+									<button type="submit" class="btn btn-primary btn-block"> Submit  </button>
+								</div>	
+							</div>
+						</form>
+					</div></div>
+		  			<div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+		  			<div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+				</div>
+	  </div>
+	</article> <!-- order-group.// --> 
+</div> <!-- row.// -->
+</div>
+</section>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+	$("#id_district").change(function () {
+	  var url = $("#regForm").attr("data-cities-url");
+	  var districtId = $(this).val();
+
+	  $.ajax({
+		url: url,
+		data: {
+		  'district': districtId
+		},
+		success: function (data) {
+		  $("#id_city").html(data);
+		}
+	  });
+
+	});
+  </script>
+
+ <script> 
+	$("#id_province").change(function () {
+	  var url = $("#regForm").attr("data-districts-url");
+	  var provinceId = $(this).val();
+
+	  $.ajax({
+		url: url,
+		data: {
+		  'province': provinceId
+		},
+		success: function (data) {
+		  $("#id_district").html(data);
+		}
+	  });
+	});
+</script>
+
+
+<!-- ========================= SECTION CONTENT END// ========================= -->
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.db import models
-from account.models import PharmacistDetail
+from account.models import Account
 
 
 class Province(models.Model):
@@ -17,9 +17,11 @@ class District(models.Model):
         return self.name
 
 class City(models.Model):
+    name = models.CharField(max_length=30)
+    slug = models.SlugField(max_length=100, unique=True)
     b_image = models.ImageField(upload_to='images/', blank=True)
     district = models.ForeignKey(District, on_delete=models.CASCADE)
-    name = models.CharField(max_length=30)
+    
 
     def __str__(self):
         return self.name
@@ -32,8 +34,8 @@ class Adresses(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
     ward_no = models.CharField(max_length=30)
     tole = models.CharField(max_length=30)
-    pharmacy = models.ForeignKey(PharmacistDetail, on_delete=models.CASCADE)
+    user_name = models.ForeignKey(Account, on_delete=models.CASCADE)
 
 
     def __str__(self):
-        return self.city
+        return self.tole

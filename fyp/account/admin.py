@@ -5,7 +5,8 @@ from .models import Account, PharmacistDetail, Type_user, CounsellorDetail
 
 
 class AccountAdmin(UserAdmin):
-    list_display = ('email', 'first_name', 'last_name', 'username', 'date_joined', 'last_login', 'user_type','is_active')
+    list_display = ('email', 'first_name', 'last_name', 'username',
+                    'date_joined', 'last_login', 'user_type', 'is_active')
     list_display_links = ('email', 'username')
     readonly_feilds = ('date_joined', 'last_login')
     ordering = ('date_joined',)
@@ -15,18 +16,24 @@ class AccountAdmin(UserAdmin):
     list_filter = ()
     fieldsets = ()
 
+
 admin.site.register(Account, AccountAdmin)
 
+
 class Type_userAdmin(UserAdmin):
-    list_display = ('user', 'is_administrator', 'is_customer', 'is_counsellor', 'is_pharmacist')
+    list_display = ('user', 'is_administrator', 'is_customer',
+                    'is_counsellor', 'is_pharmacist')
     list_display_links = ('user',)
-    readonly_feilds = ('is_administrator', 'is_customer', 'is_counsellor', 'is_pharmacist')
+    readonly_feilds = ('is_administrator', 'is_customer',
+                       'is_counsellor', 'is_pharmacist')
     ordering = ('user',)
     search_fields = ('user',)
 
     filter_horizontal = ()
     list_filter = ()
     fieldsets = ()
+
+
 admin.site.register(Type_user, Type_userAdmin)
 
 

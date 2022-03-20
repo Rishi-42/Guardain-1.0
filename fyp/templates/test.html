@@ -1,125 +1,102 @@
-{% extends "unincluded_base.html" %}
-{% block start %}
-
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content padding-y">
-
-<!-- ============================ COMPONENT REGISTER   ================================= -->
-	<div class="card mx-auto" style="max-width:520px; margin-top:40px;">
-      <article class="card-body">
-		<header class="mb-4"><h4 class="card-title">Sign up as Counsellor</h4></header>
-		<h4 class="card-title mb-4">Office Information</h4>
-	<form action="">
-		<div class="row">
-			<div class="form-group col-sm-4">
-				<label>Name</label>
-				<input type="text" placeholder="Type here" class="form-control">
-			</div>
-			
-			<div class="form-group col-sm-4">
-				<label>Telephone number</label>
-				<input type="text"  class="form-control">
-			</div>
-			<div class="form-group col-sm-4">
-				<label>Email</label>
-				<input type="email" placeholder="example@gmail.com" class="form-control">
-			</div>
-			<div class="form-group col-sm-4">
-				<label>Established Date</label>
-				<input type="date"  class="form-control">
-			</div>
-
-			<div class="form-group col-sm-4" >
-				<label>Registration Document</label>
-				<input type="file" class="form-control" id="customFile">
-				<!-- <label class="form-control" for="customFile">Choose file</label> -->
-			</div>
-			<div class="form-group col-sm-4">
-				<label>Province*</label>
-				<select name="" class="form-control">
-					<option value="">Province - 1</option>
-					<option value="">Province - 2</option>
-					<option value="">Province - 3</option>
-					<option value="">Province - 4</option>
-					<option value="">Province - 5</option>
-					<option value="">Province - 6</option>
-					<option value="">Province - 7</option>
-				</select>
-			</div>
-			<div class="form-group col-sm-4">
-				<label>District*</label>
-				<input type="text" placeholder="Type here" class="form-control">
-			</div>
-			<div class="form-group col-sm-4">
-				<label>City*</label>
-				<input type="text" placeholder="Type here" class="form-control">
-			</div>
-			<div class="form-group col-sm-4">
-				<label>Street</label>
-				<input type="text" placeholder="" class="form-control">
-			</div>
-
-			<div class="form-group col-sm-4">
-				<label>Postal code</label>
-				<input type="text" placeholder="" class="form-control">
-			</div>
-			<div class="form-group col-sm-4">
-				<label>Zip</label>
-				<input type="text" placeholder="" class="form-control">
-			</div>
-			<div class="form-group col-sm-6">
-				<div class="item-option-select">
-					<h6>Working Days</h6>
-					<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-					<label class="btn btn-light active">
-						<input type="checkbox" name="radio_color"> Sunday
-					</label>
-					<label class="btn btn-light">
-						<input type="checkbox" name="radio_color" > Monday
-					</label>
-					<label class="btn btn-light">
-						<input type="checkbox" name="radio_color"> Tuesday
-					</label>
-					<label class="btn btn-light">
-						<input type="checkbox" name="radio_color" > Wenesday
-					</label>
-					<label class="btn btn-light">
-						<input type="checkbox" name="radio_color"> Thusday
-					</label>
-					<label class="btn btn-light">
-						<input type="checkbox" name="radio_color" > Friday
-					</label>
-					<label class="btn btn-light">
-						<input type="checkbox" name="radio_color" > Saturday
-					</label>
-					</div> 
-				</div>
-			</div>
-			<div class="form-group col-sm-3">
-				<label>Working time-Start</label>
-				<input type="time"  class="form-control">
-			</div>
-			<div class="form-group col-sm-3">
-				<label>Working time-End</label>
-				<input type="time"  class="form-control">
-			</div>
-			<div class="form-group col-sm-8">
-				<label>Description</label>
-				<textarea name="textarea" placeholder="Write something here" rows="10" cols="50"></textarea>
-			</div>
-			<div class="form-group col-sm-4">
-				<!-- <textarea name="textarea" placeholder="Write something here" rows="10" cols="50"></textarea> -->
-			</div>
-			<div class="form-group col-sm-2">
-				<a href="#" class="btn btn-block btn-primary">Submit </a>
-			</div>
-				
-		</div> <!-- row.// -->	
-	</form></article><!-- card-body.// -->
-    </div> <!-- card .// -->
-    <p class="text-center mt-4">Have an account? <a href="">Log In</a></p>
-    <br><br>
-<!-- ============================ COMPONENT REGISTER  END.// ================================= -->
-</section>
-
-{% endblock %}
+insert all
+    into module values('CS01', 'Hardware', 4)
+    into module values('CS02', 'Marketing', 4)
+    into module values('CS03', 'Finance', 4)
+    into module values('CS04', 'Database', 2)
+    into module values('CS05', 'Information System', 2)
+    into student_details values('STD1','Rina Khatri', 'Olanchunghgola') 
+    into student_details values('STD2', 'Manila Nepal', 'Dharan')
+    into student_details values('STD3', 'Susmita Rai', 'Hongkong')
+    into student_details values('STD4', 'Gimee Rai', 'Kathamandu')
+    into student_details values('STD5', 'Manisha Shrestha', 'Gorkha')
+    into student_details values('STD6', 'Seema Shrestha', 'Itahari')
+    into final_result values('A+', '4.0')
+    into final_result values('A', '3.6')
+    into final_result values('B+', '3.2')
+    into final_result values('B', '2.8')
+    into final_result values('C', '2.4')
+    into final_result values('D', '2.0')
+    into final_result values('F', 'Fail')
+    into assignments_details values('ASS1', 'Coursework')
+    into assignments_details values('ASS2', 'Written Exam')
+    into assignments_details values('ASS3', 'Individual Assignment')
+    into assignments_details values('ASS4', 'Unseen Examination')
+    into assignments_details values('ASS5', 'Group Assignment')
+    into address values('ADD1', 'Dharan')
+    into address values('ADD2', 'Itahari')
+    into address values('ADD3', 'Dulari')
+    into address values('ADD4', 'Tarahara')
+    into address values('ADD5', 'Bhanuchok')
+    into address values('ADD6', 'Biratnagar')
+    into college_department values('DEP1', 'IT Department')
+    into college_department values('DEP2', 'Security Department')
+    into college_department values('DEP3', 'Finance Department')
+    into college_department values('DEP4', 'Student Service')
+    into college_department values('DEP5', 'Business Department')
+    into teacher values('T001', 'Nisesh Bishwas', 'nisesh.bishwas@iic.edu.np', 'DEP2')
+    into teacher values('T002', 'Naran Karna', 'naran.karna@iic.edu.np', 'DEP1')
+    into teacher values('T003', 'Prateek Kokh Shrestha', 'prateek.shrestha@iic.edu.np', 'DEP1')
+    into teacher values('T004', 'Dakshatya Rana', 'dakshatya.rana@iic.edu.np', 'DEP5')
+    into teacher values('T005', 'Pradeep Bhattarai', 'pradeep.bhatt@iic.edu.np', 'DEP4')
+    into teacher values('T006', 'Punam Puri', 'punam.puri@iic.edu.np', 'DEP3')
+    into teacher values('T007', 'Dipesh Khanal', 'dipesh.khanal@iic.edu.np', 'DEP4')
+    into teacher values('T008', 'Bikash Shrestha', 'bikash.shrestha@iic.edu.np', 'DEP5')
+    into teachers_address values('ADD1', 'T001')
+    into teachers_address values('ADD6', 'T002')
+    into teachers_address values('ADD3', 'T003')
+    into teachers_address values('ADD2', 'T004')
+    into teachers_address values('ADD5', 'T005')
+    into teachers_address values('ADD4', 'T006')
+    into teachers_address values('ADD3', 'T007')
+    into teachers_address values('ADD3', 'T008')
+    into teachers_module values('CS01', 'T001')
+    into teachers_module values('CS04', 'T002')
+    into teachers_module values('CS03', 'T007')
+    into teachers_module values('CS02', 'T008')
+    into teachers_module values('CS05', 'T003')
+    into module_student values('CS01', 'STD1')
+    into module_student values('CS01', 'STD3')
+    into module_student values('CS01', 'STD4')
+    into module_student values('CS01', 'STD5')
+    into module_student values('CS02', 'STD2')
+    into module_student values('CS03', 'STD2')
+    into module_student values('CS02', 'STD3')
+    into module_student values('CS03', 'STD3')
+    into module_student values('CS04', 'STD1')
+    into module_student values('CS04', 'STD3')
+    into module_student values('CS04', 'STD4')
+    into module_student values('CS04', 'STD5')
+    into module_student values('CS05', 'STD1')
+    into module_student values('CS05', 'STD3')
+    into module_student values('CS05', 'STD4')
+    into module_student values('CS05', 'STD5')
+    into student_attandance values('AT01', '81 percent', 'STD1')
+    into student_attandance values('AT02', '41 percent', 'STD2')
+    into student_attandance values('AT03', '86 percent', 'STD3')
+    into student_attandance values('AT04', '83 percent', 'STD4')
+    into student_attandance values('AT05', '45 percent', 'STD5')
+    into student_attandance values('AT06', '67 percent', 'STD6')
+    into student_fee values('F001', 190000, to_date('6/2/2022','MM/DD/YYYY'), 'STD1')
+    into student_fee values('F002', 20000, to_date('3/25/2022','MM/DD/YYYY'), 'STD2')
+    into student_fee values('F003', 150000, to_date('2/22/2022','MM/DD/YYYY'), 'STD3')
+    into student_fee values('F004', 10099, to_date('2/3/2022','MM/DD/YYYY'), 'STD4')
+    into student_fee values('F005', 10000, to_date('11/12/2021','MM/DD/YYYY'), 'STD1')
+    into student_fee values('F006', 100235, to_date('11/14/2022','MM/DD/YYYY'), 'STD4')
+    into student_fee values('F007', 12000, to_date('2/15/2022','MM/DD/YYYY'), 'STD5')
+    into student_fee values('F008', 12300, to_date('1/8/2022','MM/DD/YYYY'), 'STD6')
+    into assignment_students values('STD1', 'CS01', 'ASS1', 'A+')
+    into assignment_students values('STD1', 'CS05', 'ASS2', 'A')
+    into assignment_students values('STD1', 'CS04', 'ASS3', 'B')
+    into assignment_students values('STD1', 'CS01', 'ASS4', 'A')
+    into assignment_students values('STD1', 'CS05', 'ASS5', 'C')
+    into assignment_students values('STD3', 'CS05', 'ASS2', 'F')
+    into assignment_students values('STD3', 'CS01', 'ASS4', 'A')
+    into assignment_students values('STD3', 'CS05', 'ASS5', 'B')
+    into assignment_students values('STD3', 'CS04', 'ASS3', 'B+')
+    into assignment_students values('STD2', 'CS02', 'ASS1', 'C')
+    into assignment_students values('STD2', 'CS02', 'ASS2', 'A')
+    into assignment_students values('STD2', 'CS02', 'ASS3', 'F')
+    into assignment_students values('STD2', 'CS03', 'ASS4', 'C')
+    into assignment_students values('STD2', 'CS03', 'ASS5', 'A+')
+    select * from dual;
+    

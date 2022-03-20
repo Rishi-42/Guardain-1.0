@@ -97,7 +97,7 @@ def pharmacyregister(request):
     current_user = request.user
     user_email = current_user.email
 
-    print(user_email)
+    # print(user_email)
     user_name = current_user.id
     form = RegistrationFormPharmacy()
     form_add = Address_form()
@@ -124,9 +124,9 @@ def pharmacyregister(request):
             tole = form_add.cleaned_data['tole']
 
 
-            if not (Adresses.objects.get(user_name=user_name).id):
-                test_id = Adresses.objects.get(user_name=user_name).id
-                Adresses.objects.filter(id=test_id).delete()
+            # if not (Adresses.objects.get(user_name=user_name).id):
+            #     test_id = Adresses.objects.get(user_name=user_name).id
+            #     Adresses.objects.filter(id=test_id).delete()
             # print(duplicate)
             # duplicate.save()
             pharmacy = PharmacistDetail(pharmacy_name=pharmacy_name, profile_image=profile_image, pharmacy_email=pharmacy_email, phone_no=phone_no, registration_no=registration_no,

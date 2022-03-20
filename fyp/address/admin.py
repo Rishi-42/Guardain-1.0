@@ -29,7 +29,7 @@ admin.site.register(City, CityAdmin)
 
 
 class AddressAdmin(admin.ModelAdmin):
-    list_display = ('user_name', 'province', 'district',
+    list_display = ('user_name', 'if_c_name', 'if_p_name',  'province', 'district',
                     'city', 'ward_no', 'tole')
 
 

@@ -1,5 +1,8 @@
+from multiprocessing import context
 from django.shortcuts import render
-from account.models import Account 
+from account.models import Account, PharmacistDetail
+from address.models import City
+# from pharmacy.models import 
 
 
 def home(request):
@@ -31,3 +34,19 @@ def dashboardcounsellor(request):
 
 def dashboardpharmacist(request):
     return render(request, 'dashboardpharmacy.html')
+
+
+
+def cities(request):
+    cities_all = City.objects.all()
+    context = {
+        'cities_all' : cities_all,
+    }
+    return render(request, 'pharmacy_cities.html', context)
+
+def pharmacies(request):
+    pharmacy = PharmacistDetail.objects.all()
+    context = {
+        'pharmacies' :pharmacy
+    }
+    return render(request, 'pharmacy_city1.html', context)

@@ -31,6 +31,8 @@ INSTALLED_APPS = [
     'account',
     'pharmacy',
     'address',
+    'counsellor',
+    'froala_editor',
 ]
 
 MIDDLEWARE = [

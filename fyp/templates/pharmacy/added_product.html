@@ -1,0 +1,9 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+{% for product in products %}
+
+ <img src="{{ product.image.url }}" width="500px"/>
+
+{% endfor %}
+{% endblock %}

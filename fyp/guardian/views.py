@@ -1,7 +1,8 @@
+
 from multiprocessing import context
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from account.models import Account, PharmacistDetail
-from address.models import City
+from address.models import City, Adresses
 # from pharmacy.models import 
 
 
@@ -44,8 +45,28 @@ def cities(request):
     }
     return render(request, 'pharmacy_cities.html', context)
 
-def pharmacies(request):
-    pharmacy = PharmacistDetail.objects.all()
+
+def pharmacies(request, city_slug=None):
+    cities = None
+    pharmacy =None
+    
+    if city_slug != None:
+        cities = get_object_or_404(City, slug=city_slug)
+        # address = City.objects.filter(slug=city_slug).values('name')
+        
+        # print(address)
+        # add = Adresses.objects.get(city=address)
+        # print(add)
+
+        # users_on_that_city = Adresses.objects.filter(city=address)
+        # pharmacy = users_on_that_city.filter(user_name__user_type='Pharmacy')
+
+        # pharmacy = PharmacistDetail.objects.filter(adresses=address)
+        # should refer to address of pharmacy from address models
+        # pharmacy = PharmacistDetail.objects.filter(City=city_slug)
+    
+    else:
+        pharmacy = PharmacistDetail.objects.all()
     context = {
         'pharmacies' :pharmacy
     }

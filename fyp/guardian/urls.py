@@ -1,8 +1,8 @@
 from django.urls import path
 from .views import *
 
+
 urlpatterns = [
-    path('cities', cities, name='cities'),
     path('', home, name="home"),
     path('placeorder', placeorder, name="placeorder"),
     path('counsellor', counsellor, name="counsellor"),
@@ -12,5 +12,8 @@ urlpatterns = [
     path('test', test, name="test"),
     path('dashboardcounsellor', dashboardcounsellor, name='dashboardcounsellor'),
     path('dashboardpharmacist', dashboardpharmacist, name='dashboardpharmacist'),
+    path('cities', cities, name='cities'),
+    path('cities/<str:city_slug>', pharmacies, name='pharmacies'),
     path('pharmacies', pharmacies, name='pharmacies'),
+    # path('pharmacies/<slug:city_slug>/', pharmacies, name='pharmacies_by_cities'),
 ]

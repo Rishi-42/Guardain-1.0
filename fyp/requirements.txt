@@ -10,7 +10,7 @@ environ==1.0
 h11==0.13.0
 idna==3.3
 outcome==1.1.0
-Pillow==9.0.0
+Pillow==9.0.1
 psycopg2==2.9.1
 pycparser==2.21
 pyOpenSSL==22.0.0

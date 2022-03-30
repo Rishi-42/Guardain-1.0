@@ -1,9 +1,108 @@
 {% extends "base2.html" %}
 {% load static %}
 {% block start %}
+
+{% comment %} <script type="text/javascript">
+        $(document).on('click', '.delete', function(){
+            $id = $(this).attr('name');
+            $.ajax({
+                url: 'delete/' + $id,
+                type: 'POST',
+                data: {
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+                },
+                success: function(){
+                    Read();
+                    alert("The task has been DELETED!")
+                }
+            });
+        });
+
+</script> {% endcomment %}
+
+
+{% csrf_token %}
+<section class="section-content padding-y bg">
+    <div class="container">
+    
+    <!-- ============================ COMPONENT 1 ================================= -->
+    
+    <div class="row">
+        <aside class="col-lg-9">
+    <div class="card">
+    <table class="table table table-shopping-cart" >
+    <thead class="text-left">
+    <tr class="small text-uppercase" >
+      <th scope="col">Product</th>
+      <th scope="col" width="160">Catagory</th>
+      <th scope="col" width="120">Per-Price</th>
+      <th scope="col" class="text-md-start" width="100">Update product </th>
+      <th scope="col" class="text-md-start" width="100">Remove product</th>
+    </tr>
+    </thead>
+    <tbody>
+        
 {% for product in products %}
+    <tr>
+        <td>
+            <figure class="itemside align-items-center">
+                <div class="aside"><img src="{{ product.image.url }}" class="img-sm"></div>
+                <figcaption class="info">
+                    <a href="#" class="title text-dark">{{product.product_name}}</a>
+                    <p class="text small">Alternative Name: name1</p>
+                </figcaption>
+            </figure>
+        </td>
+        <td> 
+            <div class="font-weight-bold"> 
+                <var class="text">{{product.category}}</var>  
+            </div>
+        </td>
+        <td> 
+            <div class="price-wrap"> 
+                <var class="price">Rs: {{product.cost}}</var> 
+            </div> <!-- price-wrap .// -->
+        </td>
+        <td class="text-right"> 
+            <button class="btn btn-warning edit" name="{{ product.id }}"> Update </button>
+        </td>
+        <td class="text-right"> 
+            {% comment %} <a class="btn btn-sm btn-danger delete" name="{{ product.id }}">Delete</a> {% endcomment %}
+            <button class="btn btn-danger delete" name="{{ product.id }}"> Remove</button>
+        </td>
+    </tr>
+    {% endfor %}
 
- <img src="{{ product.image.url }}" width="500px"/>
-
-{% endfor %}
+    </tbody>
+    </table>
+    </div> <!-- card.// -->
+    
+        </aside> <!-- col.// -->
+        <aside class="col-lg-3">
+    
+            <div class="card">
+            <div class="card-body">
+                <dl class="dlist-align">
+                  <dt>Total Products:</dt>
+                  <dd class="text-right text-dark b">4</dd>
+                </dl>
+                <dl class="dlist-align">
+                  <dt>Product types:</dt>
+                  <dd class="text-right text-dark b"> Different Catagory count</dd>
+                </dl>
+                <hr>
+                <a href="./place-order.html" class="btn btn-primary btn-block"> View Pharmacy </a>
+                <a href="./store.html" class="btn btn-light btn-block">Add Product</a>
+            </div> <!-- card-body.// -->
+            </div> <!-- card.// -->
+    
+    </aside> <!-- col.// -->
+    
+    
+    </div> <!-- row.// -->
+    <!-- ============================ COMPONENT 1 END .// ================================= -->
+    
+    </div> <!-- container .//  -->
+    </section>
+    <script type="text/javascript" src="{% static 'js/crud_fun.js' %}"></script>
 {% endblock %}

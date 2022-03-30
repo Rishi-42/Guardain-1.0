@@ -1,7 +1,7 @@
 
 from multiprocessing import context
 from django.shortcuts import render, get_object_or_404
-from account.models import Account, PharmacistDetail
+from account.models import Account, CounsellorDetail, PharmacistDetail
 from address.models import City, Adresses
 # from pharmacy.models import 
 
@@ -31,7 +31,7 @@ def test(request):
     return render(request, 'test.html')
 
 def dashboardcounsellor(request):
-    return render(request, 'dashboardcounsellor.html')
+    return render(request, 'counsellor/dashboardcounsellor.html')
 
 def dashboardpharmacist(request):
     return render(request, 'dashboardpharmacy.html')
@@ -70,4 +70,20 @@ def pharmacies(request, city_slug=None):
     context = {
         'pharmacies' :pharmacy
     }
+   
     return render(request, 'pharmacy_city1.html', context)
+
+
+def counsellors(request):
+    counsellors_all = CounsellorDetail.objects.all()
+    context = {
+        'counsellors_all' : counsellors_all,
+    }
+
+    return render(request, 'counsellor.html', context)
+
+def searchmed(request):
+    return render(request, 'medicine.html')
+
+def viewblogs(request):
+    return render(request, 'viewblogs.html')

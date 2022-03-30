@@ -11,12 +11,11 @@ class AddProductForm(forms.ModelForm):
 
     class Meta:
         model = Add_product
-        fields = ('product_name', 'slug', 'image', 'cost', 'stock', 'dose_child', 'dose_adult', 'category', 'contraindiction', 'indiction', 'special_precautions', 'adverse_effect', 'pharmacy_name_id')
+        fields = ('product_name', 'image', 'cost', 'stock', 'dose_child', 'dose_adult', 'category', 'contraindiction', 'indiction', 'special_precautions', 'adverse_effect')
 
     def __init__(self, *args, **kwargs):
         super(AddProductForm, self).__init__(*args, **kwargs)
         self.fields['product_name'].widget.attrs.update({'class': 'form-control'})
-        self.fields['slug'].widget.attrs.update({'class': 'form-control'})
         self.fields['image'].widget.attrs.update({'class': 'form-control'})
         self.fields['cost'].widget.attrs.update({'class': 'form-control'})
         self.fields['stock'].widget.attrs.update({'class': 'form-control'})

@@ -1,0 +1,20 @@
+
+{% load static %}
+
+{% block content %}
+<form>
+    {% csrf_token %}
+    {% comment %} {{form.as_p}} {% endcomment %}
+    <input type="hidden" id="todo_id" value="{{ product.id }}" />
+    <div class="form-group">
+        <label>Task : </label>
+        <input type="text" id="task" value="{{ product.product_name }}" required="required" />
+    </div>
+
+    <div class="form-group">
+        <button type="button" id="update" class="btn btn-sm btn-warning">Update</button>
+    </div>
+</form>
+
+<script type="text/javascript" src="{% static 'js/crud_fun.js' %}"></script>
+{% endblock %}

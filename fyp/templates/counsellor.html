@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% load static %}}
+{%block start%}
+<link rel="stylesheet"  href="{% static 'css/councellor.css' %}">
+<section class="section-councellor">
+    
+    <div class="councellors">
+        {% for counsellor in counsellors_all %}
+        <div class="councellor">
+            <a href="#"><img src="{{ counsellor.profile_image.url }}" alt=""></a>
+            
+            <a href="#"><h3>{{counsellor.counsellor_name}}</h3></a>
+            <h6>Councellor</h6>
+            
+            <p>{{counsellor.description}}</p>
+            <div class="stars">
+                <a href="mailto: {{counsellor.counsellor_email}}"><i class='bx bx-envelope' ></i></a>
+                <!-- <a href="#"><i class='bx bxl-instagram' ></i></a> -->
+                <!-- <a href="#"><i class='bx bxl-linkedin' ></i></a> -->
+                <a href="tel:{{counsellor.phone_no}}"><i class='bx bx-phone' ></i></a>
+                <a href="#"><i class='bx bxl-telegram' ></i></a>
+            </div>
+        </div>
+        {% endfor %}
+        {% comment %} <div class="councellor">
+            <a href="#"><img src="../images/Doc2.jpg" alt=""></a>
+            <a href="#"><h3>Rishi Raj Shrestha</h3></a>
+            <h6>Councellor</h6>
+            
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae modi quia expedita maxime ducimus minus fugit! Sequi molestiae tempore sunt.</p>
+            <div class="stars">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <!-- <a href="#"><i class='bx bxl-instagram' ></i></a> -->
+                <a href="#"><i class='bx bxl-linkedin' ></i></a>
+                <a href="#"><i class='bx bxl-whatsapp' ></i></a>
+                <a href="#"><i class='bx bxl-telegram' ></i></a>
+            </div>
+        </div>
+
+        <div class="councellor">
+            <a href="#"><img src="../images/Doc3.jpg" alt=""></a>
+            <a href="#"><h3>Rishi Raj Shrestha</h3></a>
+            <h6>Councellor</h6>
+            
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae modi quia expedita maxime ducimus minus fugit! Sequi molestiae tempore sunt.</p>
+            <div class="stars">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-instagram' ></i></a>
+                <a href="#"><i class='bx bxl-linkedin' ></i></a>
+                <a href="#"><i class='bx bxl-whatsapp' ></i></a>
+                <a href="#"><i class='bx bxl-telegram' ></i></a>
+            </div>
+        </div>
+
+        <div class="councellor">
+            <a href="#"><img src="../images/Doc4.jpg" alt=""></a>
+            <a href="#"><h3>Rishi Raj Shrestha</h3></a>
+            <h6>Councellor</h6>
+            
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae modi quia expedita maxime ducimus minus fugit! Sequi molestiae tempore sunt.</p>
+            <div class="stars">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-instagram' ></i></a>
+                <a href="#"><i class='bx bxl-linkedin' ></i></a>
+                <a href="#"><i class='bx bxl-whatsapp' ></i></a>
+                <a href="#"><i class='bx bxl-telegram' ></i></a>
+            </div>
+        </div>
+
+        <div class="councellor">
+            <a href="#"><img src="../images/Doc5.jpg" alt=""></a>
+            <a href="#"><h3>Rishi Raj Shrestha</h3></a>
+            <h6>Councellor</h6>
+            
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae modi quia expedita maxime ducimus minus fugit! Sequi molestiae tempore sunt.</p>
+            <div class="stars">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-instagram' ></i></a>
+                <a href="#"><i class='bx bxl-linkedin' ></i></a>
+                <a href="#"><i class='bx bxl-whatsapp' ></i></a>
+                <a href="#"><i class='bx bxl-telegram' ></i></a>
+            </div>
+        </div>
+
+
+        <div class="councellor">
+            <a href="#"><img src="../images/Doc6.jpg" alt=""></a>
+            <a href="#"><h3>Rishi Raj Shrestha</h3></a>
+            <h6>Councellor</h6>
+            
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae modi quia expedita maxime ducimus minus fugit! Sequi molestiae tempore sunt.</p>
+            <div class="stars">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-instagram' ></i></a>
+                <a href="#"><i class='bx bxl-linkedin' ></i></a>
+                <a href="#"><i class='bx bxl-whatsapp' ></i></a>
+                <a href="#"><i class='bx bxl-telegram' ></i></a>
+            </div>
+        </div>
+
+        <div class="councellor">
+            <a href="#"><img src="../images/Doc3.jpg" alt=""></a>
+            <a href="#"><h3>Rishi Raj Shrestha</h3></a>
+            <h6>Councellor</h6>
+            
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae modi quia expedita maxime ducimus minus fugit! Sequi molestiae tempore sunt.</p>
+            <div class="stars">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-instagram' ></i></a>
+                <a href="#"><i class='bx bxl-linkedin' ></i></a>
+                <a href="#"><i class='bx bxl-whatsapp' ></i></a>
+                <a href="#"><i class='bx bxl-telegram' ></i></a>
+            </div>
+        </div>
+
+        <div class="councellor">
+            <a href="#"><img src="../images/doc.png" alt=""></a>
+            <a href="#"><h3>Rishi Raj Shrestha</h3></a>
+            <h6>Councellor</h6>
+            
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae modi quia expedita maxime ducimus minus fugit! Sequi molestiae tempore sunt.</p>
+            <div class="stars">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-instagram' ></i></a>
+                <a href="#"><i class='bx bxl-linkedin' ></i></a>
+                <a href="#"><i class='bx bxl-whatsapp' ></i></a>
+                <a href="#"><i class='bx bxl-telegram' ></i></a>
+            </div>
+        </div>
+        <div class="councellor">
+            <a href="#"><img src="../images/2.png" alt=""></a>
+            <a href="#"><h3>Rishi Raj Shrestha</h3></a>
+            <h6>Councellor</h6>
+            
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae modi quia expedita maxime ducimus minus fugit! Sequi molestiae tempore sunt.</p>
+            <div class="stars">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-instagram' ></i></a>
+                <a href="#"><i class='bx bxl-linkedin' ></i></a>
+                <a href="#"><i class='bx bxl-whatsapp' ></i></a>
+                <a href="#"><i class='bx bxl-telegram' ></i></a>
+            </div>
+        </div> {% endcomment %}
+    </div>
+    
+</section>
+
+
+
+
+
+
+{%endblock%}

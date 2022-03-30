@@ -1,12 +1,13 @@
 from django.db import models
 from account.models import PharmacistDetail
+from .healer import *
 
 class Add_product(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, null = True, blank = True)
     image = models.ImageField(upload_to='photos/product_images')
-    cost = models.IntegerField()
-    stock = models.IntegerField()
+    cost = models.PositiveIntegerField()
+    stock = models.PositiveIntegerField()
     dose_child = models.CharField(max_length=200)
     dose_adult = models.CharField(max_length=200)
     category = models.ForeignKey('Category', on_delete=models.CASCADE)
@@ -22,6 +23,10 @@ class Add_product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+    def save(self , *args, **kwargs): 
+        self.slug = generate_slug(self.product_name)
+        super(Add_product, self).save(*args, **kwargs)
 
 
 class Category(models.Model):

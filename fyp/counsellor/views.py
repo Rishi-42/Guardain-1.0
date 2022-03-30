@@ -32,7 +32,7 @@ from .models import BlogModel
     # return render(request , 'add_blog.html' , context)
 
 
-def dashboard(request):
+def dashboardcounsellor(request):
     current_user = request.user
     user_email = current_user.email
     user_id=Account.objects.get(email=user_email)
@@ -52,7 +52,9 @@ def dashboard(request):
         return render(request, 'counsellor/dashboardcounsellor.html', {'form': form})
     else:
         form = BlogForm()
-    context = {'form' : BlogForm}
+    context = {
+        'form' : BlogForm
+        }
     
     return render(request , 'counsellor/dashboardcounsellor.html' , context)
     

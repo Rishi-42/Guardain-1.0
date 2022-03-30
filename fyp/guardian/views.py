@@ -1,8 +1,10 @@
 
 from multiprocessing import context
+from urllib.error import ContentTooShortError
 from django.shortcuts import render, get_object_or_404
 from account.models import Account, CounsellorDetail, PharmacistDetail
 from address.models import City, Adresses
+from counsellor.models import BlogModel
 # from pharmacy.models import 
 
 
@@ -30,11 +32,6 @@ def productdetail(request):
 def test(request):
     return render(request, 'test.html')
 
-def dashboardcounsellor(request):
-    return render(request, 'counsellor/dashboardcounsellor.html')
-
-def dashboardpharmacist(request):
-    return render(request, 'dashboardpharmacy.html')
 
 
 
@@ -86,4 +83,9 @@ def searchmed(request):
     return render(request, 'medicine.html')
 
 def viewblogs(request):
-    return render(request, 'viewblogs.html')
+    blogs = BlogModel.objects.filter(id=1)
+    print(blogs)
+    context = {
+        'blog_obj' : blogs,
+    }
+    return render(request, 'viewblog.html', context)

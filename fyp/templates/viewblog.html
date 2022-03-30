@@ -1,0 +1,30 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+
+
+
+<section>
+    
+    <div class="container">
+        {%for blog in blog_obj %}
+       
+        <div class="row text-center">
+            <div class="col-xl-10 mx-auto"><img class="img-fluid mb-5"
+                    src="{{ blog.image.url }}"
+                    alt=""></div>
+        </div>
+        <div class="row">
+            <div class="col-xl-8 col-lg-10 mx-auto">
+                <div class="text-content">
+                    {{blog.content|safe}}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+
+
+{% endblock %}

@@ -19,5 +19,6 @@ urlpatterns = [
     path('counsellors', counsellors, name='counsellors'),
     path('searchmed', searchmed, name='searchmed'),
     path('viewblogs', viewblogs, name='viewblogs'),
+    path('readblog', readblog, name='readblog'),
 ]
 

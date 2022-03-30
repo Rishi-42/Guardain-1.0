@@ -83,9 +83,17 @@ def searchmed(request):
     return render(request, 'medicine.html')
 
 def viewblogs(request):
+    blogs = BlogModel.objects.all()
+    print(blogs)
+    context = {
+        'blog_obj' : blogs,
+    }
+    return render(request, 'blogs.html', context)
+
+def readblog(request):
     blogs = BlogModel.objects.filter(id=1)
     print(blogs)
     context = {
         'blog_obj' : blogs,
     }
-    return render(request, 'viewblog.html', context)
+    return render(request, 'readblog.html', context)

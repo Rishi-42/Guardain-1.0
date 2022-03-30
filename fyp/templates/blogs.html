@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block start %}
+
+    <section class="latest-news">
+        <div class="container">
+            <h1 class="section-heading">All Blogs</h1>
+            <div class="article-wrapper">
+
+                {% for blog in blog_obj %}
+                <article class="card magic-shadow-sm">
+                    <div>
+                        <img src="{{ blog.image.url }}" alt="">
+                    </div>
+                    <div class="card-content">
+                        <div class="post-meta flex items-center justify-between">
+                            <span>{{ blog.created_at }}</span> <br>
+                                <br>
+                                <span><strong>{{ blog.counsellor_name_id }}</strong></span>
+
+                        </div>
+
+                        <button><a href="#" class="btn btn-outline-info">Read</a></button>
+                    
+                    </div>
+                </article>
+
+                {% endfor %}
+
+
+
+            </div>
+            <div class="text-center btn-wrapper">
+                <button class="btn btn-secondary">View All</button>
+            </div>
+        </div>
+    </section>
+    <section class="pagination">
+        <div class=" container">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span><i class='bx bx-right-arrow-alt'></i></span>
+        </div>
+    </section>
+{% endblock %}

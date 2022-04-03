@@ -190,17 +190,57 @@
 			  <dd class="text-right text-dark b"><strong>$59.97</strong></dd>
 			</dl>
 			<hr>
+
+
 			<p class="text-center mb-3">
 				<img src="{% static 'images/payments.png' %}" height="26">
 			</p>
-			<a href="./place-order.html" class="btn btn-primary btn-block"> Place Order </a>
+			<div id="paypal-button-container"></div>
 			
-		</div> <!-- card-body.// -->
-		</div> <!-- card.// -->
-		</aside> <!-- col.// -->
-	</div> <!-- row.// -->
+		</div>
+		</div> 
+		</aside> 
+	</div> 
 
 
 	</div>
 	</section>
+
+
+	<script>
+		paypal.Buttons({
+			
+			style: {
+				
+				color:  'blue',
+				shape:  'rect',
+				label:  'pay',
+				height: 40,
+				
+			},
+			// Sets up the transaction when a payment button is clicked
+			createOrder: (data, actions) => {
+				return actions.order.create({
+				purchase_units: [{
+					amount: {
+					value: '77.44' // Can also reference a variable or function
+					}
+				}]
+				});
+			},
+			// Finalize the transaction after payer approval
+			onApprove: (data, actions) => {
+				return actions.order.capture().then(function(orderData) {
+				// Successful capture! For dev/demo purposes:
+				console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+				const transaction = orderData.purchase_units[0].payments.captures[0];
+				alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+				// When ready to go live, remove the alert and show a success message within this page. For example:
+				// const element = document.getElementById('paypal-button-container');
+				// element.innerHTML = '<h3>Thank you for your payment!</h3>';
+				// Or go to another URL:  actions.redirect('thank_you.html');
+				});
+			}
+		}).render('#paypal-button-container');
+	  </script>
 	{% endblock %}

@@ -15,7 +15,7 @@ def home(request):
     # user_details = Account.objects.get(email=current_user)
     # print(user_details.user_type)
     # return render(request, 'home.html', {'user_details': user_details})
-    return render(request, 'home.html')
+    return render(request, 'place-order.html')
 
 def placeorder(request):
     return render(request, 'place-order.html')

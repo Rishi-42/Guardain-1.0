@@ -61,4 +61,17 @@ def dashboardcounsellor(request):
 
     
 def added_blog(request):
-    pass
+    
+    # getting the user id and their counsellor id
+    current_user = request.user
+    user_name = current_user.id
+    user_counsellor = CounsellorDetail.objects.get(user_id=user_name)
+    print(user_counsellor)
+    counsellor_id = user_counsellor.id
+
+    # getting the blog of the user
+    blogs = BlogModel.objects.filter(counsellor_name_id=counsellor_id)
+    context = {
+        'blogs': blogs,
+    }
+    return render(request, 'counsellor/added_blogs.html', context)

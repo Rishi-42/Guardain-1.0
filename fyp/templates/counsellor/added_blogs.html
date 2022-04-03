@@ -1,0 +1,83 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+
+
+
+{% csrf_token %}
+<section class="section-content padding-y bg">
+    <div class="container">
+    
+    <!-- ============================ COMPONENT 1 ================================= -->
+    
+    <div class="row">
+        <aside class="col-lg-9">
+    <div class="card">
+    <table class="table table table-shopping-cart" >
+    <thead class="text-left">
+    <tr class="small text-uppercase" >
+      <th scope="col">Title</th>
+      <th scope="col" width="160">Date</th>
+      <th scope="col" class="text-md-start" width="100">Update </th>
+      <th scope="col" class="text-md-start" width="100">Remove</th>
+    </tr>
+    </thead>
+    <tbody>
+        
+{% for blog in blogs %}
+    <tr>
+        <td>
+            <figure class="itemside align-items-center">
+                <div class="aside"><img src="{{ blog.image.url }}" class="img-sm"></div>
+                <figcaption class="info">
+                    <a href="#" class="title text-dark">{{blog.title}}</a>
+                    <p class="text small">Alternative Name: name1</p>
+                </figcaption>
+            </figure>
+        </td>
+        <td> 
+            <div class="font-weight-bold"> 
+                <var class="text">{{blog.created_at}}</var>  
+            </div>
+        </td>
+
+        <td class="text-right"> 
+            <button class="btn btn-warning edit" name="{{ blog.id }}"> Update </button>
+        </td>
+        <td class="text-right"> 
+            {% comment %} <a class="btn btn-sm btn-danger delete" name="{{ product.id }}">Delete</a> {% endcomment %}
+            <button class="btn btn-danger delete" name="{{ blog.id }}"> Remove</button>
+        </td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+    </table>
+    </div> <!-- card.// -->
+    
+        </aside> <!-- col.// -->
+        <aside class="col-lg-3">
+    
+            <div class="card">
+            <div class="card-body">
+                <dl class="dlist-align">
+                  <dt>Total Blogs:</dt>
+                  <dd class="text-right text-dark b">4</dd>
+                </dl>
+          
+                <hr>
+                <a href="./place-order.html" class="btn btn-primary btn-block"> Go to Dashboard </a>
+                <a href="./store.html" class="btn btn-light btn-block">Add Blog</a>
+            </div> <!-- card-body.// -->
+            </div> <!-- card.// -->
+    
+    </aside> <!-- col.// -->
+    
+    
+    </div> <!-- row.// -->
+    <!-- ============================ COMPONENT 1 END .// ================================= -->
+    
+    </div> <!-- container .//  -->
+    </section>
+    <script type="text/javascript" src="{% static 'js/crud_fun.js' %}"></script>
+{% endblock %}

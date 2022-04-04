@@ -1,0 +1,234 @@
+{% extends "base2.html" %}
+{% load static %}}
+{%block start%}
+
+<header class="section-header" style="background-color: #9ca19d14 !important; margin-bottom: 0px!important;">
+
+
+	<section class="header-main border-bottom">
+		<div class="container">
+	<div class="row align-items-center">
+		<div class="col-lg-2 col-md-3 col-6">
+			<a href="./" class="brand-wrap">
+				<h2 class="title-page">Our Store</h2>
+			</a> <!-- brand-wrap.// -->
+		</div>
+		<div class="col-lg col-sm col-md col-6 flex-grow-0">
+			<div class="category-wrap dropdown d-inline-block float-right">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 
+					<i class="fa fa-bars"></i> All category 
+				</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="#">Liquid </a>
+					<a class="dropdown-item" href="#">Tablet </a>
+					<a class="dropdown-item" href="#">Capsules </a>
+	
+				</div>
+			</div>  <!-- category-wrap.// -->
+		</div> <!-- col.// -->
+		<a href="./pharmacy_dharan01.html" class="btn btn-outline-primary">Shop</a>
+		<div class="col-lg  col-md-6 col-sm-12 col">
+			<form action="#" class="search">
+				<div class="input-group w-100">
+					<input type="text" class="form-control" list="datalistOptions" style="width:60%;" placeholder="Search">
+					<datalist id="datalistOptions">
+						<option value="Liquid">
+						<option value="Tablet">
+						<option value="Capsules">
+						<option value="Paracitamol">
+						<option value="Painkiller">
+					  </datalist>
+					
+					<div class="input-group-append">
+					  <button class="btn btn-primary" type="submit">
+						<i class="bx bx-search"></i>
+					  </button>
+					</div>
+				</div>
+			</form> <!-- search-wrap .end// -->
+		</div> <!-- col.// -->
+		<div class="col-lg-1 col-sm-6 col-8 order-2 order-lg-3">
+					<div class="d-flex justify-content-end mb-3 mb-lg-0">
+						<a href="./cart.html" class="widget-header pl-3 ml-3">
+							<div class="icon icon-sm rounded-circle border">
+								<i class='bx bx-cart' style="color: black !important;"></i>
+							</div>
+							<span class="badge badge-pill badge-danger notify">0</span>
+						</a>
+					</div> <!-- widgets-wrap.// -->
+				</div> <!-- col.// -->
+	</div> <!-- row.// -->
+		</div> <!-- container.// -->
+	</section>
+	
+	
+	
+	</header> <!-- section-header.// -->
+<!-- ========================= SECTION PAGETOP ========================= -->
+
+<!-- ========================= SECTION INTRO END// ========================= -->
+
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+<div class="container">
+
+<div class="row">
+	<aside class="col-md-3">
+		
+<div class="card">
+	<article class="filter-group">
+		<header class="card-header">
+			<a href="#" data-toggle="collapse" data-target="#collapse_1" aria-expanded="true" class="">
+				<i class="icon-control fa fa-chevron-down"></i>
+				<h6 class="title">Categories</h6>
+			</a>
+		</header>
+		<div class="filter-content collapse show" id="collapse_1" style="">
+			<div class="card-body">
+				
+				<ul class="list-menu">
+					{% for category in categories %}
+						<li><a href="#">{{category.category_name}} </a></li>
+					{% endfor %}
+				</ul>
+
+			</div> <!-- card-body.// -->
+		</div>
+	</article> <!-- filter-group  .// -->
+	<!-- <article class="filter-group">
+		<header class="card-header">
+			<a href="#" data-toggle="collapse" data-target="#collapse_4" aria-expanded="true" class="">
+				<i class="icon-control fa fa-chevron-down"></i>
+				<h6 class="title">Sizes </h6>
+			</a>
+		</header>
+		<div class="filter-content collapse show" id="collapse_4" style="">
+			<div class="card-body">
+			  <label class="checkbox-btn">
+			    <input type="checkbox">
+			    <span class="btn btn-light"> XS </span>
+			  </label>
+
+			  <label class="checkbox-btn">
+			    <input type="checkbox">
+			    <span class="btn btn-light"> SM </span>
+			  </label>
+
+			  <label class="checkbox-btn">
+			    <input type="checkbox">
+			    <span class="btn btn-light"> LG </span>
+			  </label>
+
+			  <label class="checkbox-btn">
+			    <input type="checkbox">
+			    <span class="btn btn-light"> XXL </span>
+			  </label>
+		</div>
+		card-body.//
+		</div>
+	</article> -->
+	 <!-- filter-group .// -->
+	
+	<article class="filter-group">
+		<header class="card-header">
+			<a href="#" data-toggle="collapse" data-target="#collapse_3" aria-expanded="true" class="">
+				<i class="icon-control fa fa-chevron-down"></i>
+				<h6 class="title">Price range </h6>
+			</a>
+		</header>
+		<div class="filter-content collapse show" id="collapse_3" style="">
+			<div class="card-body">
+				
+				<div class="form-row">
+				<div class="form-group col-md-6">
+				  <label>Min</label>
+				  <!-- <input class="form-control" placeholder="$0" type="number"> -->
+				  	<select class="mr-2 form-control">
+						<option value="0">$0</option>
+						<option value="50">$50</option>
+						<option value="100">$100</option>
+						<option value="150">$150</option>
+						<option value="200">$200</option>
+						<option value="500">$500</option>
+						<option value="1000">$1000</option>
+					</select>
+				</div>
+				<div class="form-group text-right col-md-6">
+				  <label>Max</label>
+				  	<select class="mr-2 form-control">
+						<option value="50">$50</option>
+						<option value="100">$100</option>
+						<option value="150">$150</option>
+						<option value="200">$200</option>
+						<option value="500">$500</option>
+						<option value="1000">$1000</option>
+						<option value="2000">$2000+</option>
+					</select>
+				</div>
+				</div> <!-- form-row.// -->
+				<button class="btn btn-block btn-primary">Apply</button>
+			</div><!-- card-body.// -->
+		</div>
+	</article> <!-- filter-group .// -->
+	
+</div> <!-- card.// -->
+
+	</aside> <!-- col.// -->
+	<main class="col-md-9">
+
+<header class="border-bottom mb-4 pb-3">
+		<div class="form-inline">
+			<span class="mr-md-auto">x Items found </span>
+			
+		</div>
+</header><!-- sect-heading -->
+
+<div class="row">
+
+	{% for med in medicine %}
+	<div class="col-md-4">
+		<figure class="card card-product-grid">
+			<div class="img-wrap"> 
+				
+				<img src="{{ med.image.url }}">
+				
+			</div> <!-- img-wrap.// -->
+			<figcaption class="info-wrap">
+				<div class="fix-height">
+					<a href="./product-detail.html" class="title">{{ med.product_name }}</a>
+					<div class="price-wrap mt-2">
+						<span class="price">$ {{ med.cost }}</span>
+						{% comment %} <del class="price-old">$1980</del> {% endcomment %}
+					</div> <!-- price-wrap.// -->
+				</div>
+				<a href="#" class="btn btn-block btn-primary">Add to cart </a>
+			</figcaption>
+		</figure>
+	</div> 
+	{% endfor %}
+
+</div> <!-- row end.// -->
+
+
+<nav class="mt-4" aria-label="Page navigation sample">
+  <ul class="pagination">
+    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+
+
+
+	</main> <!-- col.// -->
+
+</div>
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+
+{% endblock %}

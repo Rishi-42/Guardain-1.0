@@ -5,17 +5,21 @@ from django.shortcuts import render, get_object_or_404
 from account.models import Account, CounsellorDetail, PharmacistDetail
 from address.models import City, Adresses
 from counsellor.models import BlogModel
+from pharmacy.models import Add_product, Category
 # from pharmacy.models import 
 
 
 def home(request):
+    
     # user_details = Account.objects.
     # current_user = request.user
     # print(current_user)
     # user_details = Account.objects.get(email=current_user)
     # print(user_details.user_type)
     # return render(request, 'home.html', {'user_details': user_details})
-    return render(request, 'place-order.html')
+    
+    return render(request, 'home.html')
+
 
 def placeorder(request):
     return render(request, 'place-order.html')
@@ -97,3 +101,21 @@ def readblog(request):
         'blog_obj' : blogs,
     }
     return render(request, 'readblog.html', context)
+
+def individual_pharmacy(request):
+    pharmacy = PharmacistDetail.objects.filter(pharmacy_name='Test Pharmacy nepal')
+    print(pharmacy)
+    context = {
+        'pharmacy' : pharmacy,
+    }
+    return render(request, 'individual_pharmacy.html', context)
+
+def store(request):
+    medicine = Add_product.objects.filter(pharmacy_name_id='2')
+    categories = Category.objects.all()
+
+    context ={
+        'medicine' :medicine ,
+        'categories' : categories
+    }
+    return render(request, 'store.html', context)

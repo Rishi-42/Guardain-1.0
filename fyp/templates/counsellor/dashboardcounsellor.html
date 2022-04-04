@@ -9,14 +9,14 @@
                     <div class="card">
                         <div class="card-body">
                             <a href="{% url 'dashboardcounsellor' %}" class="btn btn-primary btn-block">Add Blog</a>
-                            <a href="{% url 'dashboardcounsellor' %}" class="btn btn-light btn-block">View added Blogs</a>
+                            <a href="{% url 'added_blog' %}" class="btn btn-light btn-block">View added Blogs</a>
                         </div>
                     </div>
                 </aside>
                 <aside class="col-lg-9">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title mb-4">Add rishi</h4>
+                            <h4 class="card-title mb-4">Add Blog</h4>
                             <form action="{% url 'dashboardcounsellor' %}"
                                   method="POST"
                                   enctype="multipart/form-data"

@@ -20,5 +20,8 @@ urlpatterns = [
     path('searchmed', searchmed, name='searchmed'),
     path('viewblogs', viewblogs, name='viewblogs'),
     path('readblog', readblog, name='readblog'),
+
+    path('individual_pharmacy',individual_pharmacy, name='individual_pharmacy' ),
+    path('store', store, name='store'),
 ]
 

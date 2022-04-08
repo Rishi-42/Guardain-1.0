@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Account, PharmacistDetail, Type_user, CounsellorDetail
+from .models import Account, PharmacistDetail, Type_user, CounsellorDetail, Adresses
 # Register your models here
 
 
@@ -36,6 +36,13 @@ class Type_userAdmin(UserAdmin):
 
 admin.site.register(Type_user, Type_userAdmin)
 
+
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ('user_name', 'province', 'district',
+                    'city', 'ward_no', 'tole')
+
+
+admin.site.register(Adresses, AddressAdmin)
 
 admin.site.register(PharmacistDetail)
 admin.site.register(CounsellorDetail)

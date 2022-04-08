@@ -1,5 +1,5 @@
 from django.db import models
-from account.models import Account, CounsellorDetail, PharmacistDetail
+from django.urls import reverse
 
 
 class Province(models.Model):
@@ -26,17 +26,7 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
-
-class Adresses(models.Model):
-    province = models.ForeignKey(Province, on_delete=models.CASCADE)
-    district = models.ForeignKey(District, on_delete=models.CASCADE)
-    city = models.ForeignKey(City, on_delete=models.CASCADE)
-    ward_no = models.CharField(max_length=30)
-    tole = models.CharField(max_length=30)
-    user_name = models.ForeignKey(Account, on_delete=models.CASCADE, null=False)
-    if_p_name = models.ForeignKey(PharmacistDetail, on_delete=models.CASCADE, null=True)
-    if_c_name = models.ForeignKey(CounsellorDetail, on_delete=models.CASCADE, null=True)
+    def get_url(self):
+        return reverse('pharmacies', args=[self.slug])
 
 
-    def __str__(self):
-        return self.tole

@@ -2,8 +2,8 @@
 from multiprocessing import context
 from urllib.error import ContentTooShortError
 from django.shortcuts import render, get_object_or_404
-from account.models import Account, CounsellorDetail, PharmacistDetail
-from address.models import City, Adresses
+from account.models import CounsellorDetail, PharmacistDetail, Adresses
+from address.models import City
 from counsellor.models import BlogModel
 from pharmacy.models import Add_product, Category
 # from pharmacy.models import 
@@ -47,24 +47,15 @@ def cities(request):
     return render(request, 'pharmacy_cities.html', context)
 
 
+
 def pharmacies(request, city_slug=None):
     cities = None
     pharmacy =None
     
     if city_slug != None:
         cities = get_object_or_404(City, slug=city_slug)
-        # address = City.objects.filter(slug=city_slug).values('name')
-        
-        # print(address)
-        # add = Adresses.objects.get(city=address)
-        # print(add)
 
-        # users_on_that_city = Adresses.objects.filter(city=address)
-        # pharmacy = users_on_that_city.filter(user_name__user_type='Pharmacy')
-
-        # pharmacy = PharmacistDetail.objects.filter(adresses=address)
-        # should refer to address of pharmacy from address models
-        # pharmacy = PharmacistDetail.objects.filter(City=city_slug)
+        pharmacy = PharmacistDetail.objects.filter(city=cities)
     
     else:
         pharmacy = PharmacistDetail.objects.all()
@@ -74,6 +65,16 @@ def pharmacies(request, city_slug=None):
    
     return render(request, 'pharmacy_city1.html', context)
 
+def ind_pharmacy(request, city_slug, pharmacy_slug):
+    try:
+        individual_pharmacy = PharmacistDetail.objects.get(city__slug=city_slug, slug=pharmacy_slug)
+    except Exception as e:
+        raise e
+
+    context ={
+        'individual_pharmacy' : individual_pharmacy
+    }
+    return render(request, 'individual_pharmacy.html', context)
 
 def counsellors(request):
     counsellors_all = CounsellorDetail.objects.all()

@@ -1,44 +1,63 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 {% load static %}
 {% block start %}
+    <style>
+    .card{
+        margin: 4px !important;
+    }
+
+    </style>
     <section class="section all-products" id="products">
         <div class="top container">
             <h1>Pharmacies</h1>
         </div>
     </section>
-    <section class="section-pharmacies">
-        <div class="pharmacies-center container">
-            {% for pharmacy in pharmacies%}
-            <div class="pharmacy">
-                <div class="pharmacy-header">
-                    <img src="{{pharmacy.profile_image.url}}" alt="">
-                    <a href="#">
-                        <button type="button" class="btn" id="pharma-btn">Details</button>
-                    </a>
-                    <ul class="icons">
-                        <a href="pharmacy_dharan01.html"> <span><i class='bx bx-log-in-circle'></i></span>
-                    </a>
-                </ul>
-            </div>
-            <div class="pharmacy-footer">
-                <a href="pharmacy_dharan01.html">
-                    <h3>{{ pharmacy.pharmacy_name}}</h3>
-                </a>
-                <p>
-                    loreehreiu eh iehfe iuheiuuh ui hiuhiui iu uiiuiiu i uiiiuu iiuuuu iiuiuiu iu iuiiiui iuipiipii
-                </p>
-            </div>
+    <br>
+    <div class='container'>
+        <div class='row'>
+            {% for pharmacy in pharmacies %}
+                <div class="card mb-3" style="max-width: 540px;">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="{{ pharmacy.profile_image.url }}" class="card-img" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ pharmacy.pharmacy_name }}</h5>
+                                <p class="card-text">
+                                    {{ pharmacy.description }}
+                                </p>
+                                <a href="{{ pharmacy.get_url }}" class="btn btn-outline-primary btn-sm">Visit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
         </div>
-        {% endfor %}
-</div>
-</section>
-<section class="pagination">
-    <div class=" container">
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span><i class='bx bx-right-arrow-alt'></i></span>
     </div>
-</section>
+    <section class="pagination">
+        <div class="container">
+            <br>
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
 {% endblock %}

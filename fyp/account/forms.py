@@ -1,6 +1,6 @@
 from django import forms
-from .models import Account, PharmacistDetail, CounsellorDetail
-from address.models import Adresses, District, City, Province
+from .models import Account, PharmacistDetail, CounsellorDetail, Adresses
+from address.models import District, City
 
 
 class RegistrationForm(forms.ModelForm):

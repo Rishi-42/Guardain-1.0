@@ -1,47 +1,50 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 {% load static %}
 {% block start %}
     <section class="section all-products" id="products">
         <div class="top container">
             <h1>Cities</h1>
         </div>
-    
     </section>
-
-
-
-    <section class="section-pharmacies">
-        <div class="pharmacies-center container">
-            {% for city in cities_all %}
-            <div class="pharmacy">
-                <div class="pharmacy-header">
-                    <img src="{{city.b_image.url}}" alt="">
-                    <ul class="icons">
-                        <a href="pharmacy_city1.html"> <span><i class='bx bx-log-in-circle'></i></span>
-                    </a>
-                </ul>
-            </div>
-            <div class="pharmacy-footer">
-                <a href="pharmacy_city1.html">
-                    <p style="text-align:center; font-size: 2.7rem;">
-                        {{city.name}}
-                    </p>
-                </a>
+    <div class="container">
+        <div class="row">
+            <div class="card-deck">
+                {% for city in cities_all %}
+                    <div class="col-3">
+                        <div class="card" style="width: 18rem; height:24rem;">
+                            <img src="{{ city.b_image.url }}" style="height:20rem;" alt="...">
+                            <div class="card-body">
+                                <a href="{{ city.get_url }}">
+                                    <h5 class="card-title">{{ city.name }}</h5>
+                                </a>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
-
-
-
-</div>
-</section>
-<section class="pagination">
-    <div class=" container">
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span><i class='bx bx-right-arrow-alt'></i></span>
     </div>
-</section>
-{% endblock %}
+        <div class="container">
+            <br>
+            <nav aria-label="...">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">3</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    {% endblock %}

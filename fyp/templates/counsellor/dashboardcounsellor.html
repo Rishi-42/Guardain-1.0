@@ -17,6 +17,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title mb-4">Add Blog</h4>
+                            {% include 'includes/alerts.html' %}
                             <form action="{% url 'dashboardcounsellor' %}"
                                   method="POST"
                                   enctype="multipart/form-data"

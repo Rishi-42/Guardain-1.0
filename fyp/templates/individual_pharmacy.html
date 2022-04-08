@@ -11,29 +11,29 @@
                     <div class="container">
                         
                         <div class="about-G-wrap flex">
-                            {% for i_pharmacy in pharmacy %}
+                            {% comment %} {% for i_pharmacy in individual_pharmacy %} {% endcomment %}
                             <div class="flex-1">
-                                <img src="{{ i_pharmacy.profile_image.url }}" alt="">
+                                <img src="{{ individual_pharmacy.profile_image.url }}" alt="">
                             </div>
 
                             <div class="flex-1">
-                                <h2>{{i_pharmacy.pharmacy_name}}</h2>
+                                <h2>{{individual_pharmacy.pharmacy_name}}</h2>
                                 <p>
                                 <span>OGRM: <strong>099312312</strong></span><br>
                                 <span>INN : <strong>099312312</strong></span><br>
-                                <span>Working Hour : <strong>{{i_pharmacy.work_start}} to {{i_pharmacy.work_end}}</strong></span><br>
+                                <span>Working Hour : <strong>{{individual_pharmacy.work_start}} to {{i_pharmacy.work_end}}</strong></span><br>
                                 <span>Working Days : <strong>Sun, Mon, Tue, Wen, Thu, Fri</strong></span><br>
-                                <span>Cell Phone number : <strong>{{i_pharmacy.phone_no}}</strong></span><br>
-                                <span>Email : <strong>{{i_pharmacy.pharmacy_email}}</strong></span><br>
+                                <span>Cell Phone number : <strong>{{individual_pharmacy.phone_no}}</strong></span><br>
+                                <span>Email : <strong>{{individual_pharmacy.pharmacy_email}}</strong></span><br>
                             
                             
                             </p>
                             <h4>Description </h4>
-                                <p>{{i_pharmacy.description}}</p>
+                                <p>{{individual_pharmacy.description}}</p>
 
-                            {% endfor %}
+                            {% comment %} {% endfor %} {% endcomment %}
                                     <div class="text-center btn-wrapper">
-                                        <a href="store.html"> <button class="btn btn-secondary">Store</button></a>
+                                        <a href=""> <button class="btn btn-secondary">Store</button></a>
                                     </div>
                             </div>
                             

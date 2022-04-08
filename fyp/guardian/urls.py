@@ -12,7 +12,10 @@ urlpatterns = [
     path('test', test, name="test"),
     path('cities', cities, name='cities'),
     path('cities/<str:city_slug>', pharmacies, name='pharmacies'),
-    path('pharmacies', pharmacies, name='pharmacies'),
+    path('cities/<str:city_slug>/<str:pharmacy_slug>', ind_pharmacy, name='ind_pharmacy'),
+
+
+    # path('pharmacies', pharmacies, name='pharmacies'),
     # path('pharmacies/<slug:city_slug>/', pharmacies, name='pharmacies_by_cities'),
 
 

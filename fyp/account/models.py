@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
-
+from address.models import Province, District, City
+from .gen_slug import *
+from django.urls import reverse
 
 class MyAccountManager(BaseUserManager):
     def create_user(self, first_name, last_name, username, email, password, user_type):
@@ -86,6 +88,7 @@ class Type_user(models.Model):
 
 class PharmacistDetail(models.Model):
     pharmacy_name = models.CharField(max_length=100, blank=False, unique=True)
+    slug = models.SlugField(max_length=200, null = True, blank = True)
     profile_image = models.ImageField(
         upload_to='profile/pharmacist_profile_image')
     pharmacy_email = models.EmailField(max_length=100, unique=True)
@@ -96,6 +99,7 @@ class PharmacistDetail(models.Model):
     work_start = models.CharField(max_length=2)
     work_end = models.CharField(max_length=2)
     description = models.CharField(max_length=500)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
     user_id = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     created_date = models.DateTimeField(auto_now_add=True)
@@ -103,7 +107,13 @@ class PharmacistDetail(models.Model):
 
     def __str__(self):
         return self.pharmacy_name
+    
+    def save(self , *args, **kwargs): 
+        self.slug = generate_slug(self.pharmacy_name)
+        super(PharmacistDetail, self).save(*args, **kwargs)
 
+    def get_url(self):
+        return reverse("ind_pharmacy", args=[self.city.slug,self.slug])
 
 class CounsellorDetail(models.Model):
     counsellor_name = models.CharField(
@@ -118,6 +128,7 @@ class CounsellorDetail(models.Model):
     work_start = models.CharField(max_length=2)
     work_end = models.CharField(max_length=2)
     description = models.CharField(max_length=500)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
     user_id = models.ForeignKey(Account, on_delete=models.CASCADE)
 
     created_date = models.DateTimeField(auto_now_add=True)
@@ -125,3 +136,16 @@ class CounsellorDetail(models.Model):
 
     def __str__(self):
         return self.counsellor_name
+
+class Adresses(models.Model):
+    province = models.ForeignKey(Province, on_delete=models.CASCADE)
+    district = models.ForeignKey(District, on_delete=models.CASCADE)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    ward_no = models.CharField(max_length=30)
+    tole = models.CharField(max_length=30)
+    user_name = models.ForeignKey(Account, on_delete=models.CASCADE, null=False)
+
+
+
+    def __str__(self):
+        return self.tole

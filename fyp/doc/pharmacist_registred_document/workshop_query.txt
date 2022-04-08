@@ -1,0 +1,28 @@
+Create table students(id varchar(4), Name varchar(35), Address(35), age int)
+
+Insert all
+into students values ('EMP7', 'Manisha Shrestha', 'Jhapa', 13)
+into students values ('EMP8', 'Maniraj Magar', 'Taharaha', 15)
+into students values ('EMP3', 'Romy Jung', 'Bargaxi', 32)
+into students values ('EMP4', 'Arun Basnet', 'BP Chok', 11)
+into students values ('EMP5', 'Raj Shrestha', 'Itahari', 335)
+into students values ('EMP6', 'Naran Karna', 'Biratnagar', 335)
+select * from dual;
+
+
+GRANT SELECT, INSERT, DELETE ON students TO testp;
+
+GRANT CREATE SESSION TO testp;
+
+Insert all
+into system.students values ('EMP7', 'Manisha Shrestha', 'Jhapa', 13)
+into system.students values ('EMP8', 'Maniraj Magar', 'Taharaha', 15)
+select * from dual;
+
+create user testq identified by testpw;
+create user testr identified by testpw;
+GRANT SELECT, INSERT, DELETE ON students TO testq, testr;
+Grant Create session to testq, testr;
+
+Revoke insert on students from testq;
+

@@ -2,8 +2,8 @@
 from email.headerregistry import Address
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm, RegistrationFormPharmacy, Address_form, RegistrationFormCounsellor
-from .models import Account, Type_user, PharmacistDetail, CounsellorDetail
-from address.models import Adresses, District, City
+from .models import Account, Type_user, PharmacistDetail, CounsellorDetail, Adresses
+from address.models import District, City
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 
@@ -130,7 +130,7 @@ def pharmacyregister(request):
             # print(duplicate)
             # duplicate.save()
             pharmacy = PharmacistDetail(pharmacy_name=pharmacy_name, profile_image=profile_image, pharmacy_email=pharmacy_email, phone_no=phone_no, registration_no=registration_no,
-                                        registered_doc=registered_doc, work_start=work_start, work_end=work_end, description=description, user_id=Account.objects.get(email=user_email))
+                                        registered_doc=registered_doc, work_start=work_start, work_end=work_end, description=description, city=city, user_id=Account.objects.get(email=user_email))
             address = Adresses(province=province, district=district, city=city,
                                ward_no=ward_no, tole=tole, user_name=Account.objects.get(id=user_name))
             pharmacy.save()
@@ -193,7 +193,7 @@ def counsellorregister(request):
             tole = form_add.cleaned_data['tole']
 
             counsellor = CounsellorDetail(counsellor_name=counsellor_name, profile_image=profile_image, counsellor_email=counsellor_email, phone_no=phone_no, registration_no=registration_no,
-                                          registered_doc=registered_doc, work_start=work_start, work_end=work_end, description=description, user_id=Account.objects.get(email=user_email))
+                                          registered_doc=registered_doc, work_start=work_start, work_end=work_end, description=description, city=city, user_id=Account.objects.get(email=user_email))
             address = Adresses(province=province, district=district, city=city,
                                ward_no=ward_no, tole=tole, user_name=Account.objects.get(id=user_name))
             counsellor.save()

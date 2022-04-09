@@ -6,7 +6,6 @@ urlpatterns = [
     path('', home, name="home"),
     path('placeorder', placeorder, name="placeorder"),
     path('counsellor', counsellor, name="counsellor"),
-    path('cart', cart, name="cart"),
     path('productdetail', productdetail, name="productdetail"),
     path('placeorder', placeorder, name="placeorder"),
     path('test', test, name="test"),
@@ -20,7 +19,6 @@ urlpatterns = [
     path('viewblogs', viewblogs, name='viewblogs'),
     path('readblog', readblog, name='readblog'),
 
-    path('individual_pharmacy',individual_pharmacy, name='individual_pharmacy' ),
-    path('store', store, name='store'),
+
 ]
 

@@ -58,11 +58,11 @@
                                             <!-- col.// -->
                                             <div class="col-lg-1 col-sm-6 col-8 order-2 order-lg-3">
                                                 <div class="d-flex justify-content-end mb-3 mb-lg-0">
-                                                    <a href="./cart.html" class="widget-header pl-3 ml-3">
+                                                    <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
                                                         <div class="icon icon-sm rounded-circle border">
                                                             <i class='bx bx-cart' style="color: black !important;"></i>
                                                         </div>
-                                                        <span class="badge badge-pill badge-danger notify">0</span>
+                                                        <span class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
                                                     </a>
                                                 </div>
                                                 <!-- widgets-wrap.// -->
@@ -241,7 +241,7 @@
                                                                         </div>
                                                                         <!-- price-wrap.// -->
                                                                     </div>
-                                                                    <a href="#" class="btn btn-block btn-primary">Add to cart</a>
+                                                                    <a href="{% url 'add_cart' med.id %}" class="btn btn-block btn-primary">Add to cart</a>
                                                                 </figcaption>
                                                             </figure>
                                                         </div>

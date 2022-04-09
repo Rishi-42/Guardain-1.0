@@ -27,8 +27,6 @@ def placeorder(request):
 def counsellor(request):
     return render(request, 'counsellor.html')
 
-def cart(request):
-    return render(request, 'cart.html')
 
 def productdetail(request):
     return render(request, 'product-detail.html')
@@ -103,21 +101,3 @@ def readblog(request):
         'blog_obj' : blogs,
     }
     return render(request, 'readblog.html', context)
-
-def individual_pharmacy(request):
-    pharmacy = PharmacistDetail.objects.filter(pharmacy_name='Test Pharmacy nepal')
-    print(pharmacy)
-    context = {
-        'pharmacy' : pharmacy,
-    }
-    return render(request, 'individual_pharmacy.html', context)
-
-def store(request):
-    medicine = Add_product.objects.filter(pharmacy_name_id='2')
-    categories = Category.objects.all()
-
-    context ={
-        'medicine' :medicine ,
-        'categories' : categories
-    }
-    return render(request, 'store.html', context)

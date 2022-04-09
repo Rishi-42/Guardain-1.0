@@ -2,164 +2,158 @@
 {% load static %}
 {% block start %}
 
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <!-- ============================ COMPONENT 1 ================================= -->
+			{% if not cart_items %}
+				<div class="row">
+					<div class="col-md-12">
+						<div class="alert alert-warning">
+							<div class="text-center">
+							<h4>Your cart is empty</h4>
+							<p>You have no items in your cart. <br><br><a href="{% url 'cities' %}" class="btn btn-success">Continue shopping</a></p>
+						</div>
+						</div>
+					</div>
+				</div>
+			{% else %}
+            <div class="row">
+                <aside class="col-lg-9">
+                    <div class="card">
+                        <table class="table table table-shopping-cart">
+                            <thead class="text-left">
+                                <tr class="small text-uppercase">
+                                    <th scope="col">Product</th>
+                                    <th scope="col" width="120">Quantity</th>
+                                    <th scope="col" width="120">Price</th>
+                                    <th scope="col" class="text-right" width="200"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+								{% for cart_item in cart_items %}
+                                <tr>
+                                    <td>
+                                        <figure class="itemside align-items-center">
+                                            <div class="aside">
+                                                <img src="{{ cart_item.product.image.url }}" class="img-sm">
+                                            </div>
+                                            <figcaption class="info">
+                                                <a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.product_name }}</a>
+                                                <p class="text small">
+                                                    {{ cart_item.product.slug }}
+                                                </p>
+                                            </figcaption>
+                                        </figure>
+                                    </td>
+                                    <td>
+                                        <!-- col.// -->
+                                        <div class="col">
+                                            <div class="input-group input-spinner">
+                                                <div class="input-group-prepend">
+                                                    <a href="{% url 'add_cart' cart_item.product.id %}" class="btn btn-light" type="button" id="button-plus">
+                                                        <i class='bx bx-plus'></i>
+													</a>
+                                                </div>
+                                                <input type="text" class="form-control"  value="{{ cart_item.quantity }}">
+                                                <div class="input-group-append">
+                                                    <a href="{% url 'remove_cart' cart_item.product.id %}" class="btn btn-light" type="button" id="button-minus">
+                                                        <i class='bx bx-minus'></i>
+													</a>
+                                                </div>
+                                            </div>
+                                            <!-- input-group.// -->
+                                        </div>
+                                        <!-- col.// -->
+                                    </td>
+                                    <td>
+                                        <div class="price-wrap">
+                                            <var class="price">Rs: {{ cart_item.sub_total }}</var>
+											<p class="text small">
+												Rs: {{ cart_item.product.cost }} each
+											</p>
+                                            {% comment %} <small class="text-muted">$315.20 each</small> {% endcomment %}
+                                        </div>
+                                        <!-- price-wrap .// -->
+                                    </td>
+                                    <td class="text-right">
+                                        <a href="{% url 'remove_cart_item' cart_item.product.id %}" class="btn btn-danger">Remove</a>
+                                    </td>
+                                </tr>
+								{% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- card.// -->
+                </aside>
+                <!-- col.// -->
+                <aside class="col-lg-3">
+                    <div class="card">
+						<div class="card-body">
+							<dl class="dlist-align">
+							  <dt>Total price:</dt>
+							  <dd class="text-right">Rs: {{ total }} /-</dd>
+							</dl>
+							<dl class="dlist-align">
+							  <dt>Shipping Cost:</dt>
+							  <dd class="text-right">Rs: {{ shipping_cost }} /-</dd>
+							</dl>
+							<hr>
+							<dl class="dlist-align">
+							  <dt>Total:</dt>
+							  <dd class="text-right text-dark b"><strong>Rs: {{grand_total}} /-</strong></dd>
+							</dl>
+							<hr>
+							<div id="paypal-button-container"></div>
+							
+						</div>
+						</div> 
+                    <!-- card.// -->
+                </aside>
+                <!-- col.// -->
+            </div>
+            <!-- row.// -->
+            <!-- ============================ COMPONENT 1 END .// ================================= -->
+        
+		{% endif %}
+	</div>
+        <!-- container .//  -->
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
 
-<section class="section-content padding-y bg">
-<div class="container">
-
-<!-- ============================ COMPONENT 1 ================================= -->
-
-<div class="row">
-	<aside class="col-lg-9">
-<div class="card">
-<table class="table table-borderless table-shopping-cart">
-<thead class="text-muted">
-<tr class="small text-uppercase">
-  <th scope="col">Product</th>
-  <th scope="col" width="120">Quantity</th>
-  <th scope="col" width="120">Price</th>
-  <th scope="col" class="text-right" width="200"> </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-	<td>
-		<figure class="itemside align-items-center">
-			<div class="aside"><img src="../images/freq-3.png" class="img-sm"></div>
-			<figcaption class="info">
-				<a href="#" class="title text-dark">Med Name</a>
-				<p class="text-muted small">Matrix: 25 Mpx <br> Brand: Canon</p>
-			</figcaption>
-		</figure>
-	</td>
-	<td> 
-		<!-- col.// -->
-					<div class="col"> 
-						<div class="input-group input-spinner">
-							<div class="input-group-prepend">
-							<button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
-							</div>
-							<input type="text" class="form-control"  value="1">
-							<div class="input-group-append">
-							<button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
-							</div>
-						</div> <!-- input-group.// -->
-					</div> <!-- col.// -->
-	</td>
-	<td> 
-		<div class="price-wrap"> 
-			<var class="price">$1156.00</var> 
-			<small class="text-muted"> $315.20 each </small> 
-		</div> <!-- price-wrap .// -->
-	</td>
-	<td class="text-right"> 
-	<a href="" class="btn btn-danger"> Remove</a>
-	</td>
-</tr>
-<tr>
-	<td>
-		<figure class="itemside align-items-center">
-			<div class="aside"><img src="../images/freq-1.png" class="img-sm"></div>
-			<figcaption class="info">
-				<a href="#" class="title text-dark">Med Name</a>
-				<p class="text-muted small">Size: 256 GB  <br> Brand: ADATA </p>
-			</figcaption>
-		</figure>
-	</td>
-	<td> 
-		<!-- col.// -->
-					<div class="col"> 
-						<div class="input-group input-spinner">
-							<div class="input-group-prepend">
-							<button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
-							</div>
-							<input type="text" class="form-control"  value="1">
-							<div class="input-group-append">
-							<button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
-							</div>
-						</div> <!-- input-group.// -->
-					</div> <!-- col.// -->
-	</td>
-	<td> 
-		<div class="price-wrap"> 
-			<var class="price">$149.97</var> 
-			<small  class="text-muted"> $75.00 each </small>  
-		</div> <!-- price-wrap .// -->
-	</td>
-	<td class="text-right"> 
-	<a href="" class="btn btn-danger"> Remove</a>
-	</td>
-</tr>
-<tr>
-	<td>
-		<figure class="itemside align-items-center">
-			<div class="aside"><img src="../images/freq-2.png" class="img-sm"></div>
-			<figcaption class="info">
-				<a href="#" class="title text-dark">Med Name</a>
-				<p class="small text-muted">Version: CUH-ZCT2E  <br> Brand: Sony</p>
-			</figcaption>
-		</figure>
-	</td>
-	<td> 
-		<!-- col.// -->
-					<div class="col"> 
-						<div class="input-group input-spinner">
-							<div class="input-group-prepend">
-							<button class="btn btn-light" type="button" id="button-plus"> <i class="fa fa-minus"></i> </button>
-							</div>
-							<input type="text" class="form-control"  value="1">
-							<div class="input-group-append">
-							<button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button>
-							</div>
-						</div> <!-- input-group.// -->
-					</div> <!-- col.// -->
-	</td>
-	<td> 
-		<div class="price-wrap"> 
-			<var class="price">$98.00</var> 
-			<small class="text-muted"> $578.00 each</small> 
-		</div> <!-- price-wrap .// -->
-	</td>
-	<td class="text-right"> 
-		<a href="" class="btn btn-danger"> Remove</a>
-	</td>
-</tr>
-</tbody>
-</table>
-</div> <!-- card.// -->
-
-	</aside> <!-- col.// -->
-	<aside class="col-lg-3">
-
-		<div class="card">
-		<div class="card-body">
-			<dl class="dlist-align">
-			  <dt>Total price:</dt>
-			  <dd class="text-right">$69.97</dd>
-			</dl>
-			<dl class="dlist-align">
-			  <dt>Tax:</dt>
-			  <dd class="text-right"> $10.00</dd>
-			</dl>
-			<dl class="dlist-align">
-			  <dt>Total:</dt>
-			  <dd class="text-right text-dark b"><strong>$59.97</strong></dd>
-			</dl>
-			<hr>
-			<p class="text-center mb-3">
-				<img src="{% static 'images/payments.png' %}" height="26">
-			</p>
-			<a href="./place-order.html" class="btn btn-primary btn-block"> Checkout </a>
-			<a href="./store.html" class="btn btn-light btn-block">Continue Shopping</a>
-		</div> <!-- card-body.// -->
-		</div> <!-- card.// -->
-
-</aside> <!-- col.// -->
-
-
-</div> <!-- row.// -->
-<!-- ============================ COMPONENT 1 END .// ================================= -->
-
-</div> <!-- container .//  -->
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
+	<script>
+		paypal.Buttons({
+			
+			style: {
+				
+				color:  'blue',
+				shape:  'rect',
+				label:  'pay',
+				height: 40,
+				
+			},
+			// Sets up the transaction when a payment button is clicked
+			createOrder: (data, actions) => {
+				return actions.order.create({
+				purchase_units: [{
+					amount: {
+					value: '77.44' // Can also reference a variable or function
+					}
+				}]
+				});
+			},
+			// Finalize the transaction after payer approval
+			onApprove: (data, actions) => {
+				return actions.order.capture().then(function(orderData) {
+				// Successful capture! For dev/demo purposes:
+				console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+				const transaction = orderData.purchase_units[0].payments.captures[0];
+				alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+				// When ready to go live, remove the alert and show a success message within this page. For example:
+				// const element = document.getElementById('paypal-button-container');
+				// element.innerHTML = '<h3>Thank you for your payment!</h3>';
+				// Or go to another URL:  actions.redirect('thank_you.html');
+				});
+			}
+		}).render('#paypal-button-container');
+	  </script>
 {% endblock %}

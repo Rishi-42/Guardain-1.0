@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'counsellor',
     'froala_editor',
     'store',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +61,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'pharmacy.context_processor.category_link',
+                'cart.context_processors.counter',
             ],
         },
     },

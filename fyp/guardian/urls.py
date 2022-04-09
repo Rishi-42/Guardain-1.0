@@ -15,10 +15,6 @@ urlpatterns = [
     path('cities/<str:city_slug>/<str:pharmacy_slug>', ind_pharmacy, name='ind_pharmacy'),
 
 
-    # path('pharmacies', pharmacies, name='pharmacies'),
-    # path('pharmacies/<slug:city_slug>/', pharmacies, name='pharmacies_by_cities'),
-
-
     path('counsellors', counsellors, name='counsellors'),
     path('searchmed', searchmed, name='searchmed'),
     path('viewblogs', viewblogs, name='viewblogs'),

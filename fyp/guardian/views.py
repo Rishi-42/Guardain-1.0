@@ -37,8 +37,6 @@ def test(request):
     return render(request, 'test.html')
 
 
-
-
 def cities(request):
     cities_all = City.objects.all()
     context = {
@@ -75,6 +73,9 @@ def ind_pharmacy(request, city_slug, pharmacy_slug):
         'individual_pharmacy' : individual_pharmacy
     }
     return render(request, 'individual_pharmacy.html', context)
+
+
+
 
 def counsellors(request):
     counsellors_all = CounsellorDetail.objects.all()

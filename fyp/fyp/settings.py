@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'address',
     'counsellor',
     'froala_editor',
+    'store',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +59,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'pharmacy.context_processor.category_link',
             ],
         },
     },

@@ -1,6 +1,7 @@
 from django.db import models
 from account.models import PharmacistDetail
 from .healer import *
+from django.urls import reverse
 
 class Add_product(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
@@ -28,6 +29,8 @@ class Add_product(models.Model):
         self.slug = generate_slug(self.product_name)
         super(Add_product, self).save(*args, **kwargs)
 
+    def get_url(self):
+        return reverse('product_detail', args=[self.pharmacy_name_id.id ,self.category.slug, self.slug])
 
 class Category(models.Model):
     category_name = models.CharField(max_length=200, unique=True)
@@ -39,3 +42,5 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category_name
+
+

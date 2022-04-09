@@ -21,11 +21,11 @@
                                 <p>
                                 <span>OGRM: <strong>099312312</strong></span><br>
                                 <span>INN : <strong>099312312</strong></span><br>
-                                <span>Working Hour : <strong>{{individual_pharmacy.work_start}} to {{i_pharmacy.work_end}}</strong></span><br>
+                                <span>Working Hour : <strong>{{individual_pharmacy.work_start}} to {{individual_pharmacy.work_end}}</strong></span><br>
                                 <span>Working Days : <strong>Sun, Mon, Tue, Wen, Thu, Fri</strong></span><br>
                                 <span>Cell Phone number : <strong>{{individual_pharmacy.phone_no}}</strong></span><br>
                                 <span>Email : <strong>{{individual_pharmacy.pharmacy_email}}</strong></span><br>
-                            
+                                
                             
                             </p>
                             <h4>Description </h4>
@@ -33,7 +33,7 @@
 
                             {% comment %} {% endfor %} {% endcomment %}
                                     <div class="text-center btn-wrapper">
-                                        <a href=""> <button class="btn btn-secondary">Store</button></a>
+                                        <a href="{% url 'all_product'  individual_pharmacy.id %}"> <button class="btn btn-secondary">Store</button></a>
                                     </div>
                             </div>
                             

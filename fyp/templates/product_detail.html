@@ -10,7 +10,7 @@
 		<aside class="col-md-6">
 <article class="gallery-wrap"> 
 	<div class="img-big-wrap">
-	   <a href="#"><img src="../images/freq-2.png"></a>
+	   <a href="#"><img src="{{ single_product.image.url }}"></a>
 	</div> <!-- img-big-wrap.// -->
 	
 </article> <!-- gallery-wrap .end// -->
@@ -18,16 +18,22 @@
 		<main class="col-md-6 border-left">
 <article class="content-body">
 
-<h2 class="title">Medicine</h2>
+<h2 class="title">{{ single_product.product_name }}</h2>
 
 <div class="mb-3"> 
-	<var class="price h4">$815.00</var> 
+	<var class="price h4">Rs: {{ single_product.cost }}/-</var> 
 </div> 
 
-<p>Lorem Ipsum is simply emaining essenti 1960s and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+<p>{{ single_product.description}}</p>
 
 
 <hr>
+<div class="row">
+	<div class="item-option-select">
+		<h6>Dose</h6>
+		<h7>{{ single_product.dose_child }}</h7>
+	</div>
+</div>
 	<div class="row">
 		<div class="item-option-select">
 			<h6>Drugs Type</h6>

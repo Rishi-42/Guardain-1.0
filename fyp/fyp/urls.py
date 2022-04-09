@@ -11,4 +11,5 @@ urlpatterns = [
     path('pharmacy/' , include('pharmacy.urls')),
     path('counsellor/' , include('counsellor.urls')),	
     path('froala_editor/', include('froala_editor.urls')),
+    path('store/', include('store.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

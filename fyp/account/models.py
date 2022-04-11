@@ -137,6 +137,9 @@ class CounsellorDetail(models.Model):
     def __str__(self):
         return self.counsellor_name
 
+    def get_url(self):
+        return reverse("counselor_detail", args=[self.id])
+
 class Adresses(models.Model):
     province = models.ForeignKey(Province, on_delete=models.CASCADE)
     district = models.ForeignKey(District, on_delete=models.CASCADE)

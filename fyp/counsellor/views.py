@@ -75,3 +75,4 @@ def added_blog(request):
         'blogs': blogs,
     }
     return render(request, 'counsellor/added_blogs.html', context)
+

@@ -4,42 +4,43 @@
 
                 <header class="banner flex items-center">
                     <div class="banner-image">
-                        <img src="{% static 'images/banner 1.jpg' %}" alt="">
+                        
+                        {% comment %} <img src="{% static 'images/banner 1.jpg' %}" alt=""> {% endcomment %}
                     </div>
                 </header>
+                
+                
                 <section class="about-G" id="about">
                     <div class="container">
                         <!-- <h1 class="section-heading">{Name of Pharmacy}</h1> -->
                         <div class="about-G-wrap flex">
                             <div class="flex-1">
-                                <img src="{% static 'images/doc4.jpg' %}" alt=""> 
+                                <img src="{{ counsellor.profile_image.url }}" alt=""> 
                                 <!-- image need to be dynamic -->
                             </div>
 
                             <div class="flex-1">
-                                <h2>Counsellor Name </h2>
+                                <h2>{{counsellor.counsellor_name}}</h2>
                                 <p>
-                                <span>License Number: <strong>099312312</strong></span><br>
-                                <span>Working Hour : <strong>6:00AM to 6:00PM</strong></span><br>
+                                <span>License Number: <strong>{{counsellor.registration_no}}</strong></span><br>
+                                <span>Working Hour : <strong>{{counsellor.work_start}}:00AM to {{counsellor.work_end}}:00PM</strong></span><br>
                                 <span>Working Days : <strong>Sun, Mon, Tue, Wen, Thu, Fri</strong></span><br>
-                                <span>Cell Phone number : <strong>+977-9876543210</strong></span><br>
-                                <span>Email : <strong>pharmacy@test.com</strong></span><br>
+                                <span>Cell Phone number : <strong>+977-{{counsellor.phone_no}}</strong></span><br>
+                                <span>Email : <strong>{{counsellor.counsellor_email}}</strong></span><br>
                             
                             
                             </p>
                             <h4>Description </h4>
-                                <p>acts as an online hub for pharmacies, counsellors, and its customers where pharmacies and counsellors can broaden their business by providing medicines and health related advise to their customers. Likewise
-                                    for customers, the app works as an online medical store where they can order their medicines prescribed by the doctors by uploading the perception sheet or by manually ordering the medicine and can take online therapy.
-                                    Moreover</p>
+                                <p>{{counsellor.description}}</p>
                                     <div class="text-center btn-wrapper">
-                                        <a href="#"> <button class="btn btn-secondary">Book an Appointment</button></a>
+                                        <a href=""> <button class="btn btn-secondary">Book an Appointment</button></a>
                                     </div>
                             </div>
                             
                         </div>
                     </div>
                 </section>
-
+                
 
                 <section class="our-services">
                     <div class="container">

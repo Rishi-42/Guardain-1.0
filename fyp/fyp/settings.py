@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'froala_editor',
     'store',
     'cart',
+    'counselor',
 ]
 
 MIDDLEWARE = [

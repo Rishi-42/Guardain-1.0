@@ -7,9 +7,9 @@
     <div class="councellors">
         {% for counsellor in counsellors_all %}
         <div class="councellor">
-            <a href="#"><img src="{{ counsellor.profile_image.url }}" alt=""></a>
+            <a href="{{ counsellor.get_url }}"><img src="{{ counsellor.profile_image.url }}" alt=""></a>
             
-            <a href="#"><h3>{{counsellor.counsellor_name}}</h3></a>
+            <a href="{{ counsellor.get_url }}"><h3>{{counsellor.counsellor_name}}</h3></a>
             <h6>Councellor</h6>
             
             <p>{{counsellor.description}}</p>
@@ -18,7 +18,7 @@
                 <!-- <a href="#"><i class='bx bxl-instagram' ></i></a> -->
                 <!-- <a href="#"><i class='bx bxl-linkedin' ></i></a> -->
                 <a href="tel:{{counsellor.phone_no}}"><i class='bx bx-phone' ></i></a>
-                <a href="#"><i class='bx bxl-telegram' ></i></a>
+                {% comment %} <a href="#"><i class='bx bxl-telegram' ></i></a> {% endcomment %}
             </div>
         </div>
         {% endfor %}

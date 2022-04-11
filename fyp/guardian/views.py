@@ -24,8 +24,6 @@ def home(request):
 def placeorder(request):
     return render(request, 'place-order.html')
 
-def counsellor(request):
-    return render(request, 'counsellor.html')
 
 
 def productdetail(request):
@@ -72,16 +70,6 @@ def ind_pharmacy(request, city_slug, pharmacy_slug):
     }
     return render(request, 'individual_pharmacy.html', context)
 
-
-
-
-def counsellors(request):
-    counsellors_all = CounsellorDetail.objects.all()
-    context = {
-        'counsellors_all' : counsellors_all,
-    }
-
-    return render(request, 'counsellor.html', context)
 
 def searchmed(request):
     return render(request, 'medicine.html')

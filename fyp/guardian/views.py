@@ -74,13 +74,6 @@ def ind_pharmacy(request, city_slug, pharmacy_slug):
 def searchmed(request):
     return render(request, 'medicine.html')
 
-def viewblogs(request):
-    blogs = BlogModel.objects.all()
-    print(blogs)
-    context = {
-        'blog_obj' : blogs,
-    }
-    return render(request, 'blogs.html', context)
 
 def readblog(request):
     blogs = BlogModel.objects.filter(id=1)

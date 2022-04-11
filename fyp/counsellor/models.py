@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from account.models import CounsellorDetail
 from froala_editor.fields import FroalaField
 from .healer_blog import *
+from django.urls import reverse
 
 class BlogModel(models.Model):
     title = models.CharField(max_length=1000)
@@ -21,3 +22,6 @@ class BlogModel(models.Model):
     def save(self , *args, **kwargs): 
         self.slug = generate_slug(self.title)
         super(BlogModel, self).save(*args, **kwargs)
+
+    def get_url(self):
+        return reverse("blog_detail", args=[self.slug])

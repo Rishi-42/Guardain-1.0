@@ -13,7 +13,6 @@ urlpatterns = [
     path('cities/<str:city_slug>/<str:pharmacy_slug>', ind_pharmacy, name='ind_pharmacy'),
 
     path('searchmed', searchmed, name='searchmed'),
-    path('viewblogs', viewblogs, name='viewblogs'),
     path('readblog', readblog, name='readblog'),
 
 

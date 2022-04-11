@@ -1,0 +1,26 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+    <section>
+        <div class="container">
+            <div class="card mb-3">
+                <img src="{{ blog_obj.image.url }}" class="card-img-top">
+                <div class="card-body">
+                    <div class="text-center">
+                        <h5 class="card-title">{{ blog_obj.title }}</h5>
+                    </div>
+                    <div class="d-flex justify-content-around">
+                        <div>Author: {{ blog_obj.counsellor_name_id }}</div>
+                        <div>Added on: {{ blog_obj.created_at }}</div>
+                    </div>
+                    <p class="card-text">
+                        {{ blog_obj.content|safe }}
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">{{ blog_obj.created_at }}</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

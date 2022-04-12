@@ -33,7 +33,7 @@
                             <h4>Description </h4>
                                 <p>{{counsellor.description}}</p>
                                     <div class="text-center btn-wrapper">
-                                        <a href=""> <button class="btn btn-secondary">Book an Appointment</button></a>
+                                        <a href="{% url 'schedulemeeting' counsellor.id%}"> <button class="btn btn-secondary">Book an Appointment</button></a>
                                     </div>
                             </div>
                             

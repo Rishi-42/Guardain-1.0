@@ -1,8 +1,6 @@
 from __future__ import print_function
 from calendar import calendar
-
 import os.path
-
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -13,7 +11,7 @@ from googleapiclient.errors import HttpError
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 
-def main():
+def create_event():
     """Shows basic usage of the Gmail API.
     Lists the user's Gmail labels.
     """
@@ -117,6 +115,3 @@ def main():
         # TODO(developer) - Handle errors from gmail API.
         print(f'An error occurred: {error}')
 
-
-if __name__ == '__main__':
-    main()

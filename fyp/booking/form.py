@@ -32,7 +32,7 @@ class Schedule_Meeting(forms.ModelForm):
     class Meta:
         model = Meeting
         fields = ('meeting_title', 'client_age', 'marital_status', 'client_details', 'meeting_date', 'meeting_time',
-                  'meeting_location', 'meeting_description', 'meeting_created_by')
+                  'meeting_description')
 
     def __init__(self, *args, **kwargs):
         super(Schedule_Meeting, self).__init__(*args, **kwargs)
@@ -40,6 +40,6 @@ class Schedule_Meeting(forms.ModelForm):
         self.fields['client_age'].widget.attrs.update({'class': 'form-control'})
         self.fields['marital_status'].widget.attrs.update({'class': 'form-control'})
         self.fields['client_details'].widget.attrs.update({'class': 'form-control'})
-        self.fields['meeting_location'].widget.attrs.update({'class': 'form-control'})
+        # self.fields['meeting_location'].widget.attrs.update({'class': 'form-control'})
         self.fields['meeting_description'].widget.attrs.update({'class': 'form-control'})
-        self.fields['meeting_created_by'].widget.attrs.update({'class': 'form-control'})
+        # self.fields['meeting_created_by'].widget.attrs.update({'class': 'form-control'})

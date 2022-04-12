@@ -40,15 +40,13 @@ def schedule_meeting(request, id):
             marital_status = form.cleaned_data['marital_status']
             meeting_date = form.cleaned_data['meeting_date']
             meeting_time = form.cleaned_data['meeting_time']
-            meeting_location = form.cleaned_data['meeting_location']
+            # meeting_location = form.cleaned_data['meeting_location']
             meeting_description = form.cleaned_data['meeting_description']
-            meeting_created_by = form.cleaned_data['meeting_created_by']
+            # meeting_created_by = form.cleaned_data['meeting_created_by']
             print(meeting_date)
             print(meeting_time)
             meet_schedule = Meeting(meeting_title=meeting_title, client_age=client_age, marital_status=marital_status,
-                                    client_details=Account.objects.get(email=user_email), meeting_date=meeting_date, meeting_time=meeting_time,
-                                    meeting_location=meeting_location, meeting_description=meeting_description,
-                                    meeting_created_by=meeting_created_by)
+                                    client_details=Account.objects.get(email=user_email), meeting_date=meeting_date, meeting_time=meeting_time, meeting_description=meeting_description)
 
             description = ('Meeting with ' + full_name + '\n Age : ' + str(client_age) +
                            ' \n Marital Status :' + marital_status + ' \n Description : ' + meeting_description + '.')

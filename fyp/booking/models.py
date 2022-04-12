@@ -11,9 +11,9 @@ class Meeting(models.Model):
     client_details = models.ForeignKey(Account, on_delete=models.CASCADE)
     meeting_date = models.DateField()
     meeting_time = models.TimeField()
-    meeting_location = models.CharField(max_length=255)
+    # meeting_location = models.CharField(max_length=255)
     meeting_description = models.TextField()
-    meeting_created_by = models.CharField(max_length=255)
+    # meeting_created_by = models.CharField(max_length=255)
 
     created_date = models.DateTimeField(auto_now_add=True)
     modified_date = models.DateTimeField(auto_now=True)

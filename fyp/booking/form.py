@@ -1,6 +1,7 @@
 from django import forms
 from .models import Meeting
-
+from datetime import date
+from dateutil.relativedelta import relativedelta
 
 class Schedule_Meeting(forms.ModelForm):
     MARITAL_CHOICES = [
@@ -14,13 +15,19 @@ class Schedule_Meeting(forms.ModelForm):
     required=True,
     choices=MARITAL_CHOICES,
     )
+    today_date = date.today()
+    future_date = today_date + relativedelta(months=1)
     meeting_date = forms.DateField(widget=forms.DateInput(attrs={
         'type': 'date',
         'class': 'form-control',
+        'min': today_date,
+        'max': future_date,
         }))
     meeting_time = forms.TimeField(widget=forms.TimeInput(attrs={
         'type': 'time',
         'class': 'form-control',
+        'min': '09:00',
+        'max':'16:00',
     }))
     class Meta:
         model = Meeting

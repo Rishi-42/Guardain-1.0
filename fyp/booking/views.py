@@ -4,7 +4,7 @@ from .models import Meeting
 from account.models import Account, CounsellorDetail
 import datetime
 from django.contrib import messages
-
+from django.contrib.auth.decorators import login_required
 # for calendar API
 # from __future__ import print_function
 from calendar import calendar
@@ -18,7 +18,7 @@ from googleapiclient.errors import HttpError
 # If modifying these scopes, delete the file token.json.
 SCOPES = ['https://www.googleapis.com/auth/calendar']
 
-
+@login_required(login_url='login')
 def schedule_meeting(request, id):
     counsellor_email = CounsellorDetail.objects.get(id=id).counsellor_email
     print(counsellor_email)
@@ -34,6 +34,8 @@ def schedule_meeting(request, id):
     if request.method == 'POST':
         # get data from account mode
         form = Schedule_Meeting(request.POST)
+        print(form.is_valid())
+        print(form.errors)
         if form.is_valid():
             meeting_title = form.cleaned_data['meeting_title']
             client_age = form.cleaned_data['client_age']

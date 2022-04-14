@@ -1,29 +1,25 @@
 {% extends "unincluded_base.html" %}
 {% block start %}
 
-<!-- ========================= SECTION CONTENT ========================= -->
-<section class="section-content padding-y">
 
-<!-- ============================ COMPONENT REGISTER   ================================= -->
+ <section class="section-content padding-y">
 	<div class="card mx-auto" style="max-width:520px; margin-top:40px;">
       <article class="card-body">
-		  {% include 'includes/alerts.html' %}
 		<header class="mb-4"><h4 class="card-title">Book Meeting</h4></header>
-		<form action="{% url 'register' %}" method="POST">
+		<form action="{% url 'counselor' %}" method="POST">
 			{% csrf_token %}
 				<div class="form-row">
 					<div class="col form-group">
 						<label>Metting Title</label>
 					  	{{ form.meeting_title }}
-					</div> <!-- form-group end.// -->
+					</div>
 					<div class="col form-group">
 						<label>Age</label>
 					  	{{ form.client_age }}
-					</div> <!-- form-group end.// -->
-				</div> <!-- form-row end.// -->
+					</div> 
+				</div> 
 
 				<div class="form-row">
-					<!-- form-group end.// -->
 					<div class="col form-group">
 						<label>Marital Status</label>
 						<select name="marital_status" class="form-control">
@@ -31,42 +27,37 @@
 								{{ type }}
 							{% endfor %}
 						</select>
-					</div> <!-- form-group end.// -->
+					</div>
 				</div>
 				<div class="form-row">
 					<div class="form-group col-md-6">
 						<label>Date</label>
 					    {{ form.meeting_date }}
-					</div> <!-- form-group end.// --> 
+					</div>
 					<div class="form-group col-md-6">
 						<label>Time</label>
 					    {{ form.meeting_time }}
                         <small class="form-text text-muted" style="color:black!important">Please check counsellor office time before scheduling.</small>
-					</div> <!-- form-group end.// -->  
+					</div>
 				</div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label>Description</label>
                         {{ form.meeting_description }}
                         <small class="form-text text-muted" style="color:black!important">Describe the purpose of booking a meeting session.</small>
-                    </div> <!-- form-group end.// -->
+                    </div>
                     </div>
 				<div class="form-group">  
-			      	
 					{{ form.non_field_errors }}
 				</div>
 				
 			    <div class="form-group">
-			        <button type="submit" class="btn btn-primary btn-block"> Book  </button>
-			    </div> <!-- form-group// -->  
+			        <button type="submit" value="Submit" class="btn btn-primary btn-block"> Book  </button>
+			    </div>
 				
 			</form>
-		</article><!-- card-body.// -->
-    </div> <!-- card .// -->
-    
-<!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+		</article>
+    </div> 
+</section> 
 
-
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
 {% endblock %}

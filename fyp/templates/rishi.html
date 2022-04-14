@@ -1,0 +1,145 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+<style>
+
+    
+    .ftco-section {
+        padding: 6em 0;
+        position: relative;
+    }
+    
+    
+    .container {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .container {
+        max-width: 1250px;
+    }
+    @media (min-width: 1200px)
+    {
+    .container{
+        max-width: 1140px;
+    }
+    }
+    @media (min-width: 992px)
+    {
+    .container{
+        max-width: 1090px;
+    }
+    }
+    
+    
+    .no-gutters {
+        margin-right: 0px;
+        margin-left: 0;
+    }
+    
+    .img{
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+    
+    @media (min-width: 768px)
+    {
+        .col-md-6 {
+        -webkit-box-flex: 0;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }}
+    
+    .col-md-6{
+        margin-left: 0px;
+        width: 100%;
+        margin-top: 0px;
+    }
+    
+    @media (min-width: 768px)
+    {.py-md-5 {
+        padding-top: 3rem!important;
+        padding-bottom: 3rem!important;
+    }}
+    
+    @media (min-width: 992px)
+    {.heading-section {
+        margin-left: -120px;
+        background: #fff;
+        box-shadow: -20px 5px 14px -15px rgb(0 0 0 / 13%);
+    }}
+    
+    .heading-section h2 {
+        font-size: 40px;
+        font-weight: 600;
+        color: rgba(0, 0, 0, 0.8);
+    }
+    
+    .mb-4 {
+        margin-bottom: 1.5rem!important;
+    }
+    
+    .no-gutters>.col, .no-gutters>[class*="col-"] {
+        padding-right: 0px;
+        padding-left: 0;
+    }
+    
+
+</style>
+
+         <!--fourth section-->
+         <section class="ftco-section ftco-no-pb" style="padding-bottom: 50px">
+            <div class="container">
+              <div class="row no-gutters">
+                <div class="col-md-6 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url({% static 'images/personal_health.png' %});"></div>
+                <div class="col-md-6 wrap-about py-md-5">
+                  <div class="heading-section p-md-5">
+                    <h2 class="mb-4" style="color:green">Test Pharmacy nepal</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 exp">
+                            <h5><span style="font-weight:bold;">OGRM:<br></span>9i39839223</h5>
+                        </div>
+                        <div class="col-md-5 ser">
+                            <h5><span style="font-weight:bold;">INN:<br></span>345676543</h5>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 exp">
+                            <h5><span style="font-weight:bold;">Working Hour:<br></span>6 to 6</h5>
+                        </div>
+                        <div class="col-md-5 ser">
+                            <h5><span style="font-weight:bold;">Cell Phone:<br></span>56765456</h5>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6 exp" style="margin-top:10px;">
+                            <h5><span style="font-weight:bold;margin-top:10px;margin-bottom: 5px;">Email<br></span>gurung@gmail.com</h5>
+                        </div>
+                        <div class="col-md-5 ser" style="margin-top:10px;">
+                        </div>
+                    </div>
+                    <div class="row justify-content-center exp">
+                        <div class="col-md-11" style="margin-top:10px;">
+                            <h5><span style="font-weight:bold;">Description:</h5>
+                        </div>    
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-11 exp" style="text-align:justify;">
+                            <h5>ufheuifh erifh eifj neijf neif nefie neif neif enif febrf eibrf fei ber iefb</h5>
+                        </div>
+                    </div>
+                 
+                    <button type="button" class="btn btn-primary">Store</button>
+                                                             
+                </div>          
+    
+        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          {% endblock %}

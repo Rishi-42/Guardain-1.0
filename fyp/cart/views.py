@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from pharmacy.models import Add_product
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -10,7 +10,7 @@ def _cart_id(request):
     if not cart:
         cart = request.session.create()
     return cart
-
+@login_required(login_url='login')
 def add_cart(request, product_id):
     product = Add_product.objects.get(id=product_id)
     try:

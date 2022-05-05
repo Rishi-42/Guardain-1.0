@@ -1,5 +1,6 @@
 from django.db import models
 from pharmacy.models import Add_product
+from account.models import Account
 
 # Create your models here.
 class Cart(models.Model):
@@ -11,7 +12,7 @@ class Cart(models.Model):
 
 class CartItem(models.Model):
     product = models.ForeignKey(Add_product, on_delete=models.CASCADE)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE,  null=True)
     quantity = models.IntegerField()
     active = models.BooleanField(default=True)
 

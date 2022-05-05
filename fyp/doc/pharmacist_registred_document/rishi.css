@@ -1,0 +1,138 @@
+body {
+    font-family: "Nunito Sans", Arial, sans-serif;
+    background: #fff;
+    font-size: 25px;
+    line-height: 1.8;
+    font-weight: 400;
+    color: #666666;
+}
+
+.ftco-section {
+    padding: 6em 0;
+    position: relative;
+}
+
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.container {
+    max-width: 1250px;
+}
+@media (min-width: 1200px)
+{
+.container{
+    max-width: 1140px;
+}
+}
+@media (min-width: 992px)
+{
+.container{
+    max-width: 1090px;
+}
+}
+
+
+.no-gutters {
+    margin-right: 0px;
+    margin-left: 0;
+}
+
+.img{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+@media (min-width: 768px)
+{
+    .col-md-6 {
+    -webkit-box-flex: 0;
+    flex: 0 0 50%;
+    max-width: 50%;
+}}
+
+.col-md-6{
+    margin-left: 0px;
+    width: 100%;
+    margin-top: 0px;
+}
+
+@media (min-width: 768px)
+{.py-md-5 {
+    padding-top: 3rem!important;
+    padding-bottom: 3rem!important;
+}}
+
+@media (min-width: 992px)
+{.heading-section {
+    margin-left: -120px;
+    background: #fff;
+    box-shadow: -20px 5px 14px -15px rgb(0 0 0 / 13%);
+}}
+
+.heading-section h2 {
+    font-size: 40px;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem!important;
+}
+
+.no-gutters>.col, .no-gutters>[class*="col-"] {
+    padding-right: 0px;
+    padding-left: 0;
+}
+
+@media (min-width: 768px)
+{
+.col-md-6 {
+    -webkit-box-flex: 0;
+    flex: 0 0 50%;
+    max-width: 50%;
+}}
+
+
+.exp h3{
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(39 39 39 / 87%);
+}
+
+.ser h3{
+    font-size: 17px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(39 39 39 / 87%);
+}
+
+
+.btn{
+    padding: .300rem 1.15rem;
+    
+}
+
+#blog{  
+    margin-top: 10px;
+    margin-left: 20px;
+    background-color: rgb(29 133 46);
+    color: #f8f8f8;
+    font-weight: 550; 
+    border-radius: 1.15rem;
+}
+
+#blog:hover{
+    box-shadow: rgb(0 0 0 / 5%) 0px 4px 30px;
+    transition: all .3s ease;
+    transform: scale(1.05);
+    color: rgb(39 39 39 / 87%);
+}
+
+.btn:focus {
+    outline: 0;
+}

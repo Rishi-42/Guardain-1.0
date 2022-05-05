@@ -6,7 +6,7 @@ from account.models import CounsellorDetail, PharmacistDetail, Adresses
 from address.models import City
 from counsellor.models import BlogModel
 from pharmacy.models import Add_product, Category
-# from pharmacy.models import 
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 
 def home(request):
@@ -34,11 +34,19 @@ def test(request):
 
 
 def cities(request):
-    cities_all = City.objects.all()
+    cities_all = City.objects.all().order_by('id')
+    paginator = Paginator(cities_all, 8)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'cities_all' : cities_all,
+        'cities_all' : page_obj,
+
     }
     return render(request, 'pharmacy_cities.html', context)
+
+
+
 
 
 
@@ -48,13 +56,18 @@ def pharmacies(request, city_slug=None):
     
     if city_slug != None:
         cities = get_object_or_404(City, slug=city_slug)
-
-        pharmacy = PharmacistDetail.objects.filter(city=cities)
+        pharmacy = PharmacistDetail.objects.filter(city=cities).order_by('id')
+        paginator = Paginator(pharmacy, 4)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     
     else:
-        pharmacy = PharmacistDetail.objects.all()
+        pharmacy = PharmacistDetail.objects.all().order_by('id')
+        paginator = Paginator(pharmacy, 4)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
     context = {
-        'pharmacies' :pharmacy
+        'pharmacies' :page_obj
     }
    
     return render(request, 'pharmacy_city1.html', context)

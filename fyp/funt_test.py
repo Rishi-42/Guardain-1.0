@@ -1,9 +1,17 @@
-# initial test of the browser and setups in funt.py
-
-
+from django.test import TestCase
 from selenium import webdriver
 
-browswer = webdriver.Firefox()
-browswer.get('http://localhost:8000')
+class SystemTest(TestCase):
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+        self.browser.implicitly_wait(3)
 
-assert browswer.page_source.find('Pharmacy')
+    def test_system(self):
+        self.browser.get('http://localhost:8000')
+
+        # She notices the page title and header mention to-do lists
+        self.assertIn('To-Do', self.browser.title)
+
+    def test_home_homepage_template(self):
+        response = self.client.get('/')
+        self.assertTemplateUsed(response, 'home.html')

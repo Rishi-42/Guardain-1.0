@@ -32,13 +32,17 @@
                         <!-- col.// -->
                         {% comment %} <a href="./pharmacy_dharan01.html" class="btn btn-outline-primary">Shop</a> {% endcomment %}
                         <div class="col-lg  col-md-6 col-sm-12 col">
-                            <form action="#" class="search">
+                            <form action="{% url 'search'%}" class="search">
                                 <div class="input-group w-100">
-                                    <input type="text"
+                                    <a href="{% url 'all_product' pharmacy_id %}" class="brand-wrap">
+                                        <h2 class="title-page text-center">{{ pharmacyname }}</h2>
+                                        </a>
+                                    {% comment %} <input type="text"
                                            class="form-control"
                                            list="datalistOptions"
                                            style="width:60%;"
-                                           placeholder="Search">
+                                           placeholder="Search"
+                                           name='keyword'> {% endcomment %}
                                     <datalist id="datalistOptions">
                                         <option value="Liquid">
                                             <option value="Tablet">
@@ -47,9 +51,9 @@
                                                         <option value="Painkiller">
                                                         </datalist>
                                                         <div class="input-group-append">
-                                                            <button class="btn btn-primary" type="submit">
+                                                            {% comment %} <button class="btn btn-primary" type="submit">
                                                                 <i class="bx bx-search"></i>
-                                                            </button>
+                                                            </button> {% endcomment %}
                                                         </div>
                                                     </div>
                                                 </form>
@@ -73,6 +77,13 @@
                                     </div>
                                     <!-- container.// -->
                                 </section>
+
+
+
+
+
+
+                                
                             </header>
                             <!-- section-header.// -->
                             <!-- ========================= SECTION PAGETOP ========================= -->
@@ -139,7 +150,7 @@
 		</div>
 	</article> -->
                                                 <!-- filter-group .// -->
-                                                <article class="filter-group">
+                                                {% comment %} <article class="filter-group">
                                                     <header class="card-header">
                                                         <a href="#"
                                                            data-toggle="collapse"
@@ -212,7 +223,7 @@
                                                         </div>
                                                         <!-- card-body.// -->
                                                     </div>
-                                                    </article> <!-- filter-group .// -->
+                                                    </article> <!-- filter-group .// --> {% endcomment %}
                                                 </div>
                                                 <!-- card.// -->
                                             </aside>
@@ -220,7 +231,7 @@
                                             <main class="col-md-9">
                                                 <header class="border-bottom mb-4 pb-3">
                                                     <div class="form-inline">
-                                                        <span class="mr-md-auto"><strong>{{ product_count }}</strong>Items found</span>
+                                                        <span class="mr-md-auto"><strong>{{ product_count }} </strong> Items found</span>
                                                     </div>
                                                 </header>
                                                 <!-- sect-heading -->
@@ -236,12 +247,13 @@
                                                                     <div class="fix-height">
                                                                         <a href="{{ med.get_url }}" class="title">{{ med.product_name }}</a>
                                                                         <div class="price-wrap mt-2">
-                                                                            <span class="price">$ {{ med.cost }}</span>
+                                                                            <span class="price">Rs: {{ med.cost }}/-</span>
                                                                             {% comment %} <del class="price-old">$1980</del> {% endcomment %}
                                                                         </div>
                                                                         <!-- price-wrap.// -->
                                                                     </div>
-                                                                    <a href="{% url 'add_cart' med.id %}" class="btn btn-block btn-primary">Add to cart</a>
+                                                                    {% comment %} <a href="{% url 'add_cart' med.id %}" class="btn btn-block btn-primary">Add to cart</a> {% endcomment %}
+                                                                    <a href="{{ med.get_url }}" class="btn btn-block btn-primary">View Details</a>
                                                                 </figcaption>
                                                             </figure>
                                                         </div>
@@ -249,23 +261,40 @@
                                                 </div>
                                                 <!-- row end.// -->
                                                 <nav class="mt-4" aria-label="Page navigation sample">
+                                                    {% if products.has_other_pages %}
                                                     <ul class="pagination">
+                                                        {% if products.has_previous %}
+                                                        <li class="page-item">
+                                                            <a class="page-link" href="?page={{products.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+                                                        </li>
+                                                        {% else %}
                                                         <li class="page-item disabled">
-                                                            <a class="page-link" href="#">Previous</a>
+                                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
                                                         </li>
-                                                        <li class="page-item active">
-                                                            <a class="page-link" href="#">1</a>
-                                                        </li>
+                                                        {% endif %}
+                                    
+                                                        {% for page in products.paginator.page_range %}
+                                                         {% if products.number == page %}
+                                                            <li class="page-item active">
+                                                                <a class="page-link active" href="#">{{ page }}</a>
+                                                            </li>
+                                                        {% else %}
+                                                            <li class="page-item">
+                                                                <a class="page-link" href="?page={{page}}">{{ page }}</a>
+                                                            </li>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                        {% if products.has_next %}
                                                         <li class="page-item">
-                                                            <a class="page-link" href="#">2</a>
+                                                            <a class="page-link" href="?page={{products.next_page_number}}">Next</a>
                                                         </li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#">3</a>
+                                                        {% else %}
+                                                        <li class="page-item disabled">
+                                                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
                                                         </li>
-                                                        <li class="page-item">
-                                                            <a class="page-link" href="#">Next</a>
-                                                        </li>
+                                                        {% endif %}
                                                     </ul>
+                                                    {% endif %}
                                                 </nav>
                                             </main>
                                             <!-- col.// -->

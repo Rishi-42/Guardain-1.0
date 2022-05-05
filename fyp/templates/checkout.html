@@ -1,0 +1,132 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+{% block start %}
+
+
+<section class="section-content padding-y bg">
+<div class="container">
+
+<!-- ============================ COMPONENT 1 ================================= -->
+
+<div class="row">
+	<aside class="col-lg-6">
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title mb-4">Billing Address</h4>
+    <form action="{% url 'place_order' %}" method="POST">
+      {% csrf_token %}
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">First Name</label>
+          <input type="text" name="first_name" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">Last Name</label>
+          <input type="text" name="last_name" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">Email</label>
+          <input type="email" name="email" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">Phone Number</label>
+          <input type="text" name="phone" class="form-control" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">Address</label>
+          <input type="text" name="address" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">Province</label>
+          <input type="text" name="province" class="form-control">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="col form-group">
+          <label for="">City</label>
+          <input type="text" name="city" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">Street</label>
+          <input type="text" name="street" class="form-control" required>
+        </div>
+        <div class="col form-group">
+          <label for="">Building</label>
+          <input type="text" name="building" class="form-control" required>
+        </div>
+        </div>
+
+
+  </div>
+</div> <!-- card.// -->
+
+	</aside> <!-- col.// -->
+	<aside class="col-lg-6">
+
+		<div class="card">
+		<div class="card-body">
+     
+
+<table class="table table table-shopping-cart">
+                <thead class="text-left">
+                    <tr class="small text-uppercase">
+                        <th scope="col">Product</th>
+                        <th scope="col" width="120">Price</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for cart_item in cart_items %}
+                    <tr>
+                        <td>
+                            <figure class="itemside align-items-center">
+                                <div class="aside">
+                                    <img src="{{ cart_item.product.image.url }}" class="img-sm">
+                                </div>
+                                <figcaption class="info">
+                                    <a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.product_name }}</a>
+                                    <p class="text small">
+                                        Quantity: {{ cart_item.quantity }}
+                                    </p>
+                                </figcaption>
+                            </figure>
+                        </td>
+                        <td>
+                            <div class="price-wrap">
+                                <var class="price">Rs: {{ cart_item.sub_total }}</var>
+                                <p class="text small">
+                                    Rs: {{ cart_item.product.cost }} each
+                                </p>
+                                {% comment %} <small class="text-muted">$315.20 each</small> {% endcomment %}
+                            </div>
+                            <!-- price-wrap .// -->
+                        </td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+      <button type="submit" name="submit" class="btn btn-primary btn-block">Place Order</button>
+			<a href="{% url 'cities' %}" class="btn btn-light btn-block">Continue Shopping</a>
+      </form>
+		</div> <!-- card-body.// -->
+		</div> <!-- card.// -->
+
+
+</aside> <!-- col.// -->
+
+
+</div> <!-- row.// -->
+
+<!-- ============================ COMPONENT 1 END .// ================================= -->
+
+</div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->
+
+{% endblock %}

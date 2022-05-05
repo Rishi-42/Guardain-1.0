@@ -3,6 +3,7 @@ from account.models import PharmacistDetail
 from .healer import *
 from django.urls import reverse
 
+
 class Add_product(models.Model):
     product_name = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, null = True, blank = True)
@@ -42,5 +43,4 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category_name
-
 

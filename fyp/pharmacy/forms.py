@@ -1,6 +1,8 @@
 from django import forms
 from .models import Add_product
 
+
+
 class AddProductForm(forms.ModelForm):
     contraindiction = forms.CharField(widget=forms.Textarea(attrs={'rows': '3', 'cols': '50'}))
     indiction = forms.CharField(widget=forms.Textarea(attrs={'rows': '3', 'cols': '50'}))
@@ -26,3 +28,4 @@ class AddProductForm(forms.ModelForm):
         self.fields['indiction'].widget.attrs.update({'class': 'form-control'})
         self.fields['special_precautions'].widget.attrs.update({'class': 'form-control'})
         self.fields['adverse_effect'].widget.attrs.update({'class': 'form-control'})
+

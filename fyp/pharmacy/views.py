@@ -83,3 +83,4 @@ def update(request, id):
         'form': form,
     }
     return render(request, 'pharmacy/edit.html', context)
+

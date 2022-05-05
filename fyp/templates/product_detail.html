@@ -1,84 +1,84 @@
 {% extends "base2.html" %}
-
 {% block start %}
-<section class="section-content padding-y bg">
-<div class="container">
-
-<!-- ============================ COMPONENT 1 ================================= -->
-<div class="card">
-	<div class="row no-gutters">
-		<aside class="col-md-6">
-<article class="gallery-wrap"> 
-	<div class="img-big-wrap">
-	   <a href="#"><img src="{{ single_product.image.url }}"></a>
-	</div> <!-- img-big-wrap.// -->
-	
-</article> <!-- gallery-wrap .end// -->
-		</aside>
-		<main class="col-md-6 border-left">
-<article class="content-body">
-
-<h2 class="title">{{ single_product.product_name }}</h2>
-
-<div class="mb-3"> 
-	<var class="price h4">Rs: {{ single_product.cost }}/-</var> 
-</div> 
-
-<p>{{ single_product.description}}</p>
-
-
-<hr>
-<div class="row">
-	<div class="item-option-select">
-		<h6>Dose</h6>
-		<h7>{{ single_product.dose_child }}</h7>
-	</div>
-</div>
-	<div class="row">
-		<div class="item-option-select">
-			<h6>Drugs Type</h6>
-			<div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-			  <label class="btn btn-light">
-			    <input type="radio" name="radio_color"> Low
-			  </label>
-			  <label class="btn btn-light active">
-			    <input type="radio" name="radio_color" > High
-			  </label>
-			</div> 
-		</div>
-	</div> <!-- row.// -->
-	<div class="row">
-		<div class="item-option-select">
-			<h6>Side Effects</h6>
-			<ul>
-				<li>side effects 1</li>
-				<li>side effects 1</li>
-				<li>side effects 1</li>
-			  </ul>
-		</div>
-	</div> <!-- row.// -->
-	<hr>
-	{% if in_cart %}
-		<a href="#" class="btn  btn-warning"> <span class="text">Added to cart</span> <i class="bx bx-check"></i>  </a>
-		<a href="{% url 'cart' %}" class="btn  btn-primary"> <span class="text">View Cart</span> <i class='bx bx-cart-download' ></i>  </a>
-	
-		{% else %}
-		<a href="{% url 'add_cart' single_product.id %}" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="bx bx-cart"></i>  </a>
-	
-	{% endif %}
-
-</article> <!-- product-info-aside .// -->
-		</main> <!-- col.// -->
-	</div> <!-- row.// -->
-</div> <!-- card.// -->
-<!-- ============================ COMPONENT 1 END .// ================================= -->
-
-<br>
-<!-- row.// -->
-
-
-</div> <!-- container .//  -->
-</section>
-<!-- ========================= SECTION CONTENT END// ========================= -->
-
-{% endblock %}
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <!-- ============================ COMPONENT 1 ================================= -->
+            <div class="card">
+                <div class="row no-gutters">
+                    <aside class="col-md-6">
+                        <article class="gallery-wrap">
+                            <div class="img-big-wrap">
+                                <a href="#">
+                                    <img src="{{ single_product.image.url }}">
+                                </a>
+                            </div>
+                            <!-- img-big-wrap.// -->
+                            </article> <!-- gallery-wrap .end// -->
+                        </aside>
+                        <main class="col-md-6 border-left">
+                            <article class="content-body">
+                                <h2 class="title">{{ single_product.product_name }}</h2>
+                                <div class="mb-3">
+                                    <var class="price h4">Rs: {{ single_product.cost }}/-</var>
+                                </div>
+                                <p>
+                                    {{ single_product.description }}
+                                </p>
+                                <hr>
+                                <div class="row">
+                                    <div class="item-option-select">
+                                        <h6>Dose</h6>
+                                        <h7>
+                                        {{ single_product.dose_child }}
+                                        </h7>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="item-option-select">
+                                        <h6>Drugs Type</h6>
+                                        <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-light">
+                                                <input type="radio" name="radio_color">
+                                                Low
+                                            </label>
+                                            <label class="btn btn-light active">
+                                                <input type="radio" name="radio_color">
+                                                High
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- row.// -->
+                                <div class="row">
+                                    <div class="item-option-select">
+                                        <h6>Side Effects</h6>
+                                        <ul>
+                                            <li>side effects 1</li>
+                                            <li>side effects 1</li>
+                                            <li>side effects 1</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- row.// -->
+                                <hr>
+                                {% if in_cart %}
+                                    <a href="#" class="btn  btn-warning"> <span class="text">Added to cart</span> <i class="bx bx-check"></i>  </a>
+                                    <a href="{% url 'cart' %}" class="btn  btn-primary"> <span class="text">View Cart</span> <i class='bx bx-cart-download'></i>  </a>
+                                {% else %}
+                                    <a href="{% url 'add_cart' single_product.id %}"
+                                       class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="bx bx-cart"></i>  </a>
+                                {% endif %}
+                                </article> <!-- product-info-aside .// -->
+                            </main>
+                            <!-- col.// -->
+                        </div>
+                        <!-- row.// -->
+                    </div>
+                    <!-- card.// -->
+                    <!-- ============================ COMPONENT 1 END .// ================================= -->
+                    <br>
+                    <!-- row.// -->
+                </div>
+                <!-- container .//  -->
+            </section>
+            {% endblock %}

@@ -1,76 +1,113 @@
-{% extends "base.html" %}
-{% load static %}}
-{%block start%}
-
-                <header class="banner flex items-center">
-                    <div class="banner-image">
-                        
-                    </div>
-                </header>
-                <section class="about-G" id="about">
-                    <div class="container">
-                        
-                        <div class="about-G-wrap flex">
-                            {% comment %} {% for i_pharmacy in individual_pharmacy %} {% endcomment %}
-                            <div class="flex-1">
-                                <img src="{{ individual_pharmacy.profile_image.url }}" alt="">
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <div class="card">
+                <div class="row no-gutters">
+                    <aside class="col-md-6">
+                        <article class="gallery-wrap">
+                            <div class="img-big-wrap mainImage">
+                                <center>
+                                    <img src="{{ individual_pharmacy.profile_image.url }}">
+                                </center>
                             </div>
-
-                            <div class="flex-1">
-                                <h2>{{individual_pharmacy.pharmacy_name}}</h2>
+                            <!-- img-big-wrap.// -->
+                            </article> <!-- gallery-wrap .end// -->
+                        </aside>
+                        <main class="col-md-6 border-left">
+                            <article class="content-body">
+                                <h2 class="title">{{ individual_pharmacy.pharmacy_name }}</h2>
+                                <div class="mb-3">
+                                    <var class="price h4">{{ individual_pharmacy.city.district }}, {{ individual_pharmacy.city }}</var>
+                                </div>
                                 <p>
-                                <span>OGRM: <strong>099312312</strong></span><br>
-                                <span>INN : <strong>099312312</strong></span><br>
-                                <span>Working Hour : <strong>{{individual_pharmacy.work_start}} to {{individual_pharmacy.work_end}}</strong></span><br>
-                                <span>Working Days : <strong>Sun, Mon, Tue, Wen, Thu, Fri</strong></span><br>
-                                <span>Cell Phone number : <strong>{{individual_pharmacy.phone_no}}</strong></span><br>
-                                <span>Email : <strong>{{individual_pharmacy.pharmacy_email}}</strong></span><br>
-                                
-                            
-                            </p>
-                            <h4>Description </h4>
-                                <p>{{individual_pharmacy.description}}</p>
-
-                            {% comment %} {% endfor %} {% endcomment %}
-                                    <div class="text-center btn-wrapper">
-                                        <a href="{% url 'all_product'  individual_pharmacy.id %}"> <button class="btn btn-secondary">Store</button></a>
-                                    </div>
-                            </div>
-                            
+                                    {{ individual_pharmacy.description }}
+                                </p>
+                                <hr>
+                                <div class="row">
+                                  
+                                    <div class="item-option-select">
+                                        <h6>Registered By: {{ individual_pharmacy.user_id.first_name }} {{ individual_pharmacy.user_id.last_name }}</h6>
+                                        <h6>Email: {{ individual_pharmacy.phone_no }}</h6>
+                                        <h6>Email: {{ individual_pharmacy.pharmacy_email }}</h6>
+                                        <h6>Working Time: {{ individual_pharmacy.work_start }} AM to {{ individual_pharmacy.work_end }} PM</h6>
+                                </div>
+                              
+                                </div>
+                                <a href="{% url 'all_product'  individual_pharmacy.id %}">
+                                    <button class="btn btn-secondary">Store</button>
+                                </a>
+                                </article> <!-- product-info-aside .// -->
+                            </main>
+                            <!-- col.// -->
+                        </div>
+                        <!-- row.// -->
+                    </div>
+                    <!-- card.// -->
+                    <!-- ============================ COMPONENT 1 END .// ================================= -->
+                    <br>
+                </div>
+                <!-- container .//  -->
+            </section>
+            <!-- ========================= SECTION CONTENT END// ========================= -->
+            <section class="our-services">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+                            <form action="{% url 'submit_review' individual_pharmacy.id %}" method="POST">
+                                {% csrf_token %}
+                                <h5>Write Your Review</h5>
+                                <div>
+                                    <br>
+                                    Review Title:
+                                    <input type="text" class="form-control" name="subject">
+                                    <br>
+                                    Review:
+                                    <textarea name="review" rows="4" class="form-control"></textarea>
+                                    <br>
+                                    {% if user.is_authenticated %}
+                                        <input type="submit" value="Submit Review" class="btn btn-primary">
+                                    {% else %}
+                                        <p>
+                                            You must be logged in to post a review. <span><a href="{% url 'login' %}">Login now</a></span>
+                                        </p>
+                                    {% endif %}
+                                </div>
+                                {% include 'includes/alerts.html' %}
+                            </form>
                         </div>
                     </div>
-                </section>
-
-
-                <section class="our-services">
-                    <div class="container">
-                        <h1 class="section-heading">Our services</h1>
-                        <div class="card-wrapper flex">
-                            <div class="service-card magic-shadow-sm">
-                                <!-- <img class="icon" src="../icons/transport.svg" alt=""> -->
-                                <h2 class="text-primary">Place your medicine Orders</h2>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                
-                            </div>
-                            <div class="service-card magic-shadow-sm">
-                                <!-- <img class="icon" src="../icons/bag.svg" alt=""> -->
-                                <h2 class="text-primary">Get Readable Presciption</h2>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                
-                            </div>
-                            <div class="service-card magic-shadow-sm">
-                                <!-- <img class="icon" src="../icons/usd.svg" alt=""> -->
-                                <h2 class="text-primary">Contact Near by Pharmacy</h2>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                
-                            </div>
-                            <div class="service-card magic-shadow-sm">
-                                <!-- <img class="icon" src="../icons/usd.svg" alt=""> -->
-                                <h2 class="text-primary">Reserve therapy sessions</h2>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                
+                </div>
+            </section>
+            <br>
+            <section class="our-services">
+                <div class="container">
+            
+            <div class="card">
+                <div class="card-body">
+                    <h5>Reviews</h5>
+                    <div>
+                        <br>
+                        {% for review in reviews %}
+                        <div class="card">
+                            <div class="card-body">
+                                <h5>{{ review.subject }}</h5>
+                                <div>
+                                    <br>
+                                    {{ review.review }}
+                                    <br>
+                                    <h6>{{ review.user_id.first_name }} {{ review.user_id.last_name }}</h6>
+                                    <h6>{{ review.created_at }}</h6>
+                                </div>
                             </div>
                         </div>
+                        <br>
+                        {% endfor %}
                     </div>
-                </section>
-{% endblock %}
+                </div>
+            </div>
+            </div>
+            </section>
+            <br>
+        {% endblock %}

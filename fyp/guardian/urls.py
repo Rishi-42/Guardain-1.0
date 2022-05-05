@@ -11,6 +11,7 @@ urlpatterns = [
     path('cities', cities, name='cities'),
     path('cities/<str:city_slug>', pharmacies, name='pharmacies'),
     path('cities/<str:city_slug>/<str:pharmacy_slug>', ind_pharmacy, name='ind_pharmacy'),
+
     
     path('searchmed', searchmed, name='searchmed'),
     path('readblog', readblog, name='readblog'),

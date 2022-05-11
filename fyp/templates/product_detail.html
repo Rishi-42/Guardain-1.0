@@ -27,13 +27,12 @@
                                 <hr>
                                 <div class="row">
                                     <div class="item-option-select">
-                                        <h6>Dose</h6>
-                                        <h7>
-                                        {{ single_product.dose_child }}
-                                        </h7>
+                                        <h6>Dose for child: {{ single_product.dose_child }}</h6>
+                                        <h6>Dose for adult: {{ single_product.dose_adult }}</h6>
+                                    
                                     </div>
                                 </div>
-                                <div class="row">
+                                {% comment %} <div class="row">
                                     <div class="item-option-select">
                                         <h6>Drugs Type</h6>
                                         <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
@@ -47,17 +46,45 @@
                                             </label>
                                         </div>
                                     </div>
-                                </div>
+                                </div> {% endcomment %}
                                 <!-- row.// -->
                                 <div class="row">
                                     <div class="item-option-select">
-                                        <h6>Side Effects</h6>
+                                        <h6>Contraindications</h6>
                                         <ul>
-                                            <li>side effects 1</li>
-                                            <li>side effects 1</li>
-                                            <li>side effects 1</li>
+                                            {% for contraindiction in contraindictions %}
+                                            <li>{{contraindiction}}</li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
+                                    <div class="item-option-select">
+                                        <h6>Indications</h6>
+                                        <ul>
+                                            {% for indication in indications %}
+                                            <li>{{indication}}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="item-option-select">
+                                        <h6>After Effects</h6>
+                                        <ul>
+                                            {% for adverse_effect in adverse_effects %}
+                                            <li>{{adverse_effect}}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    
+                                    <div class="item-option-select">
+                                        <h6>Special Precaution</h6>
+                                        <ul>
+                                            {% for special_precaution in special_precautions %}
+                                            <li>{{special_precaution}}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+
                                 </div>
                                 <!-- row.// -->
                                 <hr>

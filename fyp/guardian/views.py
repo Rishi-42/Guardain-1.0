@@ -104,6 +104,20 @@ def readblog(request):
     }
     return render(request, 'readblog.html', context)
 
-
+def search(request):
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            products = Add_product.objects.order_by('-created_date').filter(Q(product_name__icontains=keyword) | Q(contraindiction__icontains=keyword) | Q(indiction__icontains=keyword) | Q(adverse_effect__icontains=keyword) | Q(special_precautions__icontains=keyword))
+            paginator = Paginator(products, 6)
+            page_number = request.GET.get('page')
+            page_obj = paginator.get_page(page_number)
+            product_count = products.count()
+    content = {
+        'products': page_obj,
+        'product_count': product_count,
+    }
+          
+    return render(request, 'medicine.html', content)
 
 

@@ -15,6 +15,7 @@ urlpatterns = [
     
     path('searchmed', searchmed, name='searchmed'),
     path('readblog', readblog, name='readblog'),
+    path('search/', search, name='search'),
 
 
 ]

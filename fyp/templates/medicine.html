@@ -1,20 +1,30 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 {% load static %}}
 {%block start%}
 
 
 
-<section class="subscribe">
-    <div class="container flex items-center">
-        <div>
-            <h1>Search</h1>
-            <p>Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</p>
-            <div class="input-wrap">
-                <input type="text" placeholder="Medicine name">
-                <button>Search</button>
-            </div>
+<section>
+    <div class="container">
+        <h2 class="text-center">Know about Medicine</h2>
+        <br>
+        <h6 class="text-center">Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</h6>
+        <div class="col-lg  col-md-6 col-sm-12 col">
+            <form action="#" class="search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search">
+                    
+                    
+                    <div class="input-group-append" >
+                      <button class="btn btn-primary" type="submit">
+                         
+                        <i class="bx bx-search"></i>
+                      </button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </section>
-
+<br>
 {%endblock%}

@@ -94,10 +94,10 @@
                             <div class="card-body">
                                 <h5>{{ review.subject }}</h5>
                                 <div>
-                                    <br>
+                                   <hr>
                                     {{ review.review }}
-                                    <br>
-                                    <h6>{{ review.user_id.first_name }} {{ review.user_id.last_name }}</h6>
+                                    <hr>
+                                    <h6>{{ review.user.first_name }} {{ review.user.last_name }}</h6>
                                     <h6>{{ review.created_at }}</h6>
                                 </div>
                             </div>

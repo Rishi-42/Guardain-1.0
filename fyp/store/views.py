@@ -45,7 +45,11 @@ def product_detail(request, pharmacy_id, category_slug, product_slug):
     try:
         single_product = Add_product.objects.get(pharmacy_name_id=pharmacy_id, slug=product_slug)
         in_cart = CartItem.objects.filter(cart__cart_id=_cart_id(request), product=single_product).exists()
-       
+        contraindictions = single_product.contraindiction.split(',')
+        indications = single_product.indiction.split(',')
+        adverse_effects = single_product.adverse_effect.split(',')
+        special_precautions = single_product.special_precautions.split(',')
+
 
     
     except Exception as e:
@@ -53,6 +57,10 @@ def product_detail(request, pharmacy_id, category_slug, product_slug):
     content = {
         'single_product': single_product,
         'in_cart': in_cart,
+        'contraindictions': contraindictions,
+        'indications': indications,
+        'adverse_effects': adverse_effects,
+        'special_precautions': special_precautions,
     }
     return render(request, 'product_detail.html', content)
 
@@ -60,18 +68,3 @@ def product_detail(request, pharmacy_id, category_slug, product_slug):
 
 
 
-def search(request):
-    if 'keyword' in request.GET:
-        keyword = request.GET['keyword']
-        if keyword:
-            products = Add_product.objects.order_by('-created_date').filter(Q(product_name__icontains=keyword) | Q(contraindiction__icontains=keyword) | Q(indiction__icontains=keyword) | Q(adverse_effect__icontains=keyword) | Q(special_precautions__icontains=keyword))
-            paginator = Paginator(products, 6)
-            page_number = request.GET.get('page')
-            page_obj = paginator.get_page(page_number)
-            product_count = products.count()
-    content = {
-        'products': page_obj,
-        'product_count': product_count,
-    }
-          
-    return render(request, 'store.html', content)

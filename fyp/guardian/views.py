@@ -7,6 +7,7 @@ from rating.models import ReviewRating
 from counsellor.models import BlogModel
 from pharmacy.models import Add_product, Category
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.db.models import Q
 
 
 
@@ -113,6 +114,7 @@ def search(request):
             page_number = request.GET.get('page')
             page_obj = paginator.get_page(page_number)
             product_count = products.count()
+    
     content = {
         'products': page_obj,
         'product_count': product_count,

@@ -10,11 +10,9 @@
         <br>
         <h6 class="text-center">Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</h6>
         <div class="col-lg  col-md-6 col-sm-12 col">
-            <form action="#" class="search">
+            <form action="{% url 'search' %}" class="search" method='GET'>
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search">
-                    
-                    
+                    <input type="text" class="form-control" placeholder="Search" name="keyword">
                     <div class="input-group-append" >
                       <button class="btn btn-primary" type="submit">
                          
@@ -27,4 +25,37 @@
     </div>
 </section>
 <br>
+<div class="container">
+    <header class="border-bottom mb-4 pb-3">
+        <div class="form-inline">
+            <span class="mr-md-auto"><strong>{{ product_count }} </strong> Items found</span>
+        </div>
+    </header>
+    <!-- sect-heading -->
+    <div class="row">
+        {% for med in products %}
+            <div class="col-md-3">
+                <figure class="card card-product-grid">
+                    <div class="img-wrap">
+                        <img src="{{ med.image.url }}">
+                    </div>
+                    <!-- img-wrap.// -->
+                    <figcaption class="info-wrap">
+                        <div class="fix-height">
+                            <a href="{{ med.get_url }}" class="title">{{ med.product_name }}</a>
+                            <div class="price-wrap mt-2">
+                                <span class="price">Rs: {{ med.cost }}/-</span>
+                                {% comment %} <del class="price-old">$1980</del> {% endcomment %}
+                            </div>
+                            <!-- price-wrap.// -->
+                        </div>
+                        {% comment %} <a href="{% url 'add_cart' med.id %}" class="btn btn-block btn-primary">Add to cart</a> {% endcomment %}
+                        <a href="{{ med.get_url }}" class="btn btn-block btn-primary">View Details</a>
+                    </figcaption>
+                </figure>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
 {%endblock%}

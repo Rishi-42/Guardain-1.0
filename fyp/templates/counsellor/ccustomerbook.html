@@ -1,0 +1,75 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <!-- ============================ COMPONENT 1 ================================= -->
+            <div class="row">
+                <aside class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="{% url 'dashboardcounsellor' %}" class="btn btn-light btn-block">Add Blog</a>
+                            <a href="{% url 'added_blog' %}" class="btn btn-light btn-block">Added Blogs</a>
+                            <a href="{% url 'cpaymentlog' %}" class="btn btn-light btn-block">Payment Logs</a>
+                            <a href="{% url 'corderlog' %}" class="btn btn-light btn-block">Order Logs</a>
+                            <a href="{% url 'ccustomerbook' %}" class="btn btn-primary btn-block">Meeting Schedules</a>
+                            <a href="{% url 'creview' %}" class="btn btn-light btn-block">Review log</a>
+                        </div>
+                    </div>
+                </aside>
+                <main class="col-lg-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Booking Log</h4>
+                            {% if meetings %}
+                             <div class="table-responsive">
+                                 <table class="table table-striped table-sm">
+                                     <thead>
+                                     <tr>
+                                         <th>#</th>
+                                         <th>Meeting Title</th>
+                                         <th>Client Name</th>
+                                         <th>Client age</th>
+                                         <th>Marital Status</th>
+                                         <th>Date</th>
+                                         <th>Time</th>
+                                         <th>Status</th>
+                                     </tr>
+                                     </thead>
+                                     <tbody>
+                                     {% for meeting in meetings %}
+                                         <tr>
+                                             <td>{{ meeting.id }}</td>
+                                             <td>{{ meeting.meeting_title }}</td>
+                                             <td>{{ meeting.client_details.first_name }} {{meeting.client_details.last_name}}</td>
+                                             <td>{{ meeting.client_age }}</td>
+                                                <td>{{ meeting.marital_status }}</td>
+                                             
+                                             <td>{{ meeting.meeting_date }}</td>
+                                             <td>{{ meeting.meeting_time }}</td>
+                                             {% if meeting.meeting_date == today%}
+                                             <td>Today</td>
+                                             {% elif meeting.meeting_date < today%}
+                                             <td>Completed</td>
+                                             {% else %}
+                                             <td>Pending</td>
+                                             {% endif %}
+ 
+                                         </tr>
+                                     {% endfor %}
+                                     </tbody>
+                                 </table>
+                             </div>
+                             {% else %}
+                             <div class="alert alert-warning">
+                                 <strong>No meeting log found!</strong>
+ 
+                         </div>
+                             {% endif %}
+                         </div>
+                     </div>
+ 
+                </div>
+            </div>
+        </section>
+    {% endblock %}

@@ -11,6 +11,20 @@
     <!-- ============================ COMPONENT 1 ================================= -->
     
     <div class="row">
+        <aside class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <a href="{% url 'dashboardcounsellor' %}" class="btn btn-light btn-block">Add Blog</a>
+                            <a href="{% url 'added_blog' %}" class="btn btn-primary btn-block">Added Blogs</a>
+                            <a href="{% url 'cpaymentlog' %}" class="btn btn-light btn-block">Payment Logs</a>
+                            <a href="{% url 'corderlog' %}" class="btn btn-light btn-block">Order Logs</a>
+                            <a href="{% url 'ccustomerbook' %}" class="btn btn-light btn-block">Meeting Schedules</a>
+                            <a href="{% url 'creview' %}" class="btn btn-light btn-block">Review log</a>
+
+                </div>
+            </div>
+    
+    </aside>
         <aside class="col-lg-9">
     <div class="card">
     <table class="table table table-shopping-cart" >
@@ -56,22 +70,7 @@
     </div> <!-- card.// -->
     
         </aside> <!-- col.// -->
-        <aside class="col-lg-3">
-    
-            <div class="card">
-            <div class="card-body">
-                <dl class="dlist-align">
-                  <dt>Total Blogs:</dt>
-                  <dd class="text-right text-dark b">4</dd>
-                </dl>
-          
-                <hr>
-                <a href="./place-order.html" class="btn btn-primary btn-block"> Go to Dashboard </a>
-                <a href="./store.html" class="btn btn-light btn-block">Add Blog</a>
-            </div> <!-- card-body.// -->
-            </div> <!-- card.// -->
-    
-    </aside> <!-- col.// -->
+         <!-- col.// -->
     
     
     </div> <!-- row.// -->

@@ -172,8 +172,6 @@ def counsellorregister(request):
         # get data from account mode
         form = RegistrationFormCounsellor(request.POST, request.FILES)
         form_add = Address_form(request.POST)
-        print(form.is_valid())
-        print(form_add.is_valid())
         if form.is_valid() and form_add.is_valid():
             counsellor_name = form.cleaned_data['counsellor_name']
             # profile_image=request.FILES['profile_image']

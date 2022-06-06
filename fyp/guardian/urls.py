@@ -16,7 +16,10 @@ urlpatterns = [
     path('searchmed', searchmed, name='searchmed'),
     path('readblog', readblog, name='readblog'),
     path('search/', search, name='search'),
-
+    path('dashboardcustomer', dashboardcustomer, name='dashboardcustomer'),
+    path('customerbook', customerbook, name='customerbook'),
+    path('customerreviewed', customerreviewed, name='customerreviewed'),
+    path('paymentlog', paymentlog, name='paymentlog'),
 
 ]
 

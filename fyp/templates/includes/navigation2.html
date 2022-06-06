@@ -1,53 +1,84 @@
 {% load static %}
-
-	<header class="topbar">
-		<div class="container flex justify-between items-center">
-			<div class="icons">
-				<p>Email: test@example.com | Phone: +18-000 000 00</p>
-
-			</div>
-			{% if user.id is not None %}
-			<div class="auth flex items-center">
+<header class="topbar">
+    <div class="container flex justify-between items-center">
+        <div class="icons">
+            <p>
+                Email: rishi.shrestha101@gmail.com | Phone: +977-981 050 3538
+            </p>
+        </div>
+        {% if user.id is not None %}
+            <div class="auth flex items-center">
                 <div>
                     <img src="{% static 'icons/user-icon.svg' %}" alt="">
-                    <a  href="#"><button > {{user.first_name}} {{user.last_name}}</button></a>
+                    {% if user.user_type == "pharmacist" %}
+                        <a href="{% url 'dashboardpharmacist' %}">
+                            <button >{{ user.first_name }} {{ user.last_name }}</button>
+                        </a>
+                    {% elif user.user_type == "counsellor" %}
+                        <a href="{% url 'dashboardcounsellor' %}">
+                            <button >{{ user.first_name }} {{ user.last_name }}</button>
+                        </a>
+                    {% elif user.user_type == "customer" %}
+                        <a href="{% url 'dashboardcustomer' %}">
+                            <button >{{ user.first_name }} {{ user.last_name }}</button>
+                        </a>
+                    {% endif %}
                 </div>
                 <span class="divider">|</span>
                 <div>
                     <img src="{% static 'icons/edit.svg' %}" alt="">
-                    <a href="{% url 'logout' %}"  ><button>Logout</button></a>
+                    <a href="{% url 'logout' %}">
+                        <button>Logout</button>
+                    </a>
                 </div>
-
-			</div
-
-			{% else %}
-			<div class="auth flex items-center">
+            </div
+        {% else %}
+            <div class="auth flex items-center">
                 <div>
                     <img src="{% static 'icons/user-icon.svg' %}" alt="">
-                    <a  href="{% url 'login' %}"><button > Log In</button></a>
+                    <a href="{% url 'login' %}">
+                        <button >Log In</button>
+                    </a>
                 </div>
                 <span class="divider">|</span>
                 <div>
                     <img src="{% static 'icons/edit.svg' %}" alt="">
-                    <a href="{% url 'register' %}"  ><button>Register</button></a>
+                    <a href="{% url 'register' %}">
+                        <button>Register</button>
+                    </a>
                 </div>
-
-			</div>
-			{% endif %}
-		</div>
-	</header>
+            </div>
+        {% endif %}
+    </div>
+</header>
 <nav style="margin-top: 0px!important;">
-	<div class="navbar magic-shadow" style="padding: 0rem!important;">
-		<div class="container flex justify-content-center">
-			<a href="{% url 'home' %}">Home</a>
-			<!-- <a href="product.html" >Products</a> -->
-			<a href="{% url 'cities' %}">Pharmacy</a>
-			<a href="{% url 'counselor' %}">Councellor</a>
-			<a href="{% url 'searchmed' %}">Medicine</a>
-			<a href="{% url 'blogs' %}">Blog</a>
-		</div>
-	</div>
-</nav> <br>
-
-
+    <div class="navbar magic-shadow" style="padding: 0rem!important;">
+        <div class="container flex justify-content-center">
+            {% if user.user_type == "pharmacist" %}
+                            <a href="{% url 'dashboardpharmacist' %}">Home</a>
+                        {% elif user.user_type == "counsellor" %}
+                            <a href="{% url 'dashboardcounsellor' %}">Home</a>
+                        {% elif user.user_type == "customer" %}
+                            <a href="{% url 'dashboardcustomer' %}">Home</a>
+                        {% else %}
+                            <a href="{% url 'home' %}">Home</a>
+                        {% endif %}
+            <!-- <a href="product.html">Products</a> -->
+            {% if user.user_type != "pharmacist" %}
+                <a href="{% url 'cities' %}">Pharmacy</a>
+            {% endif %}
+            {% if user.user_type != "counsellor" %}
+                <a href="{% url 'counselor' %}">Councellor</a>
+            {% endif %}
+            {% if user.user_type != "pharmacist" %}
+                <a href="{% url 'searchmed' %}">Medicine</a>
+            {% endif %}
+            <a href="{% url 'blogs' %}">Blog</a>
+            {% if user.id is not None %}
+            <a href="{% url 'uploadprescription' %}">Share Prescription</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+<br>
 </header>

@@ -1,0 +1,59 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <!-- ============================ COMPONENT 1 ================================= -->
+            <div class="row">
+                <aside class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="{% url 'dashboardcustomer' %}"
+                               class="btn btn-light btn-block">Order Log</a>
+                            <a href="{% url 'paymentlog' %}" class="btn btn-primary btn-block">Payment Log</a>
+                            <a href="{% url 'customerbook' %}" class="btn btn-light btn-block">Booking Log</a>
+                            <a href="{% url 'customerreviewed' %}" class="btn btn-light btn-block">Review Log</a>
+                        </div>
+                    </div>
+                </aside>
+                <main class="col-lg-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Payment log</h4>
+                            {% if payments%}
+                            <div class="table-responsive">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Payment Method</th>
+                                            <th>Amount</th>
+                                            <th>Date</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for payment in payments %}
+                                            <tr>
+                                                <td>{{ payment.payment_id }}</td>
+                                                <td>{{ payment.payment_method }}</td>
+                                                <td>{{ payment.payment_amount }}</td>
+                                                <td>{{ payment.created_at }}</td>
+                                                <td>{{ payment.status }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <div class="alert alert-warning">
+                                <strong>No payment logs found!</strong>
+
+                        </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock %}

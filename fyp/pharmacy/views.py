@@ -1,10 +1,12 @@
+from logging import currentframe
 from django.shortcuts import render, redirect
 from account.models import PharmacistDetail, Account
 from pharmacy.forms import AddProductForm
 from pharmacy.models import Add_product
 from django.contrib import messages
-
-
+from booking.models import Meeting
+from rating.models import ReviewRating
+from orders.models import OrderProduct
 
 # Create your views here.
 def dashboardpharmacist(request):
@@ -84,3 +86,40 @@ def update(request, id):
     }
     return render(request, 'pharmacy/edit.html', context)
 
+def pbooked(request):
+    current_user = request.user
+    meetings = Meeting.objects.filter(client_details=current_user)
+    from datetime import date
+    today = date.today()
+    context = {
+        'meetings' : meetings,
+        'today' : today,
+    }
+    return render(request, 'pharmacy/pbooked.html', context)
+
+def pordered(request):
+    current_user = request.user
+    pharmacy_name = PharmacistDetail.objects.get(user_id=current_user).id
+    ordered_products = OrderProduct.objects.filter(pharmacy=pharmacy_name)
+    print(ordered_products)
+    context = {
+        'ordered_products' : ordered_products,
+    }
+    return render(request, 'pharmacy/pordered.html', context)
+
+def reviewed(request):
+    current_user = request.user
+    pharmacy_name = PharmacistDetail.objects.get(user_id=current_user).id
+    print(current_user)
+    reviews = ReviewRating.objects.filter(pharmacy=pharmacy_name)
+    context = {
+        'reviews' : reviews,
+    }
+    return render(request, 'pharmacy/reviewed.html', context)
+
+def reviewdetail(request, id):
+    review = ReviewRating.objects.get(id=id)
+    context = {
+        'review' : review,
+    }
+    return render(request, 'pharmacy/reviewdetail.html', context)

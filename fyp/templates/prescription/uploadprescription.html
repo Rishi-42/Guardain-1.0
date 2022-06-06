@@ -1,0 +1,47 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+
+                
+        <section class="section-content padding-y">
+            <div class="card mx-auto" style="max-width:520px; margin-top:40px;">
+              <article class="card-body">
+                <header class="mb-4"><h4 class="card-title text-center">Upload prescription</h4></header>
+                <form action="{% url 'uploadprescription' %}" method="POST" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                       
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>Name</label>
+                                  {{form.name}}
+                            </div>
+                            <div class="col form-group">
+                                <label>Age</label>
+                                  {{form.age}}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Prescription Image</label>
+                            {{form.prescription}}
+                        </div>
+                        
+                          <div class="form-row">
+                            <div class="col form-group">
+                                <label>Prescripted by </label>
+                            {{form.prescripted_by}}
+                            </div>
+                            <div class="col form-group">
+                                <label>prescripted_for</label>
+                                  {{form.prescripted_for}}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block"> Upload Prescription  </button>
+                        </div>
+                    </form>
+                </article>
+            </div>    
+        </section>
+
+    {% endblock %}

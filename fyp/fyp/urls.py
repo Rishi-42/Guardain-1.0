@@ -18,4 +18,5 @@ urlpatterns = [
     path('booking/', include('booking.urls')),
     path('orders/', include('orders.urls')),
     path('orders/', include('rating.urls')),
+    path('prescription/' , include('prescription.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

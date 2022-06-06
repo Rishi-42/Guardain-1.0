@@ -3,6 +3,9 @@ from django.contrib import messages
 from account.models import CounsellorDetail, Account
 from .forms import BlogForm
 from .models import BlogModel
+from orders.models import Order, Payment
+from booking.models import Meeting
+from rating.models import ReviewRating
 
 # def add_blog(request):
 #     context = {'form' : BlogForm}
@@ -76,3 +79,38 @@ def added_blog(request):
     }
     return render(request, 'counsellor/added_blogs.html', context)
 
+def cpaymentlog(request):
+    current_user = request.user
+    payments = Payment.objects.filter(user=current_user)
+    context = {
+        'payments' : payments,
+    }
+    return render(request, 'counsellor/cpaymentlog.html', context)
+
+def ccustomerbook(request):
+    current_user = request.user
+    meetings = Meeting.objects.filter(counsellor_details=current_user)
+    print(meetings)
+    from datetime import date
+    today = date.today()
+    context = {
+        'meetings' : meetings,
+        'today' : today,
+    }
+    return render(request, 'counsellor/ccustomerbook.html', context)
+
+def corderlog(request):
+    current_user = request.user
+    orders = Order.objects.filter(user=current_user)
+    context = {
+        'orders' : orders,
+    }
+    return render(request, 'counsellor/corderlog.html', context)
+
+def creview(request):
+    current_user = request.user
+    reviews = ReviewRating.objects.filter(user=current_user)
+    context = {
+        'reviews' : reviews,
+    }
+    return render(request, 'counsellor/creview.html', context)

@@ -1,0 +1,70 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <!-- ============================ COMPONENT 1 ================================= -->
+            <div class="row">
+                <aside class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="{% url 'dashboardpharmacist' %}"
+                               class="btn btn-light btn-block">Add Products</a>
+                            <a href="{% url 'added_product' %}" class="btn btn-light btn-block">Added Products</a>
+                            <a href="{% url 'pbooked' %}" class="btn btn-primary btn-block">Booking Log</a>
+                            <a href="{% url 'pordered' %}" class="btn btn-light btn-block">Ordered Log</a>
+                            <a href="{% url 'reviewed' %}" class="btn btn-light btn-block">Reviewed Log</a>
+                        </div>
+                    </div>
+                </aside>
+                <main class="col-lg-9">
+                    <div class="card">
+                        <div class="card-body">
+                           <h4 class="card-title mb-4">Booking Log</h4>
+                           {% if meetings %}
+                            <div class="table-responsive">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Meeting Title</th>
+                                        <th>Counsellor Name</th>
+                                        <th>Date</th>
+                                        <th>Time</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for meeting in meetings %}
+                                        <tr>
+                                            <td>{{ meeting.id }}</td>
+                                            <td>{{ meeting.meeting_title }}</td>
+                                            <td>{{ meeting.counsellor_details.first_name }} {{meeting.counsellor_details.last_name}}</td>
+                                            <td>{{ meeting.meeting_date }}</td>
+                                            <td>{{ meeting.meeting_time }}</td>
+                                            {% if meeting.meeting_date == today%}
+                                            <td>Today</td>
+                                            {% elif meeting.meeting_date < today%}
+                                            <td>Completed</td>
+                                            {% else %}
+                                            <td>Pending</td>
+                                            {% endif %}
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <div class="alert alert-warning">
+                                <strong>No meeting log found!</strong>
+
+                        </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

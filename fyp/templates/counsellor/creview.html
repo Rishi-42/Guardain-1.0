@@ -1,0 +1,61 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <!-- ============================ COMPONENT 1 ================================= -->
+            <div class="row">
+                <aside class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="{% url 'dashboardcounsellor' %}" class="btn btn-light btn-block">Add Blog</a>
+                            <a href="{% url 'added_blog' %}" class="btn btn-light btn-block">Added Blogs</a>
+                            <a href="{% url 'cpaymentlog' %}" class="btn btn-primary btn-block">Payment Log</a>
+                            <a href="{% url 'corderlog' %}" class="btn btn-light btn-block">Order Log</a>
+                            <a href="{% url 'ccustomerbook' %}" class="btn btn-light btn-block">Meeting Schedules</a>
+                            <a href="{% url 'creview' %}" class="btn btn-primary btn-block">Review log</a>
+                        </div>
+                    </div>
+                </aside>
+                <main class="col-lg-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Review log</h4>
+                            {% if reviews %}
+                            <div class="table-responsive">
+                                <table class="table table-striped table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Subject</th>
+                                        
+                                        <th>Date</th>
+                                        <th>To</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for review in reviews %}
+                                        <tr>
+                                            <td>{{review.id}}</td>
+                                            <td>{{review.subject}}</td>
+                                           
+                                            <td>{{review.created_at}}</td>
+                                            <td>{{review.pharmacy.pharmacy_name}}</td>
+                                            
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% else %}
+                            <div class="alert alert-warning">
+                                <strong>No review found!</strong>
+
+                        </div>
+                        {% endif %}
+                    </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

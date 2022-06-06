@@ -8,6 +8,8 @@ from counsellor.models import BlogModel
 from pharmacy.models import Add_product, Category
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models import Q
+from orders.models import Order, Payment
+from booking.models import Meeting
 
 
 
@@ -123,3 +125,38 @@ def search(request):
     return render(request, 'medicine.html', content)
 
 
+def dashboardcustomer(request):
+    current_user = request.user
+    orders = Order.objects.filter(user=current_user)
+    context = {
+        'orders' : orders,
+    }
+
+    return render(request, 'dashboardcustomer.html', context)
+
+def customerbook(request):
+    current_user = request.user
+    meetings = Meeting.objects.filter(client_details=current_user)
+    from datetime import date
+    today = date.today()
+    context = {
+        'meetings' : meetings,
+        'today' : today,
+    }
+    return render(request, 'customerbook.html', context)
+
+def customerreviewed(request):
+    current_user = request.user
+    reviews = ReviewRating.objects.filter(user=current_user)
+    context = {
+        'reviews' : reviews,
+    }
+    return render(request, 'customerreviewed.html', context)
+
+def paymentlog(request):
+    current_user = request.user
+    payments = Payment.objects.filter(user=current_user)
+    context = {
+        'payments' : payments,
+    }
+    return render(request, 'paymentlog.html', context)

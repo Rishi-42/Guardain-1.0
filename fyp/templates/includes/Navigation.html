@@ -1,60 +1,94 @@
 {% load static %}
-
-    <div class="main-wrapper">
-        
-        <div class="site-content-wrapper">
-            <div class="nav-trigger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bar-chart">
-                    <line x1="12" y1="20" x2="12" y2="10" />
-                    <line x1="18" y1="20" x2="18" y2="4" />
-                    <line x1="6" y1="20" x2="6" y2="16" /></svg>
-            </div>
-            <div class="site-content">
-                <header class="topbar">
-                    <div class="container flex justify-between items-center">
-                        <div class="icons">
-                            <p>Email: test@example.com | Phone: +18-000 000 00</p>
-
-                        </div>
-                        {% if user.id is not None %}
+<div class="main-wrapper">
+    <div class="site-content-wrapper">
+        <div class="nav-trigger">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 width="24"
+                 height="24"
+                 viewBox="0 0 24 24"
+                 fill="none"
+                 stroke="currentColor"
+                 stroke-width="2"
+                 stroke-linecap="round"
+                 stroke-linejoin="round"
+                 class="feather feather-bar-chart">
+                <line x1="12" y1="20" x2="12" y2="10" />
+                <line x1="18" y1="20" x2="18" y2="4" />
+                <line x1="6" y1="20" x2="6" y2="16" />
+            </svg>
+        </div>
+        <div class="site-content">
+            <header class="topbar">
+                <div class="container flex justify-between items-center">
+                    <div class="icons">
+                        <p>
+                            Email: rishi.shrestha101@gmail.com | Phone: +977-981 050 3538
+                        </p>
+                    </div>
+                    {% if user.id is not None %}
                         <div class="auth flex items-center">
                             <div>
                                 <img src="{% static 'icons/user-icon.svg' %}" alt="">
-                                <a style="text-decoration:none !important; color:white" href="#">{{user.first_name}} {{user.last_name}}</a>
+                                {% if user.user_type == "pharmacist" %}
+                                    <a style="text-decoration:none !important; color:white"
+                                       href="{% url 'dashboardpharmacist' %}">{{ user.first_name }} {{ user.last_name }}</a>
+                                {% elif user.user_type == "counsellor" %}
+                                    <a style="text-decoration:none !important; color:white"
+                                       href="{% url 'dashboardcounsellor' %}">{{ user.first_name }} {{ user.last_name }}</a>
+                                {% elif user.user_type == "customer" %}
+                                    <a style="text-decoration:none !important; color:white" href="{% url 'dashboardcustomer' %}">{{ user.first_name }} {{ user.last_name }}</a>
+                                {% endif %}
                             </div>
                             <span class="divider">|</span>
                             <div>
                                 <img src="{% static 'icons/edit.svg' %}" alt="">
-                                <a style="text-decoration:none !important; color:white" href="{% url 'logout' %}">Logout</a>
+                                <a style="text-decoration:none !important; color:white"
+                                   href="{% url 'logout' %}">Logout</a>
                             </div>
-
                         </div>
+                    {% else %}
+                        <div class="auth flex items-center">
+                            <div>
+                                <img src="{% static 'icons/user-icon.svg' %}" alt="">
+                                <a style="text-decoration:none !important; color:white"
+                                   href="{% url 'login' %}">Log in</a>
+                            </div>
+                            <span class="divider">|</span>
+                            <div>
+                                <img src="{% static 'icons/edit.svg' %}" alt="">
+                                <a style="text-decoration:none !important; color:white"
+                                   href="{% url 'register' %}">Register Now</a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </header>
+            <nav>
+                <div class="navbar magic-shadow">
+                    <div class="container flex justify-center">
+                        {% if user.user_type == "pharmacist" %}
+                            <a href="{% url 'dashboardpharmacist' %}">Home</a>
+                        {% elif user.user_type == "counsellor" %}
+                            <a href="{% url 'dashboardcounsellor' %}">Home</a>
+                        {% elif user.user_type == "customer" %}
+                            <a href="{% url 'dashboardcustomer' %}">Home</a>
                         {% else %}
-                        <div class="auth flex items-center">
-                            <div>
-                                <img src="{% static 'icons/user-icon.svg' %}" alt="">
-                                <a style="text-decoration:none !important; color:white" href="{% url 'login' %}">Log in</a>
-                            </div>
-                            <span class="divider">|</span>
-                            <div>
-                                <img src="{% static 'icons/edit.svg' %}" alt="">
-                                <a style="text-decoration:none !important; color:white" href="{% url 'register' %}">Register Now</a>
-                            </div>
-
-                        </div>
-                        {% endif %}
-                    </div>
-                </header>
-
-                <nav>
-                    <div class="navbar magic-shadow">
-                        <div class="container flex justify-center">
                             <a href="{% url 'home' %}">Home</a>
-                            <!-- <a href="product.html" >Products</a> -->
+                        {% endif %}
+                        <!-- <a href="product.html">Products</a> -->
+                        {% if user.user_type != "pharmacist" %}
                             <a href="{% url 'cities' %}">Pharmacy</a>
+                        {% endif %}
+                        {% if user.user_type != "counsellor" %}
                             <a href="{% url 'counselor' %}">Councellor</a>
+                        {% endif %}
+                        {% if user.user_type != "pharmacist" %}
                             <a href="{% url 'searchmed' %}">Medicine</a>
-                            <a href="{% url 'blogs' %}">Blog</a>
-                        </div>
+                        {% endif %}
+                        <a href="{% url 'blogs' %}">Blog</a>
+                        {% if user.id is not None %}
+            <a href="{% url 'uploadprescription' %}">Share Prescription</a>
+            {% endif %}
                     </div>
-                </nav>
+                </div>
+            </nav>

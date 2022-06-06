@@ -1,0 +1,61 @@
+{% extends "base2.html" %}
+{% load static %}
+{% block start %}
+    <section class="section-content padding-y bg">
+        <div class="container">
+            <!-- ============================ COMPONENT 1 ================================= -->
+            <div class="row">
+                <aside class="col-lg-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <a href="{% url 'dashboardcustomer' %}"
+                               class="btn btn-primary btn-block">Order Log</a>
+                            <a href="{% url 'paymentlog' %}" class="btn btn-light btn-block">Payment Log</a>
+                            <a href="{% url 'customerbook' %}" class="btn btn-light btn-block">Booking Log</a>
+                            <a href="{% url 'customerreviewed' %}" class="btn btn-light btn-block">Review Log</a>
+                        </div>
+                    </div>
+                </aside>
+                <aside class="col-lg-9">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Orders</h4>
+                            {% if orders%}
+                            <div class="table-responsive">
+                                <table class="table table-striped table-sm">
+                                    <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Order Number</th>
+                                        <th>Tax</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for order in orders %}
+                                        <tr>
+                                            <td>{{ order.id }}</td>
+                                            <td>{{ order.order_number }}</td>
+                                            <td>Rs: {{ order.tax }} /-</td>
+                                            <td>Rs: {{ order.order_total }} /-</td>
+                                            <td>{{ order.status }}</td>
+                                            <td>{{ order.created_at }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% else%}
+                                <div class="alert alert-warning">
+                                    <strong>No orders found!</strong>
+    
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+{% endblock %}

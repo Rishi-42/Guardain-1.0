@@ -27,8 +27,12 @@
                 <aside class="col-lg-3">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{% url 'dashboardpharmacist' %}" class="btn btn-primary btn-block">Add Products</a>
-                            <a href="{% url 'added_product' %}" class="btn btn-light btn-block">View added Products</a>
+                            <a href="{% url 'dashboardpharmacist' %}"
+                               class="btn btn-primary btn-block">Add Products</a>
+                            <a href="{% url 'added_product' %}" class="btn btn-light btn-block">Added Products</a>
+                            <a href="{% url 'pbooked' %}" class="btn btn-light btn-block">Booking Log</a>
+                            <a href="{% url 'pordered' %}" class="btn btn-light btn-block">Ordered Log</a>
+                            <a href="{% url 'reviewed' %}" class="btn btn-light btn-block">Reviewed Log</a>
                         </div>
                     </div>
                 </aside>

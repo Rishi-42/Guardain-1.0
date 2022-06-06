@@ -1,5 +1,5 @@
 from django.db import models
-from account.models import Account
+from account.models import Account, PharmacistDetail
 from pharmacy.models import Add_product
 # Create your models here.
 
@@ -58,6 +58,7 @@ class OrderProduct(models.Model):
     quantity = models.IntegerField()
     price = models.FloatField()
     ordered = models.BooleanField(default=False)
+    pharmacy = models.ForeignKey(PharmacistDetail, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -20,6 +20,8 @@ SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 @login_required(login_url='login')
 def schedule_meeting(request, id):
+    coun_email = Account.objects.get(id=id).email
+    print(coun_email)
     counsellor_email = CounsellorDetail.objects.get(id=id).counsellor_email
     print(counsellor_email)
     current_user = request.user
@@ -48,7 +50,7 @@ def schedule_meeting(request, id):
             print(meeting_date)
             print(meeting_time)
             meet_schedule = Meeting(meeting_title=meeting_title, client_age=client_age, marital_status=marital_status,
-                                    client_details=Account.objects.get(email=user_email), meeting_date=meeting_date, meeting_time=meeting_time, meeting_description=meeting_description)
+                                    client_details=Account.objects.get(email=user_email), counsellor_details=Account.objects.get(email=coun_email), meeting_date=meeting_date, meeting_time=meeting_time, meeting_description=meeting_description)
 
             description = ('Meeting with ' + full_name + '\n Age : ' + str(client_age) +
                            ' \n Marital Status :' + marital_status + ' \n Description : ' + meeting_description + '.')

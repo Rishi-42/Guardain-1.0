@@ -9,6 +9,7 @@ class Meeting(models.Model):
     client_age = models.IntegerField()
     marital_status = models.CharField(max_length=100)
     client_details = models.ForeignKey(Account, on_delete=models.CASCADE)
+    counsellor_details = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='counsellor_details')
     meeting_date = models.DateField()
     meeting_time = models.TimeField()
     # meeting_location = models.CharField(max_length=255)

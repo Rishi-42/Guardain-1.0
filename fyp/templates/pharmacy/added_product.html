@@ -28,6 +28,18 @@
     <!-- ============================ COMPONENT 1 ================================= -->
     
     <div class="row">
+        <aside class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <a href="{% url 'dashboardpharmacist' %}"
+                               class="btn btn-light btn-block">Add Products</a>
+                            <a href="{% url 'added_product' %}" class="btn btn-primary btn-block">Added Products</a>
+                            <a href="{% url 'pbooked' %}" class="btn btn-light btn-block">Booking Log</a>
+                            <a href="{% url 'pordered' %}" class="btn btn-light btn-block">Ordered Log</a>
+                            <a href="{% url 'reviewed' %}" class="btn btn-light btn-block">Reviewed Log</a>
+                </div>
+            </div>
+</aside>
         <aside class="col-lg-9">
     <div class="card">
     <table class="table table table-shopping-cart" >
@@ -78,25 +90,7 @@
     </div> <!-- card.// -->
     
         </aside> <!-- col.// -->
-        <aside class="col-lg-3">
-    
-            <div class="card">
-            <div class="card-body">
-                <dl class="dlist-align">
-                  <dt>Total Products:</dt>
-                  <dd class="text-right text-dark b">4</dd>
-                </dl>
-                <dl class="dlist-align">
-                  <dt>Product types:</dt>
-                  <dd class="text-right text-dark b"> Different Catagory count</dd>
-                </dl>
-                <hr>
-                <a href="./place-order.html" class="btn btn-primary btn-block"> View Pharmacy </a>
-                <a href="./store.html" class="btn btn-light btn-block">Add Product</a>
-            </div> <!-- card-body.// -->
-            </div> <!-- card.// -->
-    
-    </aside> <!-- col.// -->
+
     
     
     </div> <!-- row.// -->

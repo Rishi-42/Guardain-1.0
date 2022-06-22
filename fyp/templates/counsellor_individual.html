@@ -24,8 +24,8 @@
                                 <p>
                                 <span>License Number: <strong>{{counsellor.registration_no}}</strong></span><br>
                                 <span>Working Hour : <strong>{{counsellor.work_start}}:00AM to {{counsellor.work_end}}:00PM</strong></span><br>
-                                <span>Working Days : <strong>Sun, Mon, Tue, Wen, Thu, Fri</strong></span><br>
-                                <span>Cell Phone number : <strong>+977-{{counsellor.phone_no}}</strong></span><br>
+                                {% comment %} <span>Working Days : <strong>Sun, Mon, Tue, Wen, Thu, Fri</strong></span><br> {% endcomment %}
+                                <span>Phone number : <strong>+977-{{counsellor.phone_no}}</strong></span><br>
                                 <span>Email : <strong>{{counsellor.counsellor_email}}</strong></span><br>
                             
                             
@@ -40,33 +40,6 @@
                         </div>
                     </div>
                 </section>
-                
-
-                <section class="our-services">
-                    <div class="container">
-                        <h1 class="section-heading">Specialised On</h1>
-                        <div class="card-wrapper flex">
-                            <div class="service-card magic-shadow-sm">
-                                <!-- <img class="icon" src="../icons/transport.svg" alt=""> -->
-                                <h2 class="text-primary">Marriage, couples and family counseling</h2>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                
-                            </div>
-                            <div class="service-card magic-shadow-sm">
-                                <!-- <img class="icon" src="../icons/bag.svg" alt=""> -->
-                                <h2 class="text-primary">Substance abuse counselor</h2>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                
-                            </div>
-                            <div class="service-card magic-shadow-sm">
-                                <!-- <img class="icon" src="../icons/usd.svg" alt=""> -->
-                                <h2 class="text-primary">Grief counselor</h2>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                                
-                            </div>
-                            
-                        </div>
-                    </div>
-                </section>
+            
 
                 {%endblock%}

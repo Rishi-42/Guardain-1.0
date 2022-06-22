@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .form import Schedule_Meeting
 from .models import Meeting
 from account.models import Account, CounsellorDetail
@@ -20,24 +20,17 @@ SCOPES = ['https://www.googleapis.com/auth/calendar']
 
 @login_required(login_url='login')
 def schedule_meeting(request, id):
-    coun_email = Account.objects.get(id=id).email
-    print(coun_email)
+    coun_email = CounsellorDetail.objects.get(id=id)
     counsellor_email = CounsellorDetail.objects.get(id=id).counsellor_email
-    print(counsellor_email)
     current_user = request.user
     user_email = current_user.email
-    print(user_email)
-    # print(user_email)
     user_first_name = current_user.first_name
     user_last_name = current_user.last_name
     full_name = (user_first_name + " " + user_last_name)
-    print(full_name)
     form = Schedule_Meeting()
     if request.method == 'POST':
         # get data from account mode
         form = Schedule_Meeting(request.POST)
-        print(form.is_valid())
-        print(form.errors)
         if form.is_valid():
             meeting_title = form.cleaned_data['meeting_title']
             client_age = form.cleaned_data['client_age']
@@ -47,10 +40,9 @@ def schedule_meeting(request, id):
             # meeting_location = form.cleaned_data['meeting_location']
             meeting_description = form.cleaned_data['meeting_description']
             # meeting_created_by = form.cleaned_data['meeting_created_by']
-            print(meeting_date)
-            print(meeting_time)
+            # save data to database
             meet_schedule = Meeting(meeting_title=meeting_title, client_age=client_age, marital_status=marital_status,
-                                    client_details=Account.objects.get(email=user_email), counsellor_details=Account.objects.get(email=coun_email), meeting_date=meeting_date, meeting_time=meeting_time, meeting_description=meeting_description)
+                                    client_details=Account.objects.get(email=user_email), counsellor_details=coun_email, meeting_date=meeting_date, meeting_time=meeting_time, meeting_description=meeting_description)
 
             description = ('Meeting with ' + full_name + '\n Age : ' + str(client_age) +
                            ' \n Marital Status :' + marital_status + ' \n Description : ' + meeting_description + '.')
@@ -151,8 +143,7 @@ def schedule_meeting(request, id):
 
                 messages.success(request, "Successfully booked!")
                 meet_schedule.save()
-                return render(request, 'counsellor.html', context)
-
+                return redirect('/')
                 # request_body = {
                 #     'summary': 'Booking',
                 # }

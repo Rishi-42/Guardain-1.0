@@ -4,7 +4,7 @@
     <section>
         <div class="container">
             <div class="card mb-3">
-                <img src="{{ blog_obj.image.url }}" class="card-img-top">
+                {% comment %} <img src="{{ blog_obj.image.url }}" class="card-img-top"> {% endcomment %}
                 <div class="card-body">
                     <div class="text-center">
                         <h5 class="card-title">{{ blog_obj.title }}</h5>
@@ -23,4 +23,5 @@
             </div>
         </div>
     </section>
+    
 {% endblock %}

@@ -16,7 +16,7 @@ class UploadPrescriptionForm(forms.ModelForm):
         self.fields['prescription'].widget.attrs.update(
             {'class': 'form-control', 'placeholder': 'prescription'})
         self.fields['prescripted_by'].widget.attrs.update(
-            {'class': 'form-control', 'placeholder': 'prescripted_by'})
+            {'class': 'form-control', 'placeholder': 'prescripted by'})
         self.fields['prescripted_for'].widget.attrs.update(
-            {'class': 'form-control', 'placeholder': 'prescripted_for'})
+            {'class': 'form-control', 'placeholder': 'prescripted for'})
 

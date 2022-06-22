@@ -41,15 +41,21 @@
             </div>
 </aside>
         <aside class="col-lg-9">
+            
     <div class="card">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Added Products</h4>
+            {% if products %}
+            <div class="table-responsive">
+             
     <table class="table table table-shopping-cart" >
     <thead class="text-left">
     <tr class="small text-uppercase" >
       <th scope="col">Product</th>
       <th scope="col" width="160">Catagory</th>
       <th scope="col" width="120">Per-Price</th>
-      <th scope="col" class="text-md-start" width="100">Update product </th>
-      <th scope="col" class="text-md-start" width="100">Remove product</th>
+      {% comment %} <th scope="col" class="text-md-start" width="100">Update product </th> {% endcomment %}
+      {% comment %} <th scope="col" class="text-md-start" width="100">Remove product</th> {% endcomment %}
     </tr>
     </thead>
     <tbody>
@@ -61,7 +67,7 @@
                 <div class="aside"><img src="{{ product.image.url }}" class="img-sm"></div>
                 <figcaption class="info">
                     <a href="#" class="title text-dark">{{product.product_name}}</a>
-                    <p class="text small">Alternative Name: name1</p>
+                    {% comment %} <p class="text small">Alternative Name: name1</p> {% endcomment %}
                 </figcaption>
             </figure>
         </td>
@@ -76,19 +82,24 @@
             </div> <!-- price-wrap .// -->
         </td>
         <td class="text-right"> 
-            <button class="btn btn-warning edit" name="{{ product.id }}"> Update </button>
+            {% comment %} <button class="btn btn-warning edit" name="{{ product.id }}"> Update </button> {% endcomment %}
         </td>
         <td class="text-right"> 
             {% comment %} <a class="btn btn-sm btn-danger delete" name="{{ product.id }}">Delete</a> {% endcomment %}
-            <button class="btn btn-danger delete" name="{{ product.id }}"> Remove</button>
+            {% comment %} <button class="btn btn-danger delete" name="{{ product.id }}"> Remove</button> {% endcomment %}
         </td>
     </tr>
     {% endfor %}
 
     </tbody>
     </table>
-    </div> <!-- card.// -->
     
+    </div> <!-- card.// -->
+    {% else %}
+    <div class="alert alert-danger">
+        <strong>No products found!</strong>
+    </div>
+    {% endif %}
         </aside> <!-- col.// -->
 
     

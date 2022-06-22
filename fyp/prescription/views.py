@@ -21,6 +21,11 @@ def uploadprescription(request):
                 request, "Thank you!")
             
             return render(request, 'prescription/uploadprescription.html', {'form': form})
+        else:
+            messages.error(
+                request, "Please fill all the fields!")
+            return render(request, 'prescription/uploadprescription.html', {'form': form})
+            
     else:
         form = UploadPrescriptionForm()
     context = {

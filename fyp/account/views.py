@@ -101,6 +101,7 @@ def pharmacyregister(request):
     user_name = current_user.id
     form = RegistrationFormPharmacy()
     form_add = Address_form()
+    print(form.is_valid())
     if request.method == 'POST':
         # get data from account mode
         form = RegistrationFormPharmacy(request.POST, request.FILES)
@@ -136,7 +137,7 @@ def pharmacyregister(request):
             pharmacy.save()
             address.save()
             
-            return render(request, 'account/login.html')
+            return redirect('dashboardpharmacist')
 
     else:
         form = RegistrationFormPharmacy()

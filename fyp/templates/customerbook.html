@@ -38,7 +38,7 @@
                                         <tr>
                                             <td>{{ meeting.id }}</td>
                                             <td>{{ meeting.meeting_title }}</td>
-                                            <td>{{ meeting.counsellor_details.first_name }} {{meeting.counsellor_details.last_name}}</td>
+                                            <td>{{ meeting.counsellor_details.counsellor_name }} </td>
                                             <td>{{ meeting.meeting_date }}</td>
                                             <td>{{ meeting.meeting_time }}</td>
                                             {% if meeting.meeting_date == today%}

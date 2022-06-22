@@ -89,7 +89,11 @@ def cpaymentlog(request):
 
 def ccustomerbook(request):
     current_user = request.user
-    meetings = Meeting.objects.filter(counsellor_details=current_user)
+    coun_email = CounsellorDetail.objects.get(user_id=current_user)
+    print(coun_email)
+    # id = current_user.id
+    meetings = Meeting.objects.filter(counsellor_details=coun_email)
+    # meetings = Meeting.objects.get(counsellor_details=current_user).counsellor_details
     print(meetings)
     from datetime import date
     today = date.today()

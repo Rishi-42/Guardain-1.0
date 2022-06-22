@@ -29,7 +29,7 @@
                                   
                                     <div class="item-option-select">
                                         <h6>Registered By: {{ individual_pharmacy.user_id.first_name }} {{ individual_pharmacy.user_id.last_name }}</h6>
-                                        <h6>Email: {{ individual_pharmacy.phone_no }}</h6>
+                                        <h6>Phone Number: {{ individual_pharmacy.phone_no }}</h6>
                                         <h6>Email: {{ individual_pharmacy.pharmacy_email }}</h6>
                                         <h6>Working Time: {{ individual_pharmacy.work_start }} AM to {{ individual_pharmacy.work_end }} PM</h6>
                                 </div>
@@ -81,6 +81,7 @@
                 </div>
             </section>
             <br>
+            {% if reviews %}
             <section class="our-services">
                 <div class="container">
             
@@ -109,5 +110,6 @@
             </div>
             </div>
             </section>
+            {% endif %}
             <br>
         {% endblock %}

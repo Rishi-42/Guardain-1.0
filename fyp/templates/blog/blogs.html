@@ -1,41 +1,41 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 {% load static %}
 {% block start %}
-    <section class="latest-news">
-        <div class="container">
-            <h1 class="section-heading">All Blogs</h1>
-            <div class="article-wrapper">
-                {% for blog in blog_obj %}
-                    <article class="card magic-shadow-sm">
-                        <div>
-                            <img src="{{ blog.image.url }}" alt="">
+    <style>
+    .card{
+        margin: 4px !important;
+    }
+
+    </style>
+    <section class="section all-products" id="products">
+        <div class="top container">
+            <h1>Blogs</h1>
+        </div>
+    </section>
+    <br>
+    <div class='container'>
+        <div class='row'>
+            {% for blog in blog_obj %}
+                <div class="card mb-6" style="max-width: 580px; padding-buttom:2px">
+                    <div class="row no-gutters">
+                        <div class="col-md-4">
+                            <img src="{{ blog.image.url }}" class="card-img" alt="...">
                         </div>
-                        <div class="card-content">
-                            <div class="post-meta flex items-center justify-between">
-                                <span><strong>{{ blog.counsellor_name_id }}</strong></span>
-                                <span style="font-weight:90; font-size:13px">{{ blog.created_at }}</span>
-                                <br>
-                                <br>
-                                
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ blog.title }}</h5>
+                                <h6 class="card-text">{{ blog.counsellor_name_id }}</h6>
+                                <p class="card-text">
+                                    {{ blog.created_at }}
+                                </p>
+                                <a href="{{ blog.get_url }}" class="btn btn-outline-primary btn-sm">Read</a>
                             </div>
-                            <a href="{{ blog.get_url }}"
-                               style="text-decoration:None!important;
-                                      border-style: dotted;
-                                      border-width: 2px;
-                                      padding:2px;">Read</a>
                         </div>
-                    </article>
-                {% endfor %}
-            </div>
+                    </div>
+                </div>
+                <br>
+            {% endfor %}
         </div>
-    </section>
-    <section class="pagination">
-        <div class=" container">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span><i class='bx bx-right-arrow-alt'></i></span>
-        </div>
-    </section>
+    </div>
+    <br>
 {% endblock %}

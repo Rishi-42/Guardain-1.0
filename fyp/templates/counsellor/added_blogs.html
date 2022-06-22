@@ -32,8 +32,8 @@
     <tr class="small text-uppercase" >
       <th scope="col">Title</th>
       <th scope="col" width="160">Date</th>
-      <th scope="col" class="text-md-start" width="100">Update </th>
-      <th scope="col" class="text-md-start" width="100">Remove</th>
+      {% comment %} <th scope="col" class="text-md-start" width="100">Update </th> {% endcomment %}
+      {% comment %} <th scope="col" class="text-md-start" width="100">Remove</th> {% endcomment %}
     </tr>
     </thead>
     <tbody>
@@ -56,11 +56,11 @@
         </td>
 
         <td class="text-right"> 
-            <button class="btn btn-warning edit" name="{{ blog.id }}"> Update </button>
+            {% comment %} <button class="btn btn-warning edit" name="{{ blog.id }}"> Update </button> {% endcomment %}
         </td>
         <td class="text-right"> 
             {% comment %} <a class="btn btn-sm btn-danger delete" name="{{ product.id }}">Delete</a> {% endcomment %}
-            <button class="btn btn-danger delete" name="{{ blog.id }}"> Remove</button>
+            {% comment %} <button class="btn btn-danger delete" name="{{ blog.id }}"> Remove</button> {% endcomment %}
         </td>
     </tr>
     {% endfor %}

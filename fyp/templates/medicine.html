@@ -6,9 +6,9 @@
 
 <section>
     <div class="container">
-        <h2 class="text-center">Know about Medicine</h2>
+        <h2 class="text-center">Search Medicine</h2>
         <br>
-        <h6 class="text-center">Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</h6>
+        {% comment %} <h6 class="text-center">Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy.</h6> {% endcomment %}
         <div class="col-lg  col-md-6 col-sm-12 col">
             <form action="{% url 'search' %}" class="search" method='GET'>
                 <div class="input-group">
@@ -25,7 +25,9 @@
     </div>
 </section>
 <br>
+
 <div class="container">
+    {% if products %}
     <header class="border-bottom mb-4 pb-3">
         <div class="form-inline">
             <span class="mr-md-auto"><strong>{{ product_count }} </strong> Items found</span>
@@ -56,6 +58,9 @@
             </div>
         {% endfor %}
         </div>
+        {% else %}
+        <h3 class="text-center"></h3>
+        {% endif %}
     </div>
 
 {%endblock%}

@@ -35,7 +35,7 @@ class Order(models.Model):
     phone = models.CharField(max_length=50)
     address = models.CharField(max_length=250)
     city = models.CharField(max_length=50)
-    building = models.CharField(max_length=50)
+    building = models.CharField(max_length=50, null=True)
     province = models.CharField(max_length=50)
     street = models.CharField(max_length=150)
     tax = models.CharField(max_length=50)
@@ -58,7 +58,7 @@ class OrderProduct(models.Model):
     quantity = models.IntegerField()
     price = models.FloatField()
     ordered = models.BooleanField(default=False)
-    pharmacy = models.ForeignKey(PharmacistDetail, on_delete=models.CASCADE)
+    pharmacy = models.ForeignKey(PharmacistDetail, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

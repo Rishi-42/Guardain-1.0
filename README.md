@@ -106,5 +106,5 @@ During the Production Guardian 1.0 followed the Scrum for One methodology, empha
 
 ## Documentation
 
-For detailed information about the project, please refer to the [project documentation](https://github.com/Rishi-42/Guardain-1.0/report). The documentation serves as a valuable resource for understanding how Guardian 1.0 aims, its developments and testings.
+For detailed information about the project, please refer to the [project documentation]([https://github.com/Rishi-42/Guardain-1.0/report](https://github.com/Rishi-42/Guardain-1.0/tree/master/report)). The documentation serves as a valuable resource for understanding how Guardian 1.0 aims, its developments and testings.
 
